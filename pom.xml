@@ -38,6 +38,14 @@
                     <target>14</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.3</version>
+                <configuration>
+                    <mainClass>idata2001.javafxtest.HelloWorld</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -48,6 +56,13 @@
             <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>15.0.1</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>

@@ -20,41 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="727fe8ec-ae03-453e-b191-ee043102a10e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../EksamensOving4/EksamensOving4.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ExamDecember2020/ExamDecember2020.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Hospital/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Hospital/Hospital.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Hospital/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Oblig2/.idea/Oblig2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Oving10/.idea/Oving10.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SisteOving/SisteOving.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../junit-test/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../junit-test/junit-test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../oving2/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/BasicMembership.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/BonusMember.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/GoldMembership.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/MemberArchive.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/MemberArchiveClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/Membership.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/SilverMembership.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Rescource/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rescource/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rescource/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rescource/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rescource/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Rescource/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Rescource/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Rescource/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Rescource/Task.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +61,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Programmering 2/Eksempelkode fra timen/gui-simple" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -104,6 +74,19 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Rescource.Main" />
+      <module name="idatt2001_20201" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Rescource.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -115,6 +98,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -165,13 +153,33 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1616067508467" />
-    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser" timestamp="1616073570573">
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser" timestamp="1616075343599">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1616073570573" />
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1616075343599" />
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1616065116631">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1616065116631" />
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1616076393127">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616076393127" />
+    <state width="1237" height="42" key="GridCell.Tab.0.bottom" timestamp="1616075749703">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="42" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1616075749703" />
+    <state width="1237" height="42" key="GridCell.Tab.0.center" timestamp="1616075749703">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="42" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1616075749703" />
+    <state width="1237" height="42" key="GridCell.Tab.0.left" timestamp="1616075749702">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="42" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1616075749702" />
+    <state width="1237" height="42" key="GridCell.Tab.0.right" timestamp="1616075749703">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="42" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1616075749703" />
   </component>
 </project>
