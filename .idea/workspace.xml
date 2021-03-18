@@ -49,12 +49,11 @@
       <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/MemberArchiveClient.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/Membership.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/SilverMembership.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Rescource/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rescource/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rescource/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Rescource/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rescource/Task.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,19 +116,6 @@
       </method>
     </configuration>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -139,17 +125,11 @@
       <option name="presentableId" value="Default" />
       <updated>1616063241104</updated>
       <workItem from="1616063242648" duration="1872000" />
-<<<<<<< HEAD
       <workItem from="1616065206744" duration="1043000" />
       <workItem from="1616066472285" duration="1073000" />
-=======
       <workItem from="1616065206744" duration="696000" />
-<<<<<<< HEAD
       <workItem from="1616066671942" duration="1585000" />
->>>>>>> ebfc4e0e3f398f2cb1688f11e1330fb4a74a2f68
-=======
       <workItem from="1616066671942" duration="2445000" />
->>>>>>> 5d5c5becb2ab62fd6acd4875f144a07a6412fcc0
     </task>
     <servers />
   </component>
@@ -185,6 +165,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1616067508467" />
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser" timestamp="1616073570573">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="42" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1616073570573" />
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1616065116631">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
