@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="727fe8ec-ae03-453e-b191-ee043102a10e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Rescource/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Rescource/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rescource/Task.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +94,7 @@
       <updated>1616063241104</updated>
       <workItem from="1616063242648" duration="1872000" />
       <workItem from="1616065206744" duration="696000" />
-      <workItem from="1616066671942" duration="1585000" />
+      <workItem from="1616066671942" duration="2445000" />
     </task>
     <servers />
   </component>
