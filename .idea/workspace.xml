@@ -20,7 +20,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="727fe8ec-ae03-453e-b191-ee043102a10e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../devops-workshop" beforeDir="false" afterPath="$PROJECT_DIR$/../devops-workshop" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EksamensOving4/EksamensOving4.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ExamDecember2020/ExamDecember2020.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hospital/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hospital/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hospital/Hospital.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hospital/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Oblig2/.idea/Oblig2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Oving10/.idea/Oving10.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SisteOving/SisteOving.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../junit-test/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../junit-test/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../junit-test/junit-test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oving2/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/BasicMembership.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/BonusMember.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/GoldMembership.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/MemberArchive.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/MemberArchiveClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/Membership.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/SilverMembership.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +66,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -57,6 +85,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -64,19 +93,6 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -87,6 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1616063241104</updated>
       <workItem from="1616063242648" duration="1872000" />
+      <workItem from="1616065206744" duration="696000" />
     </task>
     <servers />
   </component>
@@ -115,6 +132,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1616065116631">
