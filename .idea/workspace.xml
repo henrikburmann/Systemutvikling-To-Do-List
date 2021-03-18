@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="727fe8ec-ae03-453e-b191-ee043102a10e" name="Default Changelist" comment="">
-<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/../EksamensOving4/EksamensOving4.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ExamDecember2020/ExamDecember2020.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Hospital/.gitignore" afterDir="false" />
@@ -51,14 +50,12 @@
       <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/Membership.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../oving2/src/main/java/ntnu/idatt2001/SilverMembership.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-=======
       <change afterPath="$PROJECT_DIR$/src/main/java/Rescource/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Rescource/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rescource/Task.java" afterDir="false" />
->>>>>>> ebfc4e0e3f398f2cb1688f11e1330fb4a74a2f68
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,8 +144,12 @@
       <workItem from="1616066472285" duration="1073000" />
 =======
       <workItem from="1616065206744" duration="696000" />
+<<<<<<< HEAD
       <workItem from="1616066671942" duration="1585000" />
 >>>>>>> ebfc4e0e3f398f2cb1688f11e1330fb4a74a2f68
+=======
+      <workItem from="1616066671942" duration="2445000" />
+>>>>>>> 5d5c5becb2ab62fd6acd4875f144a07a6412fcc0
     </task>
     <servers />
   </component>
