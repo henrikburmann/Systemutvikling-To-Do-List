@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class CiterClient extends Application {
+public class CiterClient extends Application{
 
     private static Scene scene;
 
@@ -31,7 +31,7 @@ public class CiterClient extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         launch();
     }
 
