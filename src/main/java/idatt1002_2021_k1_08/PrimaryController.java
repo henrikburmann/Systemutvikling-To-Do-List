@@ -1,4 +1,4 @@
-package idatt1002_2021_k1-08;
+package idatt1002_2021_k1_08;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
