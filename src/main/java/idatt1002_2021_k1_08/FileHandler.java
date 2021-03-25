@@ -3,7 +3,7 @@ package idatt1002_2021_k1_08;
 import java.io.*;
 import java.util.ArrayList;
 
-public abstract class FileHandler implements Serializable {
+public abstract class FileHandler {
 
     private final File FILE;
     protected ArrayList<ArrayList<String>> fileData;
