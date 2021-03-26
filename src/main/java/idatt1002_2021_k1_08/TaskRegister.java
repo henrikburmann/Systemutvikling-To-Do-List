@@ -14,11 +14,11 @@ public class TaskRegister {
         if(tasks.isEmpty()){
             System.out.println("No tasks inside task list");
         }
-<<<<<<< HEAD
+
         this.tasks = new ObservableList<Task>() {
-=======
+
         this.tasks = new ObservableList<>() {
->>>>>>> 6b8b98f9c23daf774e8790f8db6418d8b252fa08
+
             @Override
             public void addListener(ListChangeListener<? super Task> listChangeListener) {
 

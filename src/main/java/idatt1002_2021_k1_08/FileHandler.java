@@ -18,7 +18,8 @@ public abstract class FileHandler {
         }
     }
 
-
+        //TODO: Should this FILE be a .ser file caused by serialization
+    
     public void loadData() throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE));
         oos.writeObject(FILE);
