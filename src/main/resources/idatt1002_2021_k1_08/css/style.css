@@ -1,0 +1,12 @@
+#wrapper{
+    -fx-background-color: black;
+}
+#pane_left{
+    -fx-background-color: red;
+}
+#pane_middle{
+    -fx-background-color: blue;
+}
+#pane_right{
+    -fx-background-color: green;
+}
