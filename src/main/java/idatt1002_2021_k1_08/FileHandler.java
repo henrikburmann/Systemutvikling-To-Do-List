@@ -19,7 +19,7 @@ public abstract class FileHandler {
     }
 
         //TODO: Should this FILE be a .ser file caused by serialization
-    
+
     public void loadData() throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE));
         oos.writeObject(FILE);
@@ -35,6 +35,4 @@ public abstract class FileHandler {
         System.out.println(/** catRegRead.contains(??FILE??)*/ );
         System.out.println(/** catRegRead.contains(?? Something to check that it works*/ );
     }
-
-
 }

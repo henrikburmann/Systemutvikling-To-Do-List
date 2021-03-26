@@ -15,7 +15,7 @@ public class TaskRegister {
             System.out.println("No tasks inside task list");
         }
 
-        this.tasks = new ObservableList<Task>() {
+
 
         this.tasks = new ObservableList<>() {
 
@@ -61,11 +61,7 @@ public class TaskRegister {
 
             @Override
             public int size() {
-<<<<<<< HEAD
-                return 0;
-=======
                 return tasks.size();
->>>>>>> 6b8b98f9c23daf774e8790f8db6418d8b252fa08
             }
 
             @Override
