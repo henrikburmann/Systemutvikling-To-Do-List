@@ -31,7 +31,7 @@ public class CiterClient extends Application{
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args){
         launch();
     }
 
