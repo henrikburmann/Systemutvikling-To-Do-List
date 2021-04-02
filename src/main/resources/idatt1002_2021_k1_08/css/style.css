@@ -34,3 +34,8 @@
 #task_list{
     -fx-background-color: #4C96D7;
 }
+
+#anchor_add_task{
+    -fx-background-color: grey;
+    -fx-background-radius: 40;
+}

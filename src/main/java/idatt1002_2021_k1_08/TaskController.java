@@ -13,7 +13,7 @@ public class TaskController {
 
     @FXML
     public void changeSceneToAddTask() throws IOException{
-        System.out.println("test");
+        CiterClient.setRoot("addTask");
 
     }
 
