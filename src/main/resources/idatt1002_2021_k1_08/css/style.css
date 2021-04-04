@@ -27,6 +27,9 @@
 #label_header_right{
     -fx-background-color: #075075;
 }
+#task_information_label{
+    -fx-background-color: black;
+}
 #add_task_button{
 
 }
@@ -36,6 +39,6 @@
 }
 
 #anchor_add_task{
-    -fx-background-color: grey;
+    -fx-background-color: #adadad;
     -fx-background-radius: 40;
 }
