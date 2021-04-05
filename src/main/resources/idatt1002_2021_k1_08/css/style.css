@@ -1,0 +1,44 @@
+*{
+    -fx-text-fill: white;
+}
+#wrapper{
+    -fx-background-color: black;
+}
+.button{
+    -fx-background-radius: 40;
+    -fx-background-color: grey;
+    -fx-text-fill: black;
+}
+#pane_left{
+    -fx-background-color: white;
+}
+#pane_middle{
+    -fx-background-color: #4C96D7;
+}
+#pane_right{
+    -fx-background-color: white
+}
+#label_header_left{
+    -fx-background-color:#075075;
+}
+#label_header_middle {
+    -fx-background-color: #3C866F;
+}
+#label_header_right{
+    -fx-background-color: #075075;
+}
+#task_information_label{
+    -fx-background-color: black;
+}
+#add_task_button{
+
+}
+
+#task_list{
+    -fx-background-color: #4C96D7;
+}
+
+#anchor_add_task{
+    -fx-background-color: #adadad;
+    -fx-background-radius: 40;
+}
