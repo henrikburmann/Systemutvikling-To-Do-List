@@ -2,6 +2,7 @@ package idatt1002_2021_k1_08;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -33,6 +34,8 @@ public class TaskController {
     @FXML
     TextArea notes_textarea;
 
+    @FXML
+    ImageView menuImageView;
 
 
 
