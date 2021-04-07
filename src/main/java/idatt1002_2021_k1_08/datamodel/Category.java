@@ -12,16 +12,10 @@ public class Category implements Serializable {
             throw new IllegalArgumentException("Category must have a name");
         }
         this.name = name;
-        this.tasks = new ArrayList<>();
     }
 
     public void addTask(Task task){
-        try{
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        tasks.add(task);
     }
 
     public void removeTask(Task task){

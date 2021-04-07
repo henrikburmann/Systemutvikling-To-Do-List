@@ -1,12 +1,13 @@
 package idatt1002_2021_k1_08.datamodel;
 
-import idatt1002_2021_k1_08.CategoryRegister;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.*;
-import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.format.DateTimeFormatter;
 
-public abstract class FileHandler {
+public abstract class CategoryAndTaskData {
 
     /**
      * TODO: 1.Hvordan bestemme hvilke kategori en task skal lagres i
@@ -20,18 +21,36 @@ public abstract class FileHandler {
 
     private Task task;
     private Category category;
-
     private ObservableList<Task> tasks;
     private ObservableList<Category> categories;
-
+    private final DateTimeFormatter formatter;
+    private static String filename = "filepathName.txt";
 
     /**
      * Constructor
      */
-    public FileHandler() {
+
+    private CategoryAndTaskData(){
+        this.formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
-    //private static String filePath = "filepath.txt";
+    public void serializeTask(){
+
+    }
+
+    public void deserializeTask(){
+
+    }
+
+    public void serializeCategory(){
+
+    }
+
+    public void deserializeCategory(){
+
+    }
+
+
 
 
     /**
@@ -42,9 +61,10 @@ public abstract class FileHandler {
      * Method that retrieves data from file
      */
     public void loadData() throws IOException, ClassNotFoundException {
-
+        categories = FXCollections.observableArrayList();
+        tasks = FXCollections.observableArrayList();
+        Path path = Paths.get(filename);
     }
-
 
     /**
      * Method that stores data to a file
