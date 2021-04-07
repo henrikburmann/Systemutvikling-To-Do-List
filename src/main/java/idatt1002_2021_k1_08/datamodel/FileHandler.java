@@ -1,4 +1,6 @@
-package idatt1002_2021_k1_08;
+package idatt1002_2021_k1_08.datamodel;
+
+import idatt1002_2021_k1_08.CategoryRegister;
 
 import java.io.*;
 import java.util.ArrayList;

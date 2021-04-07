@@ -1,5 +1,7 @@
 package idatt1002_2021_k1_08;
 
+import idatt1002_2021_k1_08.datamodel.Category;
+
 import java.util.ArrayList;
 
 public class CategoryRegister {

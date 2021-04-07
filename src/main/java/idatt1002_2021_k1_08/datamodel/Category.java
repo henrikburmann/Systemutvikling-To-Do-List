@@ -1,4 +1,4 @@
-package idatt1002_2021_k1_08;
+package idatt1002_2021_k1_08.datamodel;
 
 import java.util.ArrayList;
 
