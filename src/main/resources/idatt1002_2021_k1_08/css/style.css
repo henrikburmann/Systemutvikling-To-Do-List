@@ -1,6 +1,3 @@
-*{
-    -fx-text-fill: white;
-}
 #wrapper{
     -fx-background-color: black;
 }
@@ -33,12 +30,32 @@
 #add_task_button{
 
 }
+#menuButton{
+    -fx-background-color: #adadad;
+    -fx-text-fill: black;
+}
+
+#edit_task_button{
+    -fx-background-color: #adadad;
+}
 
 #task_list{
     -fx-background-color: #4C96D7;
 }
 
+
 #anchor_add_task{
     -fx-background-color: #adadad;
     -fx-background-radius: 40;
+}
+
+#delete_task_button{
+    -fx-background-color: #adadad;
+}
+
+#datePicker{
+
+}
+#usernameTextField{
+    -fx-text-fill: black;
 }
