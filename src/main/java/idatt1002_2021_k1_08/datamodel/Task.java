@@ -1,8 +1,9 @@
 package idatt1002_2021_k1_08.datamodel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Task {
+public class Task implements Serializable {
 
     private String taskName;
     private String description;
@@ -27,6 +28,13 @@ public class Task {
         this.status = status;
         this.startDate = LocalDate.now();
         this.endDate = null;
+    }
+
+    /**
+     * Default empty constructor
+     */
+    public Task(){
+        this(null,null,null);
     }
 
     public String getTaskName(){

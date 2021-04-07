@@ -1,8 +1,9 @@
 package idatt1002_2021_k1_08.datamodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Category {
+public class Category implements Serializable {
     private String name;
     private ArrayList<Task> tasks;
 
@@ -15,7 +16,12 @@ public class Category {
     }
 
     public void addTask(Task task){
-        tasks.add(task);
+        try{
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void removeTask(Task task){

@@ -1,40 +1,56 @@
 package idatt1002_2021_k1_08.datamodel;
 
 import idatt1002_2021_k1_08.CategoryRegister;
+import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public abstract class FileHandler {
 
-    private final File FILE;
-    protected ArrayList<ArrayList<String>> fileData;
+    /**
+     * TODO: 1.Hvordan bestemme hvilke kategori en task skal lagres i
+     * TODO: 2.Hvordan legge til/slette en kategori.(Må gjøres )
+     * TODO: 3.Hvordan legge til og slette en task, (Må gjøres i filen også)
+     * TODO: 4.Hvor skal selve filen med dataene lagres.
+     * TODO: 5.Burde implementer ObsevableList i klassene (Kan dette brukes med objekter)
+     */
 
-    public FileHandler(String path) throws IOException, ClassNotFoundException {
-        this.FILE = new File(path);
-        this.fileData = new ArrayList<>();
-        if(!FILE.exists()) {
-            FILE.createNewFile();
-        }else{
-            loadData();
-        }
+    //protected ArrayList<ArrayList<String>> fileData;
+
+    private Task task;
+    private Category category;
+
+    private ObservableList<Task> tasks;
+    private ObservableList<Category> categories;
+
+
+    /**
+     * Constructor
+     */
+    public FileHandler() {
     }
 
-        //TODO: Should this FILE be a .ser file caused by serialization
+    //private static String filePath = "filepath.txt";
 
+
+    /**
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     *
+     * Method that retrieves data from file
+     */
     public void loadData() throws IOException, ClassNotFoundException {
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE));
-        oos.writeObject(FILE);
-        oos.close();
 
-
-
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE));
-        CategoryRegister catRegRead = (CategoryRegister) ois.readObject();
-        ois.close();
-        //TODO: Create class categoryRegister and category, then test filehandling.
-
-        System.out.println(/** catRegRead.contains(??FILE??)*/ );
-        System.out.println(/** catRegRead.contains(?? Something to check that it works*/ );
     }
+
+
+    /**
+     * Method that stores data to a file
+     */
+    public void storeData(){
+
+    }
+
 }
