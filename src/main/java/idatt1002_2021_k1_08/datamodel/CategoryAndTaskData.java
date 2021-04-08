@@ -15,6 +15,7 @@ public abstract class CategoryAndTaskData {
      * TODO: 3.Hvordan legge til og slette en task, (Må gjøres i filen også)
      * TODO: 4.Hvor skal selve filen med dataene lagres.
      * TODO: 5.Burde implementer ObsevableList i klassene (Kan dette brukes med objekter)
+     * TODO: 6.
      */
 
     //protected ArrayList<ArrayList<String>> fileData;
@@ -34,8 +35,13 @@ public abstract class CategoryAndTaskData {
         this.formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
-    public void serializeTask(){
+    public void serializeTask(Object object, File file) throws IOException{
+        Object Task = null;
+        try(FileOutputStream fs = new FileOutputStream(file);
+            ObjectOutputStream os = new ObjectOutputStream(fs)) {
 
+            os.writeObject(object);
+        }
     }
 
     public void deserializeTask(){
