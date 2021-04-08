@@ -17,6 +17,7 @@ public class CategoryRegister {
         return categories;
     }
 
+
     public boolean addCategory(Category category){
         for (Category c: categories){
             if (c.equals(category)){
