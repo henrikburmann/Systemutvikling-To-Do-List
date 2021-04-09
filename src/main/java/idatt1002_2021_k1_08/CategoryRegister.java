@@ -13,9 +13,14 @@ public class CategoryRegister {
         this.categories = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return arraylist of categories
+     */
     public ArrayList<Category> getCategories(){
         return categories;
     }
+
 
 
     public boolean addCategory(Category category){
