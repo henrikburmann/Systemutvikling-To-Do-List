@@ -48,7 +48,10 @@ public class AddTaskController {
         String description = notes_textarea.getText();
         String status = "Underway";
         Task task = new Task(taskName, description, status);
-        //task_information_TextArea.setText(task.toString());
-        changeSceneToPrimary();
+
+        task_information_TextArea.setText(task.toString());
+
+
+
     }
 }

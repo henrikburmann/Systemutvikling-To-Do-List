@@ -39,6 +39,8 @@ public class TaskController {
     @FXML
     DatePicker datePicker;
 
+    TaskRegister taskRegister = new TaskRegister();
+
     public void initialize() {
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
