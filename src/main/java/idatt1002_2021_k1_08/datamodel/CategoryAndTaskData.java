@@ -17,7 +17,7 @@ public abstract class CategoryAndTaskData {
      * TODO: 3.Hvordan legge til og slette en task, (Må gjøres i filen også)
      * TODO: 4.Hvor skal selve filen med dataene lagres.
      * TODO: 5.Burde implementer ObsevableList i klassene (Kan dette brukes med objekter)
-     * TODO: 6. Hvor de
+     * TODO: 6.Hvordan henter man ut et task fra en dserialisert ArrayList????
      */
 
 
@@ -39,7 +39,7 @@ public abstract class CategoryAndTaskData {
 
     /*
 
-     */
+    */
     public void serialize(Object object) throws IOException {
         try (FileOutputStream fs = new FileOutputStream(FILE_PATH);
              ObjectOutputStream os = new ObjectOutputStream(fs)) {
@@ -47,6 +47,14 @@ public abstract class CategoryAndTaskData {
         }
     }
 
+
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
+
+    //Burde returnere en Arraylist her når man deserialiserer en kategori
     public Object deserialize() throws IOException {
         Object object = null;
         try (FileInputStream fs = new FileInputStream(FILE_PATH);
