@@ -18,8 +18,6 @@ public abstract class FileHandler {
 
     private Task task;
     private Category category;
-    private ArrayList<Task> tasks;
-    private ArrayList<Category> categories;
 
     private final DateTimeFormatter formatter;
     private final String FILE_PATH = "filepathName.txt";
@@ -36,7 +34,7 @@ public abstract class FileHandler {
      * Writes a Category to file
      */
     public void serializeCategory(ArrayList<Task> categories) throws IOException{
-        try(FileOutputStream fs = new FileOutputStream(CATEGORY_PATH); //åpner opp en stream
+        try(FileOutputStream fs = new FileOutputStream(FILE_PATH); //åpner opp en stream
             ObjectOutputStream os = new ObjectOutputStream(fs)){
             os.writeObject(categories);
             os.flush();
@@ -49,7 +47,7 @@ public abstract class FileHandler {
     public ArrayList<Category> deserializeCategory() throws IOException {
         ArrayList<Category> category = new ArrayList<>();
 
-        try (FileInputStream fs = new FileInputStream(CATEGORY_PATH);
+        try (FileInputStream fs = new FileInputStream(FILE_PATH);
              ObjectInputStream is = new ObjectInputStream(fs)) {
 
             category = (ArrayList<Category>) is.readObject();
