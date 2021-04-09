@@ -2,9 +2,12 @@ package idatt1002_2021_k1_08;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class TaskController {
 
@@ -16,32 +19,40 @@ public class TaskController {
     Button delete_task_button;
 
     @FXML
-    Label task_information_label;
-
-    @FXML
-    Button add_task_complete_button;
+    TextArea task_information_TextArea;
 
     @FXML
     ListView task_list;
 
     @FXML
-    TextField task_name_textfield;
+    Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
+
     @FXML
-    DatePicker date_time_box;
+    ImageView logoImageView;
     @FXML
-    ChoiceBox category_list;
+    MenuButton menuButton;
     @FXML
-    TextArea notes_textarea;
+    MenuItem helpItem;
+    @FXML
+    TextField usernameTextField;
 
+    @FXML
+    DatePicker datePicker;
 
+    TaskRegister taskRegister = new TaskRegister();
 
+    public void initialize() {
+        logoImageView.setImage(logoImage);
+        menuButton = new MenuButton("Options", null, helpItem);
 
+    }
 
+    public TaskController() throws FileNotFoundException {
 
+    }
     @FXML
     public void changeSceneToAddTask() throws IOException{
         CiterClient.setRoot("addTask");
-
     }
 
 
