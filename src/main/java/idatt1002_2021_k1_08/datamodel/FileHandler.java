@@ -1,15 +1,10 @@
 package idatt1002_2021_k1_08.datamodel;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public abstract class CategoryAndTaskData {
+public abstract class FileHandler {
 
     /**
      * TODO: 1.Hvordan bestemme hvilke kategori en task skal lagres i
@@ -33,37 +28,35 @@ public abstract class CategoryAndTaskData {
     /**
      * Constructor
      */
-    private CategoryAndTaskData() {
+    private FileHandler() {
         this.formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
-    /*
-
-    */
-    public void serialize(Object object) throws IOException {
-        try (FileOutputStream fs = new FileOutputStream(FILE_PATH);
-             ObjectOutputStream os = new ObjectOutputStream(fs)) {
-            os.writeObject(object);
+    /**
+     * Writes a Category to file
+     */
+    public void serializeCategory(ArrayList<Task> categories) throws IOException{
+        try(FileOutputStream fs = new FileOutputStream(CATEGORY_PATH); //åpner opp en stream
+            ObjectOutputStream os = new ObjectOutputStream(fs)){
+            os.writeObject(categories);
+            os.flush();
         }
     }
 
-
     /**
-     *
-     * @return
-     * @throws IOException
+     * Reads a category from a file
      */
+    public ArrayList<Category> deserializeCategory() throws IOException {
+        ArrayList<Category> category = new ArrayList<>();
 
-    //Burde returnere en Arraylist her når man deserialiserer en kategori
-    public Object deserialize() throws IOException {
-        Object object = null;
-        try (FileInputStream fs = new FileInputStream(FILE_PATH);
+        try (FileInputStream fs = new FileInputStream(CATEGORY_PATH);
              ObjectInputStream is = new ObjectInputStream(fs)) {
-            object = is.readObject();
-        } catch (ClassNotFoundException ex) {
+
+            category = (ArrayList<Category>) is.readObject();
+        }catch (ClassNotFoundException ex){
             ex.printStackTrace();
         }
-        return object;
+        return category;
     }
 
 }
