@@ -23,8 +23,7 @@
          <Label fx:id="label_header_left" prefHeight="45.0" prefWidth="225.0" />
          <MenuButton fx:id="menuButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Options">
            <items>
-             <MenuItem mnemonicParsing="false" text="Action 1" />
-             <MenuItem mnemonicParsing="false" text="Action 2" />
+             <MenuItem fx:id="helpItem" mnemonicParsing="false" onAction="#changeSceneToAddTask" text="Help" />
            </items>
             <effect>
                <Glow level="0.06" />
@@ -49,7 +48,7 @@
                <Font size="15.0" />
             </font>
          </TextField>
-         <ImageView fx:id="menuImageView" fitHeight="79.0" fitWidth="63.0" layoutX="142.0" layoutY="-17.0">
+         <ImageView fx:id="logoImageView" fitHeight="79.0" fitWidth="78.0" layoutX="127.0" layoutY="-17.0">
             <image>
                <Image url="@../../../../images/CiterLogo.png" />
             </image>
@@ -62,21 +61,21 @@
             <font>
                <Font name="Times New Roman Bold" size="18.0" />
             </font></Label>
-         <Button fx:id="add_task_button" layoutX="190.0" layoutY="6.0" mnemonicParsing="false" onAction="#changeSceneToAddTask" prefHeight="33.0" prefWidth="95.0" text="ADD TASK">
+         <Button fx:id="add_task_button" layoutX="190.0" layoutY="6.0" mnemonicParsing="false" onAction="#changeSceneToAddTask" onMouseClicked="#changeSceneToAddTask" prefHeight="33.0" prefWidth="95.0" text="ADD TASK">
             <effect>
                <Glow />
             </effect></Button>
-         <TextField layoutX="18.0" layoutY="63.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: blue;">
+         <TextField editable="false" layoutX="18.0" layoutY="63.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: blue;">
             <effect>
                <ColorAdjust brightness="0.76" contrast="0.6" hue="-0.11" saturation="-0.32" />
             </effect>
          </TextField>
-         <TextField layoutX="18.0" layoutY="101.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: blue;">
+         <TextField editable="false" layoutX="18.0" layoutY="101.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: blue;">
             <effect>
                <ColorAdjust brightness="0.76" contrast="0.6" hue="-0.11" saturation="-0.32" />
             </effect>
          </TextField>
-         <TextField layoutX="18.0" layoutY="138.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: #0000ff;">
+         <TextField editable="false" layoutX="18.0" layoutY="138.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: #0000ff;">
             <effect>
                <ColorAdjust brightness="0.76" contrast="0.6" hue="-0.11" saturation="-0.32" />
             </effect>
@@ -87,7 +86,7 @@
          <Label fx:id="label_header_right" alignment="CENTER" prefHeight="45.0" prefWidth="231.0" text="Name of task" />
          <Button fx:id="edit_task_button" layoutX="14.0" layoutY="440.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" text="Edit Task" />
          <Button fx:id="delete_task_button" layoutX="126.0" layoutY="440.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" text="Delete Task" />
-         <TextArea layoutY="45.0" prefHeight="355.0" prefWidth="231.0" />
+         <TextArea fx:id="task_information_TextArea" layoutY="45.0" prefHeight="355.0" prefWidth="231.0" />
       </AnchorPane>
    </children>
 </AnchorPane>

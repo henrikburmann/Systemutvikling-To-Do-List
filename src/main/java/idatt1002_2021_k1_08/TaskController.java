@@ -19,27 +19,16 @@ public class TaskController {
     Button delete_task_button;
 
     @FXML
-    Label task_information_label;
-
-    @FXML
-    Button add_task_complete_button;
+    TextArea task_information_TextArea;
 
     @FXML
     ListView task_list;
 
     @FXML
-    TextField task_name_textfield;
-    @FXML
-    DatePicker date_time_box;
-    @FXML
-    ChoiceBox category_list;
-    @FXML
-    TextArea notes_textarea;
-    @FXML
-    Image image = new Image(new FileInputStream("images/CiterLogo.png"));
+    Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
 
     @FXML
-    ImageView menuImageView = new ImageView(image);
+    ImageView logoImageView;
     @FXML
     MenuButton menuButton;
     @FXML
@@ -51,7 +40,7 @@ public class TaskController {
     DatePicker datePicker;
 
     public void initialize() {
-        menuImageView.setImage(image);
+        logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
 
     }
