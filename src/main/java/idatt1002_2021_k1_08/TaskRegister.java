@@ -9,20 +9,19 @@ import java.util.*;
 
 public class TaskRegister {
 
-    private ArrayList<Task> tasks;
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public TaskRegister(){
-        tasks = new ArrayList<>();
     }
 
-    public ArrayList<Task> getTasks() {
+    public static ArrayList<Task> getTasks() {
         if(tasks.isEmpty()){
             System.out.println("No tasks inside task list");
         }
         return tasks;
     }
 
-    public boolean addTask(Task task){
+    public static boolean addTask(Task task){
         try{
             if(!(tasks.contains(task))){
                 tasks.add(task);

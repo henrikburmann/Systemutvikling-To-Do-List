@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08;
 
+import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -27,7 +28,7 @@ public class AddTaskController {
 
     @FXML
     TextArea task_information_TextArea;
-
+    private TaskController taskController;
 
 
     public void initialize(){
@@ -48,10 +49,11 @@ public class AddTaskController {
         String description = notes_textarea.getText();
         String status = "Underway";
         Task task = new Task(taskName, description, status);
-
         task_information_TextArea.setText(task.toString());
-
-
-
+        TaskRegister.addTask(task);
+        changeSceneToPrimary();
     }
+
+
+
 }

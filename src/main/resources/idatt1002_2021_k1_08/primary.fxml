@@ -65,7 +65,7 @@
             <effect>
                <Glow />
             </effect></Button>
-         <TextField editable="false" layoutX="18.0" layoutY="63.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: blue;">
+         <TextField fx:id="taskTextfield1" editable="false" layoutX="18.0" layoutY="63.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: blue;">
             <effect>
                <ColorAdjust brightness="0.76" contrast="0.6" hue="-0.11" saturation="-0.32" />
             </effect>
@@ -84,9 +84,9 @@
       </AnchorPane>
       <AnchorPane fx:id="pane_right" layoutX="525.0" prefHeight="500.0" prefWidth="225.0">
          <Label fx:id="label_header_right" alignment="CENTER" prefHeight="45.0" prefWidth="231.0" text="Name of task" />
-         <Button fx:id="edit_task_button" layoutX="14.0" layoutY="440.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" text="Edit Task" />
-         <Button fx:id="delete_task_button" layoutX="126.0" layoutY="440.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" text="Delete Task" />
-         <TextArea fx:id="task_information_TextArea" layoutY="45.0" prefHeight="355.0" prefWidth="231.0" />
+         <Button fx:id="edit_task_button" layoutX="14.0" layoutY="440.0" mnemonicParsing="false" onAction="#addTaskMethod" prefHeight="33.0" prefWidth="78.0" text="Edit Task" />
+         <Button fx:id="delete_task_button" layoutX="126.0" layoutY="440.0" mnemonicParsing="false" onAction="#addTaskMethod" prefHeight="33.0" prefWidth="78.0" text="Delete Task" />
+         <TextArea fx:id="task_information_TextArea" layoutY="38.0" prefHeight="355.0" prefWidth="231.0" />
       </AnchorPane>
    </children>
 </AnchorPane>

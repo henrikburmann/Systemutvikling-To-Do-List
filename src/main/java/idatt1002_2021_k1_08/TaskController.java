@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08;
 
+import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -39,7 +40,12 @@ public class TaskController {
     @FXML
     DatePicker datePicker;
 
-    TaskRegister taskRegister = new TaskRegister();
+    @FXML
+    TextField taskTextfield1;
+
+    @FXML AddTaskController addTaskController;
+
+
 
     public void initialize() {
         logoImageView.setImage(logoImage);
@@ -48,12 +54,22 @@ public class TaskController {
     }
 
     public TaskController() throws FileNotFoundException {
-
     }
     @FXML
     public void changeSceneToAddTask() throws IOException{
         CiterClient.setRoot("addTask");
     }
+
+
+    @FXML
+    public void addTaskMethod(){
+        taskTextfield1.setText(TaskRegister.getTasks().get(0).getTaskName());
+        //System.out.println(TaskRegister.getTasks());
+    }
+
+
+
+
 
 
 }
