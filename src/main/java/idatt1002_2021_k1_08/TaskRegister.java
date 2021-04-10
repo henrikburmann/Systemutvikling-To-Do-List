@@ -34,7 +34,7 @@ public class TaskRegister {
         return true;
     }
 
-    public boolean removeTask(Task task){
+    public static boolean removeTask(Task task){
         try{
             if(!(tasks.contains(task))){
                 throw new IllegalArgumentException("Task not inn list");

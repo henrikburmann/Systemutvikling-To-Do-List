@@ -67,5 +67,27 @@
     -fx-font-size: 14;
 }
 #taskTextfield1{
-    -fx-text-fill: black;
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+
+}
+#taskTextfield2{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield3{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield4{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield5{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield6{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
 }

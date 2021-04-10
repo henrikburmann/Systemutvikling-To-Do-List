@@ -65,22 +65,18 @@
             <effect>
                <Glow />
             </effect></Button>
-         <TextField fx:id="taskTextfield1" editable="false" layoutX="18.0" layoutY="63.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: blue;">
-            <effect>
-               <ColorAdjust brightness="0.76" contrast="0.6" hue="-0.11" saturation="-0.32" />
-            </effect>
-         </TextField>
-         <TextField editable="false" layoutX="18.0" layoutY="101.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: blue;">
-            <effect>
-               <ColorAdjust brightness="0.76" contrast="0.6" hue="-0.11" saturation="-0.32" />
-            </effect>
-         </TextField>
-         <TextField editable="false" layoutX="18.0" layoutY="138.0" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: #0000ff;">
-            <effect>
-               <ColorAdjust brightness="0.76" contrast="0.6" hue="-0.11" saturation="-0.32" />
-            </effect>
-         </TextField>
-         <CheckBox layoutX="27.0" layoutY="67.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
+         <TextField fx:id="taskTextfield1" editable="false" layoutX="18.0" layoutY="63.0" prefHeight="30.0" prefWidth="263.0" />
+         <TextField fx:id="taskTextfield2" editable="false" layoutX="18.0" layoutY="113.0" prefHeight="25.0" prefWidth="263.0" />
+         <CheckBox layoutX="27.0" layoutY="69.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
+         <CheckBox layoutX="27.0" layoutY="119.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
+         <TextField fx:id="taskTextfield3" editable="false" layoutX="18.0" layoutY="164.0" prefHeight="25.0" prefWidth="263.0" />
+         <TextField fx:id="taskTextfield4" editable="false" layoutX="18.0" layoutY="214.0" prefHeight="25.0" prefWidth="263.0" />
+         <TextField fx:id="taskTextfield5" editable="false" layoutX="18.0" layoutY="264.0" prefHeight="25.0" prefWidth="263.0" />
+         <TextField fx:id="taskTextfield6" editable="false" layoutX="18.0" layoutY="313.0" prefHeight="25.0" prefWidth="263.0" />
+         <CheckBox layoutX="27.0" layoutY="220.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
+         <CheckBox layoutX="27.0" layoutY="270.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
+         <CheckBox layoutX="27.0" layoutY="170.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
+         <CheckBox layoutX="27.0" layoutY="319.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
       </AnchorPane>
       <AnchorPane fx:id="pane_right" layoutX="525.0" prefHeight="500.0" prefWidth="225.0">
          <Label fx:id="label_header_right" alignment="CENTER" prefHeight="45.0" prefWidth="231.0" text="Name of task" />

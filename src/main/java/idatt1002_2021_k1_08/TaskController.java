@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class TaskController {
 
@@ -42,7 +43,18 @@ public class TaskController {
 
     @FXML
     TextField taskTextfield1;
+    @FXML
+    TextField taskTextfield2;
+    @FXML
+    TextField taskTextfield3;
+    @FXML
+    TextField taskTextfield4;
+    @FXML
+    TextField taskTextfield5;
+    @FXML
+    TextField taskTextfield6;
 
+    ArrayList<TextField> taskTextFields = new ArrayList<>();
     @FXML AddTaskController addTaskController;
 
 
@@ -50,7 +62,22 @@ public class TaskController {
     public void initialize() {
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
+        TaskRegister.addTask(new Task("Task 1", "Description", "Underway"));
+        TaskRegister.addTask(new Task("Task 2", "Description", "Underway"));
+        TaskRegister.addTask(new Task("Task 3", "Description", "Underway"));
+        TaskRegister.addTask(new Task("Task 4", "Description", "Underway"));
+        taskTextFields.add(taskTextfield1);
+        taskTextFields.add(taskTextfield2);
+        taskTextFields.add(taskTextfield3);
+        taskTextFields.add(taskTextfield4);
+        taskTextFields.add(taskTextfield5);
+        //taskTextFields.add(taskTextfield6);
 
+
+        taskTextfield1.setText(TaskRegister.getTasks().get(0).getTaskName());
+        taskTextfield2.setText(TaskRegister.getTasks().get(1).getTaskName());
+        taskTextfield3.setText(TaskRegister.getTasks().get(2).getTaskName());
+        taskTextfield4.setText(TaskRegister.getTasks().get(3).getTaskName());
     }
 
     public TaskController() throws FileNotFoundException {
@@ -63,8 +90,9 @@ public class TaskController {
 
     @FXML
     public void addTaskMethod(){
-        taskTextfield1.setText(TaskRegister.getTasks().get(0).getTaskName());
-        //System.out.println(TaskRegister.getTasks());
+        for (int i = 0; i < 5; i++) {
+            taskTextFields.get(i).setText(TaskRegister.getTasks().get(i).getTaskName());
+        }
     }
 
 

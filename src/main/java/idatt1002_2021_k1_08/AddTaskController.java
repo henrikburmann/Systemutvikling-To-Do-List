@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AddTaskController {
     @FXML
@@ -26,9 +27,9 @@ public class AddTaskController {
     @FXML
     Button add_task_complete_button;
 
+
     @FXML
     TextArea task_information_TextArea;
-    private TaskController taskController;
 
 
     public void initialize(){
