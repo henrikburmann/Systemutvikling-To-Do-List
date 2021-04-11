@@ -48,8 +48,7 @@ public class AddTaskController {
     public void addTaskMethod() throws IOException {
         String taskName = task_name_textfield.getText();
         String description = notes_textarea.getText();
-        String status = "Underway";
-        Task task = new Task(taskName, description, status);
+        Task task = new Task(taskName, description);
         task_information_TextArea.setText(task.toString());
         TaskRegister.addTask(task);
         changeSceneToPrimary();

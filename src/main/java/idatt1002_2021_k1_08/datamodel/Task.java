@@ -22,16 +22,15 @@ public class Task {
      * @param startDate   the start date
      * @param endDate     the end date
      * @param priority    the priority
-     * @param status      the status
      */
 //Constructor if all parameters are good and written in their respective FXML textfields
-    public Task (String taskName, String description, LocalDate startDate, LocalDate endDate, String priority, String status){
+    public Task (String taskName, String description, LocalDate startDate, LocalDate endDate, String priority){
         setDescription(description);
         setEndDate(endDate);
         setStartDate(startDate);
         setPriority(priority);
         setTaskName(taskName);
-        setStatus(status);
+
     }
 
     /**
@@ -39,13 +38,11 @@ public class Task {
      *
      * @param taskName    the task name
      * @param description the description
-     * @param status      the status
      */
 //Constructor if there is no priority, start or end date to task.
-    public Task(String taskName, String description, String status){
+    public Task(String taskName, String description){
         setDescription(description);
         setTaskName(taskName);
-        setStatus(status);
         this.startDate = LocalDate.now();
         this.endDate = null;
     }
@@ -167,26 +164,6 @@ public class Task {
         this.priority = priority;
     }
 
-    /**
-     * Gets status.
-     *
-     * @return the status
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * Sets status.
-     *
-     * @param status the status
-     */
-    public void setStatus(String status) {
-        checkIfNull(status);
-        checkIfEmpty(status);
-        this.status = status;
-    }
-
     private void checkIfEmpty(String s){
        if(s.isEmpty()){
            throw new IllegalArgumentException("The String cant be empty");
@@ -206,8 +183,7 @@ public class Task {
                 "\ndescription: " + description +
                 "\nstartDate: " + startDate +
                 "\nendDate: " + endDate +
-                "\npriority: " + priority +
-                "\nstatus: " + status ;
+                "\npriority: " + priority;
     }
 
 }

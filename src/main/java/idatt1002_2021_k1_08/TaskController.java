@@ -53,8 +53,14 @@ public class TaskController {
     TextField taskTextfield5;
     @FXML
     TextField taskTextfield6;
+    @FXML
+    TextField taskTextfield7;
+    @FXML
+    TextField taskTextfield8;
+    @FXML
+    TextField taskTextfield9;
 
-    ArrayList<TextField> taskTextFields = new ArrayList<>();
+    @FXML ArrayList<TextField> taskTextFields = new ArrayList<>();
     @FXML AddTaskController addTaskController;
 
 
@@ -62,22 +68,37 @@ public class TaskController {
     public void initialize() {
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-        TaskRegister.addTask(new Task("Task 1", "Description", "Underway"));
+        /*TaskRegister.addTask(new Task("Task 1", "Description", "Underway"));
         TaskRegister.addTask(new Task("Task 2", "Description", "Underway"));
         TaskRegister.addTask(new Task("Task 3", "Description", "Underway"));
-        TaskRegister.addTask(new Task("Task 4", "Description", "Underway"));
+        TaskRegister.addTask(new Task("Task 4", "Description", "Underway"));*/
         taskTextFields.add(taskTextfield1);
         taskTextFields.add(taskTextfield2);
         taskTextFields.add(taskTextfield3);
         taskTextFields.add(taskTextfield4);
         taskTextFields.add(taskTextfield5);
-        //taskTextFields.add(taskTextfield6);
+        taskTextFields.add(taskTextfield6);
+        taskTextFields.add(taskTextfield7);
+        taskTextFields.add(taskTextfield8);
+        taskTextFields.add(taskTextfield9);
+        for (int i = 0; i < TaskRegister.getTasks().size(); i++) {
+            taskTextFields.get(i).setText(TaskRegister.getTasks().get(i).getTaskName());
+        }
+        task_information_TextArea.setText(TaskRegister.getTasks()
+                .get(TaskRegister.getTasks().size()-1).toString());
 
-
-        taskTextfield1.setText(TaskRegister.getTasks().get(0).getTaskName());
+        /*taskTextfield1.setText(TaskRegister.getTasks().get(0).getTaskName());
         taskTextfield2.setText(TaskRegister.getTasks().get(1).getTaskName());
         taskTextfield3.setText(TaskRegister.getTasks().get(2).getTaskName());
-        taskTextfield4.setText(TaskRegister.getTasks().get(3).getTaskName());
+        taskTextfield4.setText(TaskRegister.getTasks().get(3).getTaskName());*/
+        System.out.println(TaskRegister.getTasks().size());
+    }
+
+    public static void addExampleTasks(){
+        TaskRegister.addTask(new Task("Task 1", "Description"));
+        TaskRegister.addTask(new Task("Task 2", "Description"));
+        TaskRegister.addTask(new Task("Task 3", "Description"));
+        TaskRegister.addTask(new Task("Task 4", "Description"));
     }
 
     public TaskController() throws FileNotFoundException {
