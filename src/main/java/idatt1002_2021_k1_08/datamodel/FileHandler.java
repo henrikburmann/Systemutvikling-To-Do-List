@@ -4,30 +4,18 @@ import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * @author marcusjohannessen
+ */
+
 public abstract class FileHandler {
 
-    /**
-     * TODO: 1.Hvordan bestemme hvilke kategori en task skal lagres i
-     * TODO: 2.Hvordan legge til/slette en kategori.(Må gjøres )
-     * TODO: 3.Hvordan legge til og slette en task, (Må gjøres i filen også)
-     * TODO: 4.Hvor skal selve filen med dataene lagres.
-     * TODO: 5.Burde implementer ObsevableList i klassene (Kan dette brukes med objekter)
-     * TODO: 6.Hvordan henter man ut et task fra en dserialisert ArrayList????
-     */
-
-
-    private Task task;
-    private Category category;
-
-    private final DateTimeFormatter formatter;
     private final String FILE_PATH = "filepathName.txt";
-
 
     /**
      * Constructor
      */
-    private FileHandler() {
-        this.formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public FileHandler() {
     }
 
     /**
@@ -37,7 +25,6 @@ public abstract class FileHandler {
         try(FileOutputStream fs = new FileOutputStream(FILE_PATH); //åpner opp en stream
             ObjectOutputStream os = new ObjectOutputStream(fs)){
             os.writeObject(categories);
-            os.flush();
         }
     }
 
@@ -57,4 +44,32 @@ public abstract class FileHandler {
         return category;
     }
 
+    /**
+     *
+     * @param ob
+     * @throws IOException
+     */
+    public void serializeTask(Object ob) throws IOException{
+        try (FileOutputStream fs = new FileOutputStream(FILE_PATH);
+            ObjectOutputStream os = new ObjectOutputStream(fs)){
+            os.writeObject(ob);
+        }
+    }
+
+    /**
+     *
+     * @return Object representing a task
+     * @throws IOException
+     */
+    public Object deserializeObject() throws IOException{
+        Object task = null;
+        try(FileInputStream fs = new FileInputStream(FILE_PATH);
+            ObjectInputStream is = new ObjectInputStream(fs)){
+            task = is.readObject();
+
+        }catch (ClassNotFoundException ex){
+            ex.printStackTrace();
+        }
+        return task;
+    }
 }

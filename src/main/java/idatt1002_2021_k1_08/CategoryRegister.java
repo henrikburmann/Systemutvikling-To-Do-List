@@ -22,7 +22,6 @@ public class CategoryRegister {
     }
 
 
-
     public boolean addCategory(Category category){
         for (Category c: categories){
             if (c.equals(category)){
