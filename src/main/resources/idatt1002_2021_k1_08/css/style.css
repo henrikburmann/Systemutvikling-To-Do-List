@@ -47,6 +47,7 @@
 #anchor_add_task{
     -fx-background-color: #adadad;
     -fx-background-radius: 40;
+    -fx-text-fill: black;
 }
 
 #delete_task_button{
@@ -60,7 +61,6 @@
     -fx-text-fill: black;
 }
 .label{
-    -fx-text-fill: white;
 }
 .text-field{
     -fx-alignment: center;
@@ -102,4 +102,7 @@
 #taskTextfield9{
     -fx-background-color: #B7CEEC;
     -fx-text-fill: 	black;
+}
+#priorityChoiceBox{
+    selected-box-color: black;
 }

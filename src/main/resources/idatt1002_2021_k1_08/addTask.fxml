@@ -33,10 +33,9 @@
          </ImageView>
         </AnchorPane>
         <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
-            <Label fx:id="label_header_middle" prefHeight="45.0" prefWidth="300.0" text="Add Task" />
          <AnchorPane fx:id="anchor_add_task" layoutX="15.0" layoutY="74.0" prefHeight="403.0" prefWidth="269.0">
             <children>
-               <Label layoutX="18.0" layoutY="178.0" text="Priority" />
+               <Label layoutX="22.0" layoutY="178.0" prefHeight="17.0" prefWidth="56.0" text="Priority" />
                <Label layoutX="22.0" layoutY="101.0" text="Date-Time" />
                <Label layoutX="22.0" layoutY="140.0" text="Category" />
                <Label layoutX="21.0" layoutY="210.0" text="Notes" />
@@ -46,13 +45,15 @@
                <ChoiceBox fx:id="category_list" layoutX="104.0" layoutY="136.0" prefWidth="150.0" />
                <TextArea fx:id="notes_textarea" layoutX="50.0" layoutY="237.0" prefHeight="94.0" prefWidth="205.0" />
                <Button fx:id="add_task_complete_button" layoutX="101.0" layoutY="339.0" mnemonicParsing="false" onAction="#addTaskMethod" prefHeight="33.0" prefWidth="67.0" text="Add Task" />
-               <ChoiceBox fx:id="category_list1" layoutX="104.0" layoutY="174.0" prefWidth="150.0" />
+               <Label layoutX="22.0" layoutY="65.0" text="Task name" />
+               <ChoiceBox fx:id="priorityChoiceBox" layoutX="104.0" layoutY="174.0" prefWidth="150.0" />
             </children>
          </AnchorPane>
+            <Label fx:id="label_header_middle" prefHeight="45.0" prefWidth="300.0" text="Add Task" />
         </AnchorPane>
         <AnchorPane fx:id="pane_right" layoutX="525.0" prefHeight="500.0" prefWidth="225.0">
             <Label fx:id="label_header_right" prefHeight="45.0" prefWidth="225.0" text="Label" />
-         <TextArea fx:id="task_information_TextArea" layoutY="45.0" prefHeight="200.0" prefWidth="225.0" />
+         <TextArea fx:id="task_information_TextArea" editable="false" layoutY="45.0" prefHeight="200.0" prefWidth="225.0" />
         </AnchorPane>
     </children>
 </AnchorPane>

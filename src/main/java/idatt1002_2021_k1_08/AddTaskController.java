@@ -28,6 +28,8 @@ public class AddTaskController {
     @FXML
     Button add_task_complete_button;
 
+    @FXML
+    ChoiceBox <String> priorityChoiceBox;
 
     @FXML
     TextArea task_information_TextArea;
@@ -35,6 +37,8 @@ public class AddTaskController {
 
     public void initialize(){
         logoImageView.setImage(logo);
+        priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
+        priorityChoiceBox.setValue("Medium");
     }
 
     public AddTaskController() throws FileNotFoundException {
@@ -51,8 +55,10 @@ public class AddTaskController {
         String description = notes_textarea.getText();
         LocalDate date = LocalDate.of(date_time_box.getValue().getYear(),
                 date_time_box.getValue().getMonthValue(), date_time_box.getValue().getDayOfMonth());
+        String priority = priorityChoiceBox.getValue();
         Task task = new Task(taskName, description);
         task.setEndDate(date);
+        task.setPriority(priority);
         TaskRegister.addTask(task);
         changeSceneToPrimary();
     }
