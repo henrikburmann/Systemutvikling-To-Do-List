@@ -36,16 +36,17 @@
             <Label fx:id="label_header_middle" prefHeight="45.0" prefWidth="300.0" text="Add Task" />
          <AnchorPane fx:id="anchor_add_task" layoutX="15.0" layoutY="74.0" prefHeight="403.0" prefWidth="269.0">
             <children>
-               <Label layoutX="21.0" layoutY="63.0" text="Task Name" />
+               <Label layoutX="18.0" layoutY="178.0" text="Priority" />
                <Label layoutX="22.0" layoutY="101.0" text="Date-Time" />
                <Label layoutX="22.0" layoutY="140.0" text="Category" />
-               <Label layoutX="22.0" layoutY="175.0" text="Notes" />
+               <Label layoutX="21.0" layoutY="210.0" text="Notes" />
                <Label layoutX="46.0" layoutY="31.0" prefHeight="17.0" prefWidth="159.0" text="Information about task" />
                <TextField fx:id="task_name_textfield" layoutX="104.0" layoutY="59.0" prefHeight="25.0" prefWidth="150.0" />
-               <DatePicker fx:id="date_time_box" layoutX="104.0" layoutY="97.0" prefHeight="25.0" prefWidth="150.0" />
+               <DatePicker fx:id="date_time_box" editable="false" layoutX="104.0" layoutY="97.0" prefHeight="25.0" prefWidth="150.0" promptText="Select End Date" />
                <ChoiceBox fx:id="category_list" layoutX="104.0" layoutY="136.0" prefWidth="150.0" />
-               <TextArea fx:id="notes_textarea" layoutX="50.0" layoutY="203.0" prefHeight="94.0" prefWidth="205.0" />
+               <TextArea fx:id="notes_textarea" layoutX="50.0" layoutY="237.0" prefHeight="94.0" prefWidth="205.0" />
                <Button fx:id="add_task_complete_button" layoutX="101.0" layoutY="339.0" mnemonicParsing="false" onAction="#addTaskMethod" prefHeight="33.0" prefWidth="67.0" text="Add Task" />
+               <ChoiceBox fx:id="category_list1" layoutX="104.0" layoutY="174.0" prefWidth="150.0" />
             </children>
          </AnchorPane>
         </AnchorPane>

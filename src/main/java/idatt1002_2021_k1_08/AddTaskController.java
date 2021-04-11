@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AddTaskController {
@@ -48,8 +49,10 @@ public class AddTaskController {
     public void addTaskMethod() throws IOException {
         String taskName = task_name_textfield.getText();
         String description = notes_textarea.getText();
+        LocalDate date = LocalDate.of(date_time_box.getValue().getYear(),
+                date_time_box.getValue().getMonthValue(), date_time_box.getValue().getDayOfMonth());
         Task task = new Task(taskName, description);
-        task_information_TextArea.setText(task.toString());
+        task.setEndDate(date);
         TaskRegister.addTask(task);
         changeSceneToPrimary();
     }
