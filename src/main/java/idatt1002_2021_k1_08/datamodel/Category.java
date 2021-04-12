@@ -3,34 +3,75 @@ package idatt1002_2021_k1_08.datamodel;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Category implements Serializable {
+
+/**
+ * The type Category.
+ */
+public class Category {
     private String name;
     private ArrayList<Task> tasks;
 
+    /**
+     * Instantiates a new Category.
+     *
+     * @param name the name
+     */
     public Category(String name){
-        if (name == null || name.equals("")){
-            throw new IllegalArgumentException("Category must have a name");
-        }
-        this.name = name;
+       setName(name);
+       this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Add task.
+     *
+     * @param task the task
+     */
     public void addTask(Task task){
         tasks.add(task);
     }
 
+    /**
+     * Remove task.
+     *
+     * @param task the task
+     */
     public void removeTask(Task task){
         tasks.remove(task);
     }
 
+    /**
+     * Get name string.
+     *
+     * @return the string
+     */
     public String getName(){
         return name;
     }
+
+    /**
+     * Get tasks array list.
+     *
+     * @return the array list
+     */
     public ArrayList<Task> getTasks(){
         return tasks;
     }
 
+    /**
+     * Set name.
+     *
+     * @param name the name
+     */
     public void setName(String name){
-        this.name = name;
+       if(name.equals(this.name)){
+           throw new IllegalArgumentException("Cant be the same name as before");
+       }
+       else if(name.isEmpty()){
+           throw new IllegalArgumentException("Name string cant be empty");
+       }
+       else {
+           this.name = name;
+       }
     }
 
     @Override
@@ -47,7 +88,7 @@ public class Category implements Serializable {
 
     public String toString(){
         StringBuilder text = new StringBuilder();
-        text.append(name + ":\n");
+        text.append(name).append(":\n");
         tasks.forEach(e -> text.append(e.toString()));
         text.append("\n");
         return text.toString();

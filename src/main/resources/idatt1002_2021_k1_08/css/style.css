@@ -1,6 +1,3 @@
-*{
-    -fx-text-fill: white;
-}
 #wrapper{
     -fx-background-color: black;
 }
@@ -33,12 +30,79 @@
 #add_task_button{
 
 }
+#menuButton{
+    -fx-background-color: #adadad;
+    -fx-text-fill: black;
+}
+
+#edit_task_button{
+    -fx-background-color: #adadad;
+}
 
 #task_list{
     -fx-background-color: #4C96D7;
 }
 
+
 #anchor_add_task{
     -fx-background-color: #adadad;
     -fx-background-radius: 40;
+    -fx-text-fill: black;
+}
+
+#delete_task_button{
+    -fx-background-color: #adadad;
+}
+
+#datePicker{
+
+}
+#usernameTextField{
+    -fx-text-fill: black;
+}
+.label{
+}
+.text-field{
+    -fx-alignment: center;
+    -fx-font-size: 14;
+}
+#taskTextfield1{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+
+}
+#taskTextfield2{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield3{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield4{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield5{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield6{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield7{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield8{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#taskTextfield9{
+    -fx-background-color: #B7CEEC;
+    -fx-text-fill: 	black;
+}
+#priorityChoiceBox{
+    selected-box-color: black;
 }
