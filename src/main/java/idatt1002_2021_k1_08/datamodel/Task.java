@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08.datamodel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**

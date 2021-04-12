@@ -1,40 +1,75 @@
 package idatt1002_2021_k1_08.datamodel;
 
-import idatt1002_2021_k1_08.CategoryRegister;
-
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+/**
+ * @author marcusjohannessen
+ */
 
 public abstract class FileHandler {
 
-    private final File FILE;
-    protected ArrayList<ArrayList<String>> fileData;
+    private final String FILE_PATH = "filepathName.txt";
 
-    public FileHandler(String path) throws IOException, ClassNotFoundException {
-        this.FILE = new File(path);
-        this.fileData = new ArrayList<>();
-        if(!FILE.exists()) {
-            FILE.createNewFile();
-        }else{
-            loadData();
+    /**
+     * Constructor
+     */
+    public FileHandler() {
+    }
+
+    /**
+     * Writes a Category to file
+     */
+    public void serializeCategory(ArrayList<Task> categories) throws IOException{
+        try(FileOutputStream fs = new FileOutputStream(FILE_PATH); //åpner opp en stream
+            ObjectOutputStream os = new ObjectOutputStream(fs)){
+            os.writeObject(categories);
         }
     }
 
-        //TODO: Should this FILE be a .ser file caused by serialization
+    /**
+     * Reads a category from a file
+     */
+    public ArrayList<Category> deserializeCategory() throws IOException {
+        ArrayList<Category> category = new ArrayList<>();
 
-    public void loadData() throws IOException, ClassNotFoundException {
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE));
-        oos.writeObject(FILE);
-        oos.close();
+        try (FileInputStream fs = new FileInputStream(FILE_PATH);
+             ObjectInputStream is = new ObjectInputStream(fs)) {
 
+            category = (ArrayList<Category>) is.readObject();
+        }catch (ClassNotFoundException ex){
+            ex.printStackTrace();
+        }
+        return category;
+    }
 
+    /**
+     *
+     * @param ob
+     * @throws IOException
+     */
+    public void serializeTask(Object ob) throws IOException{
+        try (FileOutputStream fs = new FileOutputStream(FILE_PATH);
+            ObjectOutputStream os = new ObjectOutputStream(fs)){
+            os.writeObject(ob);
+        }
+    }
 
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE));
-        CategoryRegister catRegRead = (CategoryRegister) ois.readObject();
-        ois.close();
-        //TODO: Create class categoryRegister and category, then test filehandling.
+    /**
+     *
+     * @return Object representing a task
+     * @throws IOException
+     */
+    public Object deserializeObject() throws IOException{
+        Object task = null;
+        try(FileInputStream fs = new FileInputStream(FILE_PATH);
+            ObjectInputStream is = new ObjectInputStream(fs)){
+            task = is.readObject();
 
-        System.out.println(/** catRegRead.contains(??FILE??)*/ );
-        System.out.println(/** catRegRead.contains(?? Something to check that it works*/ );
+        }catch (ClassNotFoundException ex){
+            ex.printStackTrace();
+        }
+        return task;
     }
 }
