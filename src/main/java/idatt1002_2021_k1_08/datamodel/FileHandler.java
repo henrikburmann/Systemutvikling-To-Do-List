@@ -106,7 +106,16 @@ public class FileHandler {
 
 
      public void storeData(){
-
+        ArrayList<Task> store = new ArrayList<>();
+        for (Task t: tasks){
+            Task task = new Task(t.getTaskName(),t.getDescription(),t.getStartDate(),t.getEndDate(),t.getPriority());
+            store.add(task);
+        }
+        try{
+            serializeCategory(store);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
      }
 
      public void loadData() throws IOException{
