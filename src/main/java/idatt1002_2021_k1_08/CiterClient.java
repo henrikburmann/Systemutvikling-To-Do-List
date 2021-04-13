@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08;
 
+import idatt1002_2021_k1_08.datamodel.FileHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,5 +35,33 @@ public class CiterClient extends Application{
 
     public static void main(String[] args) {
         launch();
+    }
+
+    /*
+    *When initializing Application
+    * get Data from former
+     */
+    @Override
+    public void init() throws Exception {
+        try{
+            FileHandler.getInstance().loadData();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @throws Exception
+     * When closing application
+     * Store all data
+     */
+    @Override
+    public void stop() throws Exception {
+        try{
+            FileHandler.getInstance().storeData();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
