@@ -1,5 +1,7 @@
 package idatt1002_2021_k1_08.datamodel;
 
+import idatt1002_2021_k1_08.TaskController;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
@@ -89,16 +91,36 @@ public class FileHandler {
         return task;
     }
 
-    /**
-     *
-     */
-    public void storeData(){
+     public ArrayList<Task> deserializeTask() throws IOException {
+         ArrayList<Task> tasks1 = new ArrayList<>();
 
-    }
+         try (FileInputStream fs = new FileInputStream(FILE_PATH);
+              ObjectInputStream is = new ObjectInputStream(fs)) {
 
-    public void loadData(){
+             tasks1 = (ArrayList<Task>) is.readObject();
+         }catch (ClassNotFoundException ex){
+             ex.printStackTrace();
+         }
+         return tasks1;
+     }
 
-    }
+
+     public void storeData(){
+
+     }
+
+     public void loadData() throws IOException{
+        tasks = FXCollections.observableArrayList();
+        try{
+            ArrayList<Task> list = deserializeTask();
+            for (Task t: list){
+                Task task = new Task(t.getTaskName(), t.getDescription(), t.getStartDate(), t.getEndDate(), t.getPriority());
+                tasks.add(task);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+     }
 
     /**
      *
