@@ -106,7 +106,7 @@ public class FileHandler {
          try (FileInputStream fs = new FileInputStream(FILE_PATH);
               ObjectInputStream is = new ObjectInputStream(fs)) {
 
-             tasks1 = (ArrayList<Task>) is.readObject();
+              tasks1 = (ArrayList<Task>) is.readObject();
          }catch (ClassNotFoundException ex){
              ex.printStackTrace();
          }

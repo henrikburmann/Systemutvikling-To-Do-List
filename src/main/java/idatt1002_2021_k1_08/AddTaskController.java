@@ -52,9 +52,9 @@ public class AddTaskController {
 
     @FXML
     public void addTaskMethod() throws IOException {
-        String taskName = task_name_textfield.getText();
+        String taskName = task_name_textfield.getText().trim();
 
-        String description = notes_textarea.getText();
+        String description = notes_textarea.getText().trim();
 
         LocalDate date = LocalDate.of(date_time_box.getValue().getYear(),
                 date_time_box.getValue().getMonthValue(), date_time_box.getValue().getDayOfMonth());

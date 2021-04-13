@@ -18,7 +18,6 @@ public class CiterClient extends Application{
 
     @Override
     public void start(Stage stage) throws IOException {
-        TaskController.addExampleTasks();
         scene = new Scene(loadFXML("primary"));
         stage.setScene(scene);
         stage.show();

@@ -56,6 +56,9 @@ public class TaskController {
 
 
 
+    public TaskController() throws FileNotFoundException {
+    }
+
     public void initialize() {
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
@@ -82,22 +85,11 @@ public class TaskController {
     }
 
 
-
-    public TaskController() throws FileNotFoundException {
-    }
     @FXML
     public void changeSceneToAddTask() throws IOException{
         CiterClient.setRoot("addTask");
     }
 
-
-    @FXML
-    public void addTaskMethod(){
-        for (int i = 0; i < 5; i++) {
-            taskTextFields.get(i).setText(TaskRegister.getTasks().get(i).getTaskName());
-
-        }
-    }
 
     @FXML
     public void handleKeyPressed(KeyEvent e){

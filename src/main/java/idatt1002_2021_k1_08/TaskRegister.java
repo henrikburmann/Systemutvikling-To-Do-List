@@ -20,32 +20,4 @@ public class TaskRegister {
         }
         return tasks;
     }
-
-    public static boolean addTask(Task task){
-        try{
-            if(!(tasks.contains(task))){
-                tasks.add(task);
-            }else {
-                throw new IllegalArgumentException("Task already inn list");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    public static boolean removeTask(Task task){
-        try{
-            if(!(tasks.contains(task))){
-                throw new IllegalArgumentException("Task not inn list");
-            }else{
-                tasks.remove(task);
-            }
-        }catch (Exception e ){
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-
 }
