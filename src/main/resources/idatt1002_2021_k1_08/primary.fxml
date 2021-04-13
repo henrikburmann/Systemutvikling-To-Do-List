@@ -55,8 +55,9 @@
          </ImageView>
          <DatePicker fx:id="datePicker" layoutX="27.0" layoutY="320.0" prefHeight="136.0" prefWidth="174.0" />
       </AnchorPane>
+
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
-         <ListView fx:id="task_list" layoutY="34.0" prefHeight="466.0" prefWidth="300.0" />
+         <ListView fx:id="tasksView" onKeyPressed="#handleKeyPressed" />
          <Label fx:id="label_header_middle" prefHeight="45.0" prefWidth="300.0" text="Overview">
             <font>
                <Font name="Times New Roman Bold" size="18.0" />
@@ -65,24 +66,8 @@
             <effect>
                <Glow />
             </effect></Button>
-         <TextField fx:id="taskTextfield1" editable="false" layoutX="18.0" layoutY="63.0" prefHeight="30.0" prefWidth="263.0" />
-         <TextField fx:id="taskTextfield2" editable="false" layoutX="18.0" layoutY="113.0" prefHeight="25.0" prefWidth="263.0" />
-         <CheckBox layoutX="27.0" layoutY="69.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
-         <CheckBox layoutX="27.0" layoutY="119.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
-         <TextField fx:id="taskTextfield3" editable="false" layoutX="18.0" layoutY="164.0" prefHeight="25.0" prefWidth="263.0" />
-         <TextField fx:id="taskTextfield4" editable="false" layoutX="18.0" layoutY="214.0" prefHeight="25.0" prefWidth="263.0" />
-         <TextField fx:id="taskTextfield5" editable="false" layoutX="18.0" layoutY="264.0" prefHeight="25.0" prefWidth="263.0" />
-         <TextField fx:id="taskTextfield6" editable="false" layoutX="18.0" layoutY="313.0" prefHeight="25.0" prefWidth="263.0" />
-         <CheckBox layoutX="27.0" layoutY="220.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
-         <CheckBox layoutX="27.0" layoutY="270.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
-         <CheckBox layoutX="27.0" layoutY="170.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
-         <CheckBox layoutX="27.0" layoutY="319.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
-         <TextField fx:id="taskTextfield7" editable="false" layoutX="18.0" layoutY="357.0" prefHeight="25.0" prefWidth="263.0" />
-         <TextField fx:id="taskTextfield8" editable="false" layoutX="18.0" layoutY="402.0" prefHeight="25.0" prefWidth="263.0" />
-         <TextField fx:id="taskTextfield9" editable="false" layoutX="18.0" layoutY="447.0" prefHeight="25.0" prefWidth="263.0" />
-         <CheckBox layoutX="27.0" layoutY="363.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
-         <CheckBox layoutX="27.0" layoutY="408.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
-         <CheckBox layoutX="27.0" layoutY="453.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" />
+
+
       </AnchorPane>
       <AnchorPane fx:id="pane_right" layoutX="525.0" prefHeight="500.0" prefWidth="225.0">
          <Label fx:id="label_header_right" alignment="CENTER" prefHeight="45.0" prefWidth="231.0" text="Name of task" />

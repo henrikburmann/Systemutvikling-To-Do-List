@@ -1,21 +1,37 @@
 package idatt1002_2021_k1_08.datamodel;
 
+import javafx.collections.ObservableList;
+
 import java.io.*;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
  * @author marcusjohannessen
  */
 
-public abstract class FileHandler {
+public class FileHandler {
 
     private final String FILE_PATH = "filepathName.txt";
+    private ObservableList<Task> tasks;
+    private static FileHandler fileHandlerInstance = new FileHandler();
+
 
     /**
      * Constructor
      */
     public FileHandler() {
+    }
+
+    /**
+     *
+      * @return instance of the class
+     */
+    public static FileHandler getInstance(){
+        return fileHandlerInstance;
+    }
+
+    public ObservableList<Task> getTasks() {
+        return tasks;
     }
 
     /**
@@ -71,5 +87,25 @@ public abstract class FileHandler {
             ex.printStackTrace();
         }
         return task;
+    }
+
+    /**
+     *
+     */
+    public void storeData(){
+
+    }
+
+    public void loadData(){
+
+    }
+
+    /**
+     *
+     * @param task
+     * deletes item from observableList
+     */
+    public void deleteTask(Task task){
+        tasks.remove(task);
     }
 }
