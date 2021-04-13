@@ -81,12 +81,7 @@ public class TaskController {
 
     }
 
-    public static void addExampleTasks(){
-        TaskRegister.addTask(new Task("Task 1", "Description"));
-        TaskRegister.addTask(new Task("Task 2", "Description"));
-        TaskRegister.addTask(new Task("Task 3", "Description"));
-        TaskRegister.addTask(new Task("Task 4", "Description"));
-    }
+
 
     public TaskController() throws FileNotFoundException {
     }

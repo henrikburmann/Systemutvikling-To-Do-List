@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08;
 
+import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -52,14 +53,18 @@ public class AddTaskController {
     @FXML
     public void addTaskMethod() throws IOException {
         String taskName = task_name_textfield.getText();
+
         String description = notes_textarea.getText();
+
         LocalDate date = LocalDate.of(date_time_box.getValue().getYear(),
                 date_time_box.getValue().getMonthValue(), date_time_box.getValue().getDayOfMonth());
+
         String priority = priorityChoiceBox.getValue();
+
         Task task = new Task(taskName, description);
-        task.setEndDate(date);
-        task.setPriority(priority);
-        TaskRegister.addTask(task);
+
+        FileHandler.getInstance().addTask(task);
+
         changeSceneToPrimary();
     }
 

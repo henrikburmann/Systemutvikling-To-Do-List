@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +15,8 @@ import java.util.ArrayList;
 
 public class FileHandler {
 
-    private final String FILE_PATH = "filepathName.txt";
+    //TODO: Må forandre på dette fordi funker faen ikke! why?
+    private static final String FILE_PATH = "filepathName.txt";
     private ObservableList<Task> tasks;
     private static FileHandler fileHandlerInstance = new FileHandler();
 
@@ -36,10 +39,14 @@ public class FileHandler {
         return tasks;
     }
 
+    public void addTask(Task task){
+        tasks.add(task);
+    }
+
     /**
      * Writes a Category to file
      */
-    public void serializeCategory(ArrayList<Task> categories) throws IOException{
+    private void serializeCategory(ArrayList<Task> categories) throws IOException{
         try(FileOutputStream fs = new FileOutputStream(FILE_PATH); //åpner opp en stream
             ObjectOutputStream os = new ObjectOutputStream(fs)){
             os.writeObject(categories);
@@ -68,6 +75,8 @@ public class FileHandler {
      * @throws IOException
      */
     public void serializeTask(Object ob) throws IOException{
+
+        //Path path = Paths.get(filename);
         try (FileOutputStream fs = new FileOutputStream(FILE_PATH);
             ObjectOutputStream os = new ObjectOutputStream(fs)){
             os.writeObject(ob);
@@ -91,7 +100,7 @@ public class FileHandler {
         return task;
     }
 
-     public ArrayList<Task> deserializeTask() throws IOException {
+     private ArrayList<Task> deserializeTask() throws IOException {
          ArrayList<Task> tasks1 = new ArrayList<>();
 
          try (FileInputStream fs = new FileInputStream(FILE_PATH);
@@ -105,17 +114,13 @@ public class FileHandler {
      }
 
 
-     public void storeData(){
+     public void storeData() throws IOException{
         ArrayList<Task> store = new ArrayList<>();
         for (Task t: tasks){
             Task task = new Task(t.getTaskName(),t.getDescription(),t.getStartDate(),t.getEndDate(),t.getPriority());
             store.add(task);
         }
-        try{
-            serializeCategory(store);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        serializeCategory(store);
      }
 
      public void loadData() throws IOException{
@@ -125,6 +130,7 @@ public class FileHandler {
             for (Task t: list){
                 Task task = new Task(t.getTaskName(), t.getDescription(), t.getStartDate(), t.getEndDate(), t.getPriority());
                 tasks.add(task);
+                System.out.println(task.toString());
             }
         } catch (IOException e){
             e.printStackTrace();

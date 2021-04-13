@@ -34,7 +34,7 @@ public class CiterClient extends Application{
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 
     /*
@@ -58,9 +58,9 @@ public class CiterClient extends Application{
      */
     @Override
     public void stop() throws Exception {
-        try{
+        try {
             FileHandler.getInstance().storeData();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
