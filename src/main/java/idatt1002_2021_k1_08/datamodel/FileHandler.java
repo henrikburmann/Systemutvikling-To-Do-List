@@ -3,6 +3,8 @@ package idatt1002_2021_k1_08.datamodel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -42,20 +44,26 @@ public class FileHandler {
     /**
      * Writes a Category to file
      */
-    private void serializeTask(ArrayList<Task> categories) throws IOException{
-        try(FileOutputStream fs = new FileOutputStream(FILE_PATH); //åpner opp en stream
+    private void serializeTask(ArrayList<Task> tasks) throws IOException{
+        Path path = Paths.get(FILE_PATH);
+        try(FileOutputStream fs = new FileOutputStream(String.valueOf(path)); //åpner opp en stream
             ObjectOutputStream os = new ObjectOutputStream(fs)){
-            os.writeObject(categories);
+            for(Task task: tasks){
+                os.writeObject(task);       //Denne funker ikke
+            }
         }
     }
 
      private ArrayList<Task> deserializeTask() throws IOException {
          ArrayList<Task> tasks1 = new ArrayList<>();
-
-         try (FileInputStream fs = new FileInputStream(FILE_PATH);
+         Path path = Paths.get(FILE_PATH);
+         try (FileInputStream fs = new FileInputStream(String.valueOf(path));
               ObjectInputStream is = new ObjectInputStream(fs)) {
 
-              tasks1 = (ArrayList<Task>) is.readObject();
+              for(Task task: tasks){
+                  Task t = (Task) is.readObject();
+                  tasks1.add(t);
+              }
 
          }catch (ClassNotFoundException ex){
              ex.printStackTrace();
@@ -78,7 +86,7 @@ public class FileHandler {
         try{
             ArrayList<Task> list = deserializeTask();
             for (Task t: list){
-                Task task = new Task(t.getTaskName(), t.getDescription(), t.getStartDate(), t.getEndDate(), t.getPriority());
+                Task task = new Task(t.getTaskName(), t.getDescription());
                 tasks.add(task);
                 System.out.println(task.toString());
             }
