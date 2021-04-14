@@ -5,11 +5,14 @@ import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -68,7 +71,9 @@ public class TaskController {
             @Override
             public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
                 if(t1 != null){
+
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
+
                     task_information_TextArea.setText(task1.getDescription());
                 }
             }
@@ -90,7 +95,6 @@ public class TaskController {
         CiterClient.setRoot("addTask");
     }
 
-
     @FXML
     public void handleKeyPressed(KeyEvent e){
         Task taskSelected = tasksView.getSelectionModel().getSelectedItem();
@@ -101,6 +105,15 @@ public class TaskController {
         }
     }
 
+    @FXML
+    public void handleDeleteButton(ActionEvent delete){
+        Task selectedTask = tasksView.getSelectionModel().getSelectedItem();
+        if(selectedTask != null){
+            if(delete.getSource().equals(delete_task_button)){
+                deleteTask(selectedTask);
+            }
+        }
+    }
 
     //forandrer på denne senere
     public void deleteTask(Task task) {
