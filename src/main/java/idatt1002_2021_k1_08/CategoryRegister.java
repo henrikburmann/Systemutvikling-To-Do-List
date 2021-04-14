@@ -5,15 +5,22 @@ import idatt1002_2021_k1_08.datamodel.Category;
 import java.util.ArrayList;
 
 public class CategoryRegister {
+
+
     private ArrayList<Category> categories;
 
     public CategoryRegister(){
         this.categories = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return arraylist of categories
+     */
     public ArrayList<Category> getCategories(){
         return categories;
     }
+
 
     public boolean addCategory(Category category){
         for (Category c: categories){
