@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskController {
@@ -68,10 +69,6 @@ public class TaskController {
     public void initialize() {
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-        /*TaskRegister.addTask(new Task("Task 1", "Description", "Underway"));
-        TaskRegister.addTask(new Task("Task 2", "Description", "Underway"));
-        TaskRegister.addTask(new Task("Task 3", "Description", "Underway"));
-        TaskRegister.addTask(new Task("Task 4", "Description", "Underway"));*/
         taskTextFields.add(taskTextfield1);
         taskTextFields.add(taskTextfield2);
         taskTextFields.add(taskTextfield3);
@@ -86,11 +83,6 @@ public class TaskController {
         }
         task_information_TextArea.setText(TaskRegister.getTasks()
                 .get(TaskRegister.getTasks().size()-1).toString());
-
-        /*taskTextfield1.setText(TaskRegister.getTasks().get(0).getTaskName());
-        taskTextfield2.setText(TaskRegister.getTasks().get(1).getTaskName());
-        taskTextfield3.setText(TaskRegister.getTasks().get(2).getTaskName());
-        taskTextfield4.setText(TaskRegister.getTasks().get(3).getTaskName());*/
         System.out.println(TaskRegister.getTasks().size());
     }
 
