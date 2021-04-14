@@ -72,6 +72,8 @@ public class FileHandler {
                 tasks1.add((Task) is.readObject());
             }
 
+
+
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (EOFException ignore) {

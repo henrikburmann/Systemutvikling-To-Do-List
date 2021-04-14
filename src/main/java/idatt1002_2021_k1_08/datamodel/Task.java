@@ -30,7 +30,9 @@ public class Task implements Serializable {
         setDescription(description);
         setEndDate(endDate);
         setStartDate(startDate);
+        setEndDate(endDate);
         setTaskName(taskName);
+        setPriority(priority);
 
     }
 
@@ -122,6 +124,13 @@ public class Task implements Serializable {
         return priority;
     }
 
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     @Override
     public String toString() {

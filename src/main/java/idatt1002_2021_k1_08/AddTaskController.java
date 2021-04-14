@@ -61,7 +61,12 @@ public class AddTaskController {
 
         String priority = priorityChoiceBox.getValue();
 
+
+
         Task task = new Task(taskName, description);
+
+        task.setEndDate(date);
+        task.setPriority(priority);
 
         FileHandler.getInstance().addTask(task);
 
