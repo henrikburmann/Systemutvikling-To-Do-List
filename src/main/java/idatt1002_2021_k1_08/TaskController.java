@@ -51,11 +51,6 @@ public class TaskController {
     @FXML
     DatePicker datePicker;
 
-    @FXML ArrayList<TextField> taskTextFields = new ArrayList<>();
-
-    @FXML AddTaskController addTaskController;
-
-    private Collection<Task> tasks;
 
 
 
@@ -67,10 +62,12 @@ public class TaskController {
         menuButton = new MenuButton("Options", null, helpItem);
 
         //Show information of task in description area
+        //Also implements listener for every Task
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
             @Override
             public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
                 if(t1 != null){
+
 
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
 
@@ -81,8 +78,8 @@ public class TaskController {
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
-        //Can fix sorting methods here and display that in tasksView;
-
+        //Should fix a sorting method here that displays a sortedList (by date f.eksample)
+        //TODO: look at filtered list and sorted list, for displaying tasks by category...
         tasksView.setItems(listOfTasks);
         tasksView.getSelectionModel().selectFirst();
 
@@ -95,6 +92,7 @@ public class TaskController {
         CiterClient.setRoot("addTask");
     }
 
+
     @FXML
     public void handleKeyPressed(KeyEvent e){
         Task taskSelected = tasksView.getSelectionModel().getSelectedItem();
@@ -105,6 +103,11 @@ public class TaskController {
         }
     }
 
+    /**
+     *
+     * @param delete
+     * Handles deletebutton
+     */
     @FXML
     public void handleDeleteButton(ActionEvent delete){
         Task selectedTask = tasksView.getSelectionModel().getSelectedItem();
@@ -115,7 +118,11 @@ public class TaskController {
         }
     }
 
-    //forandrer på denne senere
+    /**
+     *
+     * @param task
+     * Deletes a task with method from FileHandler class
+     */
     public void deleteTask(Task task) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Todo Item");
