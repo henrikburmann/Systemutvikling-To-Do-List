@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author marcusjohannessen
@@ -54,7 +55,7 @@ public class FileHandler {
         try (FileOutputStream fs = new FileOutputStream(String.valueOf(path)); //åpner opp en stream
              ObjectOutputStream os = new ObjectOutputStream(fs)) {
             for (Task task : obTasks) {
-                os.writeObject(task);       //Denne funker ikke
+                os.writeObject(task);
             }
         }
     }
@@ -62,28 +63,23 @@ public class FileHandler {
     private ArrayList<Task> deserializeTask() throws IOException {
         ArrayList<Task> tasks1 = new ArrayList<>();
         Path path = Paths.get(FILE_PATH);
+        //try with resources, so that fs closes
         try (FileInputStream fs = new FileInputStream(String.valueOf(path));
              ObjectInputStream is = new ObjectInputStream(fs)) {
 
-            //TODO: Må fikse på denne her dritten
-            while (is.readObject() != null) {
-                Task t = (Task) is.readObject(); //Updates the object
-                tasks1.add(t);
+            //Will eventually throw exception
+            while(true){
+                tasks1.add((Task) is.readObject());
             }
-
-             /*
-             for (int i = 0; i < 1  ; i++) {      //Det er denne! Må ta size på fil!!
-                  Task t = (Task) is.readObject();
-                  tasks1.add(t);
-             }
-
-             */
-            //tasks1 = (Task) is.readObject();
 
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-        } catch (EOFException a) {
-            a.printStackTrace();
+        } catch (EOFException ignore) {
+            //Expected
+        }catch (OptionalDataException e){
+            if(!e.eof){
+                throw e;
+            }
         }
         return tasks1;
     }
