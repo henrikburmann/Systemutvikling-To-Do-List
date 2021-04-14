@@ -13,6 +13,8 @@ public class Task implements Serializable {
     private LocalDate startDate;
     private LocalDate endDate;
     private String priority;
+    private static final long SerialVersionUID = 1L;
+    private String category;
 
     /**
      * Instantiates a new Task.
@@ -121,7 +123,6 @@ public class Task implements Serializable {
     }
 
 
-
     @Override
     public String toString() {
         return "Task: " +
@@ -131,5 +132,4 @@ public class Task implements Serializable {
                 "\nendDate: " + endDate +
                 "\npriority: " + priority;
     }
-
 }
