@@ -61,25 +61,6 @@ public class TaskController {
     public void initialize() {
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-<<<<<<< HEAD
-        taskTextFields.add(taskTextfield1);
-        taskTextFields.add(taskTextfield2);
-        taskTextFields.add(taskTextfield3);
-        taskTextFields.add(taskTextfield4);
-        taskTextFields.add(taskTextfield5);
-        taskTextFields.add(taskTextfield6);
-        taskTextFields.add(taskTextfield7);
-        taskTextFields.add(taskTextfield8);
-        taskTextFields.add(taskTextfield9);
-        for (int i = 0; i < TaskRegister.getTasks().size(); i++) {
-            taskTextFields.get(i).setText(TaskRegister.getTasks().get(i).getTaskName());
-        }
-        task_information_TextArea.setText(TaskRegister.getTasks()
-                .get(TaskRegister.getTasks().size()-1).toString());
-        System.out.println(TaskRegister.getTasks().size());
-    }
-=======
->>>>>>> 09f8b40f459e976f943b2c2a14547f179913ee52
 
         //Show information of task in description area
         //Also implements listener for every Task
@@ -91,7 +72,7 @@ public class TaskController {
 
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
 
-                    task_information_TextArea.setText(task1.getDescription());
+                    task_information_TextArea.setText(task1.toString());
                 }
             }
         });
@@ -153,5 +134,6 @@ public class TaskController {
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             FileHandler.getInstance().deleteTask(task); //Deletes from list in FileHandler class
         }
+        task_information_TextArea.setText(null);
     }
 }
