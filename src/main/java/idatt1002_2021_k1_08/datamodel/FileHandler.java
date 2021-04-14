@@ -6,10 +6,8 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * @author marcusjohannessen
@@ -18,6 +16,7 @@ import java.util.Iterator;
 public class FileHandler {
 
     //TODO: Må forandre på dette fordi funker faen ikke! why?
+
     private static final String FILE_PATH = "filepathName.txt";
     private ObservableList<Task> obTasks;
     private static FileHandler fileHandlerInstance = new FileHandler();
@@ -50,7 +49,6 @@ public class FileHandler {
      * Writes a Category to file
      */
     private void serializeTask(ArrayList<Task> tasks) throws IOException {
-        //obTasks = FXCollections.observableArrayList();
         Path path = Paths.get(FILE_PATH);
         try (FileOutputStream fs = new FileOutputStream(String.valueOf(path)); //åpner opp en stream
              ObjectOutputStream os = new ObjectOutputStream(fs)) {
@@ -62,7 +60,10 @@ public class FileHandler {
 
     private ArrayList<Task> deserializeTask() throws IOException {
         ArrayList<Task> tasks1 = new ArrayList<>();
+
+        //TODO: Burde filen ligge i resources???
         Path path = Paths.get(FILE_PATH);
+
         //try with resources, so that fs closes
         try (FileInputStream fs = new FileInputStream(String.valueOf(path));
              ObjectInputStream is = new ObjectInputStream(fs)) {

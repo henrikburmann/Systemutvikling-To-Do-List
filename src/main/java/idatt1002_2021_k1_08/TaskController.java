@@ -5,11 +5,14 @@ import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,11 +52,6 @@ public class TaskController {
     @FXML
     DatePicker datePicker;
 
-    @FXML ArrayList<TextField> taskTextFields = new ArrayList<>();
-
-    @FXML AddTaskController addTaskController;
-
-    private Collection<Task> tasks;
 
 
 
@@ -84,11 +82,15 @@ public class TaskController {
 >>>>>>> 09f8b40f459e976f943b2c2a14547f179913ee52
 
         //Show information of task in description area
+        //Also implements listener for every Task
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
             @Override
             public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
                 if(t1 != null){
+
+
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
+
                     task_information_TextArea.setText(task1.getDescription());
                 }
             }
@@ -96,8 +98,8 @@ public class TaskController {
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
-        //Can fix sorting methods here and display that in tasksView;
-
+        //Should fix a sorting method here that displays a sortedList (by date f.eksample)
+        //TODO: look at filtered list and sorted list, for displaying tasks by category...
         tasksView.setItems(listOfTasks);
         tasksView.getSelectionModel().selectFirst();
 
@@ -121,8 +123,26 @@ public class TaskController {
         }
     }
 
+    /**
+     *
+     * @param delete
+     * Handles deletebutton
+     */
+    @FXML
+    public void handleDeleteButton(ActionEvent delete){
+        Task selectedTask = tasksView.getSelectionModel().getSelectedItem();
+        if(selectedTask != null){
+            if(delete.getSource().equals(delete_task_button)){
+                deleteTask(selectedTask);
+            }
+        }
+    }
 
-    //forandrer på denne senere
+    /**
+     *
+     * @param task
+     * Deletes a task with method from FileHandler class
+     */
     public void deleteTask(Task task) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Todo Item");
