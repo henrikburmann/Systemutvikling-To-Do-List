@@ -1,6 +1,6 @@
 package idatt1002_2021_k1_08;
 
-import idatt1002_2021_k1_08.datamodel.Task;
+import idatt1002_2021_k1_08.datamodel.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;

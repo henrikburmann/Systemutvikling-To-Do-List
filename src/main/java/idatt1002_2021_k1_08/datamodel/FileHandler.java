@@ -52,21 +52,20 @@ public abstract class FileHandler {
      * @return an Observable Arraylist
      * @throws IOException ifAny
      */
-    public ObservableList<Task> deserialize() throws IOException {
+    public ObservableList<Task> deserialize() throws IOException, ClassNotFoundException {
         ArrayList<Task> tasks = new ArrayList<>();
-        try (FileInputStream fs = new FileInputStream(String.valueOf(file));
-             ObjectInputStream is = new ObjectInputStream(fs)) {
+        while (true) {
+            try (FileInputStream fs = new FileInputStream(String.valueOf(file));
+                 ObjectInputStream is = new ObjectInputStream(fs)) {
+                tasks = (ArrayList<Task>) is.readObject(); // read one object that is serialized
 
-            //Pseudo-loop
-            assert false;
-            for(Task t : tasks){
-                t = (Task) is.readObject(); // read one object that is serialized
-                tasks.add(t);// Adds every object one by one into ArrayList category until everything is added
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IOException ioe){
+                ioe.printStackTrace();
             }
-        }catch (ClassNotFoundException ex){
-            ex.printStackTrace();
+            // Returns an ObservableArrayList from FXCollections to able listeners
+            return FXCollections.observableArrayList(tasks);
         }
-                // Returns an ObservableArrayList from FXCollections to able listeners
-        return FXCollections.observableArrayList(tasks);
     }
 }

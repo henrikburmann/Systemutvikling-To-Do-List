@@ -1,6 +1,6 @@
 package idatt1002_2021_k1_08;
 
-import idatt1002_2021_k1_08.datamodel.Task;
+import idatt1002_2021_k1_08.datamodel.*;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
