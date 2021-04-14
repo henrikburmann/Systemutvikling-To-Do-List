@@ -2,18 +2,19 @@ package idatt1002_2021_k1_08.datamodel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * The type Task.
  */
-public class Task {
+public class Task implements Serializable {
 
     private String taskName;
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
     private String priority;
-    private String status;
+    private String category;
 
     /**
      * Instantiates a new Task.
@@ -25,7 +26,7 @@ public class Task {
      * @param priority    the priority
      */
 //Constructor if all parameters are good and written in their respective FXML textfields
-    public Task (String taskName, String description, LocalDate startDate, LocalDate endDate, String priority){
+    public Task (String taskName, String description, LocalDate startDate, LocalDate endDate, String priority, String category){
         setDescription(description);
         setEndDate(endDate);
         setStartDate(startDate);
@@ -176,6 +177,26 @@ public class Task {
         }
     }
 
+    public void setCategory(String category){
+        checkIfNull(category);
+        checkIfEmpty(category);
+        this.category = category;
+    }
+
+    public String sortByCategory(String categoryString){
+        if (!(category.equals(categoryString))){
+            throw new IllegalArgumentException("This is no category // category sorting failed");
+        }
+        return categoryString;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // Reference equality
+        if (!(o instanceof Task)) return false; // Not the same type
+        Task task = (Task) o;
+        return category.equals(task.category);
+    }
 
     @Override
     public String toString() {

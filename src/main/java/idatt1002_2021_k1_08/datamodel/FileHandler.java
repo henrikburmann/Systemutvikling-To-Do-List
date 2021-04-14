@@ -1,6 +1,12 @@
 package idatt1002_2021_k1_08.datamodel;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -10,66 +16,57 @@ import java.util.ArrayList;
 
 public abstract class FileHandler {
 
-    private final String FILE_PATH = "filepathName.txt";
 
+    private final Path path = Paths.get("..\\src\\main\\resources");
+    private final Path file = Files.createFile(path);
     /**
      * Constructor
      */
-    public FileHandler() {
+    public FileHandler() throws IOException{
     }
 
     /**
      * Writes a Category to file
      */
-    public void serializeCategory(ArrayList<Task> categories) throws IOException{
-        try(FileOutputStream fs = new FileOutputStream(FILE_PATH); //åpner opp en stream
+    public void serialize(ArrayList<Task> tasks) throws IOException{
+        try(FileOutputStream fs = new FileOutputStream(String.valueOf((file))); //åpner opp en stream
             ObjectOutputStream os = new ObjectOutputStream(fs)){
-            os.writeObject(categories);
+            for (Task t : tasks){ //Reads every task Object in Arraylist and serializes them individually
+                os.writeObject(t);
+            }
         }
     }
+    /*
+    metode fra Listerners "fra" FXCollections. For å adde tasks med category
+    Da skal det ikke være behøvelig med Category.java eller CategoryRegister.java
+
+    //TODO: Delete category and categoryregister ?
+    //TODO: Make loader method and saver method for initialize APP and Stop APP
+    //TODO: Make tests for serializer, also JAVADOC
+    //TODO: Incorporate Category from tasks, into list for sorting, not for creating.
+    //TODO: ^Create categories inside every task to make them sortable.
+     */
 
     /**
-     * Reads a category from a file
+     *
+     * @return an Observable Arraylist
+     * @throws IOException ifAny
      */
-    public ArrayList<Category> deserializeCategory() throws IOException {
-        ArrayList<Category> category = new ArrayList<>();
-
-        try (FileInputStream fs = new FileInputStream(FILE_PATH);
+    public ObservableList<Task> deserialize() throws IOException {
+        ArrayList<Task> tasks = new ArrayList<>();
+        try (FileInputStream fs = new FileInputStream(String.valueOf(file));
              ObjectInputStream is = new ObjectInputStream(fs)) {
 
-            category = (ArrayList<Category>) is.readObject();
+            //Pseudo-loop
+            assert false;
+            for(Task t : tasks){
+                t = (Task) is.readObject(); // read one object that is serialized
+                tasks.add(t);// Adds every object one by one into ArrayList category until everything is added
+            }
         }catch (ClassNotFoundException ex){
             ex.printStackTrace();
         }
-        return category;
-    }
-
-    /**
-     *
-     * @param ob
-     * @throws IOException
-     */
-    public void serializeTask(Object ob) throws IOException{
-        try (FileOutputStream fs = new FileOutputStream(FILE_PATH);
-            ObjectOutputStream os = new ObjectOutputStream(fs)){
-            os.writeObject(ob);
-        }
-    }
-
-    /**
-     *
-     * @return Object representing a task
-     * @throws IOException
-     */
-    public Object deserializeObject() throws IOException{
-        Object task = null;
-        try(FileInputStream fs = new FileInputStream(FILE_PATH);
-            ObjectInputStream is = new ObjectInputStream(fs)){
-            task = is.readObject();
-
-        }catch (ClassNotFoundException ex){
-            ex.printStackTrace();
-        }
-        return task;
+                // Returns an ObservableArrayList from FXCollections to able listeners
+        return FXCollections.observableArrayList(tasks);
     }
 }
