@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +31,8 @@ public class TaskController {
     Button edit_task_button;
     @FXML
     Button delete_task_button;
+    @FXML
+    Button newCategory;
 
     @FXML
     TextArea task_information_TextArea;
@@ -104,6 +107,11 @@ public class TaskController {
         }
     }
 
+    @FXML
+    public void handleCategory() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("newCategory.fxml"));
+    }
     /**
      *
      * @param delete
@@ -136,4 +144,6 @@ public class TaskController {
         }
         task_information_TextArea.setText(null);
     }
+
+
 }

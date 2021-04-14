@@ -19,6 +19,7 @@ public class FileHandler {
 
     private static final String FILE_PATH = "filepathName.txt";
     private ObservableList<Task> obTasks;
+    private static ObservableList<String> categories = FXCollections.observableArrayList();;
     private static FileHandler fileHandlerInstance = new FileHandler();
 
     private final DateTimeFormatter formatter;
@@ -40,6 +41,8 @@ public class FileHandler {
     public ObservableList<Task> getTasks() {
         return obTasks;
     }
+
+    public static ObservableList<String> getCategories(){return categories;}
 
     public void addTask(Task task) {
         obTasks.add(task);
