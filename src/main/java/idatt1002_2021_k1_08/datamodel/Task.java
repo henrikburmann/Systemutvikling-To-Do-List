@@ -6,14 +6,15 @@ import java.time.LocalDate;
 /**
  * The type Task.
  */
-public class Task {
+public class Task implements Serializable {
 
     private String taskName;
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
     private String priority;
-    private String status;
+    private static final long SerialVersionUID = 1L;
+    private String category;
 
     /**
      * Instantiates a new Task.
@@ -29,8 +30,9 @@ public class Task {
         setDescription(description);
         setEndDate(endDate);
         setStartDate(startDate);
-        setPriority(priority);
+        setEndDate(endDate);
         setTaskName(taskName);
+        setPriority(priority);
 
     }
 
@@ -63,8 +65,7 @@ public class Task {
      * @param taskName the task name
      */
     public void setTaskName(String taskName) {
-        checkIfNull(taskName);
-        checkIfEmpty(taskName);
+
         this.taskName = taskName;
     }
 
@@ -83,9 +84,16 @@ public class Task {
      * @param description the description
      */
     public void setDescription(String description) {
-        checkIfEmpty(description);
-        checkIfNull(description);
+
         this.description = description;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     /**
@@ -98,24 +106,6 @@ public class Task {
     }
 
     /**
-     * Sets start date.
-     *
-     * @param startDate the start date
-     */
-    public void setStartDate(LocalDate startDate) {
-        if(validateStartDate(startDate)){
-            this.startDate = startDate;
-        }
-    }
-
-    private boolean validateStartDate(LocalDate startDate) {
-        if(startDate == null){
-            throw new NullPointerException("Startdate cant be null");
-        }
-        return true;
-    }
-
-    /**
      * Gets end date.
      *
      * @return the end date
@@ -124,26 +114,6 @@ public class Task {
         return endDate;
     }
 
-    /**
-     * Sets end date.
-     *
-     * @param endDate the end date
-     */
-    public void setEndDate(LocalDate endDate) {
-        if(validateEndDate(endDate)){
-            this.endDate = endDate;
-        }
-    }
-
-    private boolean validateEndDate(LocalDate endDate) {
-        if(endDate == null){
-            throw new NullPointerException("Endate cant be null");
-        }
-        else if(endDate.isBefore(this.getStartDate())){
-            throw new IllegalArgumentException("End date cant be before start date");
-        }
-        return true;
-    }
 
     /**
      * Gets priority.
@@ -154,28 +124,13 @@ public class Task {
         return priority;
     }
 
-    /**
-     * Sets priority.
-     *
-     * @param priority the priority
-     */
     public void setPriority(String priority) {
-        checkIfEmpty(priority);
-        checkIfNull(priority);
         this.priority = priority;
     }
 
-    private void checkIfEmpty(String s){
-       if(s.isEmpty()){
-           throw new IllegalArgumentException("The String cant be empty");
-       }
+    public void setCategory(String category) {
+        this.category = category;
     }
-    private void checkIfNull(String s){
-        if(s == null){
-            throw new NullPointerException("The String cant be null");
-        }
-    }
-
 
     @Override
     public String toString() {
@@ -186,5 +141,4 @@ public class Task {
                 "\nendDate: " + endDate +
                 "\npriority: " + priority;
     }
-
 }

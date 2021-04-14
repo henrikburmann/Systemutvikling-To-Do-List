@@ -1,75 +1,133 @@
 package idatt1002_2021_k1_08.datamodel;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author marcusjohannessen
  */
 
-public abstract class FileHandler {
+public class FileHandler {
 
-    private final String FILE_PATH = "filepathName.txt";
+    //TODO: Må forandre på dette fordi funker faen ikke! why?
+    private static final String FILE_PATH = "filepathName.txt";
+    private ObservableList<Task> obTasks;
+    private static FileHandler fileHandlerInstance = new FileHandler();
+
+    private final DateTimeFormatter formatter;
 
     /**
      * Constructor
      */
     public FileHandler() {
+        formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    }
+
+    /**
+     * @return instance of the class
+     */
+    public static FileHandler getInstance() {
+        return fileHandlerInstance;
+    }
+
+    public ObservableList<Task> getTasks() {
+        return obTasks;
+    }
+
+    public void addTask(Task task) {
+        obTasks.add(task);
     }
 
     /**
      * Writes a Category to file
      */
-    public void serializeCategory(ArrayList<Task> categories) throws IOException{
-        try(FileOutputStream fs = new FileOutputStream(FILE_PATH); //åpner opp en stream
-            ObjectOutputStream os = new ObjectOutputStream(fs)){
-            os.writeObject(categories);
+    private void serializeTask(ArrayList<Task> tasks) throws IOException {
+        //obTasks = FXCollections.observableArrayList();
+        Path path = Paths.get(FILE_PATH);
+        try (FileOutputStream fs = new FileOutputStream(String.valueOf(path)); //åpner opp en stream
+             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+            for (Task task : obTasks) {
+                os.writeObject(task);
+            }
         }
     }
 
-    /**
-     * Reads a category from a file
-     */
-    public ArrayList<Category> deserializeCategory() throws IOException {
-        ArrayList<Category> category = new ArrayList<>();
-
-        try (FileInputStream fs = new FileInputStream(FILE_PATH);
+    private ArrayList<Task> deserializeTask() throws IOException {
+        ArrayList<Task> tasks1 = new ArrayList<>();
+        Path path = Paths.get(FILE_PATH);
+        //try with resources, so that fs closes
+        try (FileInputStream fs = new FileInputStream(String.valueOf(path));
              ObjectInputStream is = new ObjectInputStream(fs)) {
 
-            category = (ArrayList<Category>) is.readObject();
-        }catch (ClassNotFoundException ex){
+            //Will eventually throw exception
+            while(true){
+                tasks1.add((Task) is.readObject());
+            }
+
+
+
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
+        } catch (EOFException ignore) {
+            //Expected
+        }catch (OptionalDataException e){
+            if(!e.eof){
+                throw e;
+            }
         }
-        return category;
+        return tasks1;
+    }
+
+    //TODO: Denne funker ikke som det skal så må fikse på den
+    public void storeData() throws IOException {
+        ArrayList<Task> store = new ArrayList<>();
+        for (Task t : obTasks) {
+            Task task = new Task(t.getTaskName(), t.getDescription(), t.getStartDate(), t.getEndDate(), t.getPriority());
+            store.add(task);
+        }
+        serializeTask(store);
+    }
+
+    public void loadData() throws IOException {
+        obTasks = FXCollections.observableArrayList();
+        try {
+            ArrayList<Task> list = deserializeTask();  //Denne burde returnere task
+            System.out.println("Størrelse på liste i loadData()" + list.size());
+            System.out.println("Inni metode");
+
+            for (int i = 0; i < list.size(); i++) {
+                Task task = new Task(list.get(i).getTaskName(), list.get(i).getDescription());
+                obTasks.add(task);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     *
-     * @param ob
-     * @throws IOException
+     * @param task deletes item from observableList
      */
-    public void serializeTask(Object ob) throws IOException{
-        try (FileOutputStream fs = new FileOutputStream(FILE_PATH);
-            ObjectOutputStream os = new ObjectOutputStream(fs)){
-            os.writeObject(ob);
-        }
+    public void deleteTask(Task task) {
+        obTasks.remove(task);
     }
 
-    /**
-     *
-     * @return Object representing a task
-     * @throws IOException
-     */
-    public Object deserializeObject() throws IOException{
-        Object task = null;
-        try(FileInputStream fs = new FileInputStream(FILE_PATH);
-            ObjectInputStream is = new ObjectInputStream(fs)){
-            task = is.readObject();
 
-        }catch (ClassNotFoundException ex){
-            ex.printStackTrace();
-        }
-        return task;
+    public void newStoreData() {
+
+    }
+
+    public void newLoadData() {
+        obTasks = FXCollections.observableArrayList();
+
     }
 }
