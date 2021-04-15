@@ -13,6 +13,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -49,16 +53,27 @@ public class TaskController {
 
     @FXML
     DatePicker datePicker;
+    @FXML
+    AnchorPane taskDisplayAnchor;
 
-    private FilteredList<Task> taskFilteredList;
-    private Predicate<Task> sortedByDate;
-    private Predicate<Task> sortedAlphabetically;
+    @FXML TextField taskNameTextField;
+    @FXML TextField endDateTextField;
+    @FXML TextField startDateTextField;
+    @FXML TextField priorityTextField;
+    @FXML TextField categoryTextField;
+    @FXML TextArea notesTextArea;
+    ArrayList<TextField> textfieldList = new ArrayList<>();
 
 
     public TaskController() throws FileNotFoundException {
     }
 
     public void initialize() {
+        textfieldList.add(taskNameTextField);
+        textfieldList.add(endDateTextField);
+        textfieldList.add(startDateTextField);
+        textfieldList.add(priorityTextField);
+        textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
 
@@ -71,7 +86,12 @@ public class TaskController {
 
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
 
-                    task_information_TextArea.setText(task1.toString());
+                    taskNameTextField.setText(task1.getTaskName());
+                    startDateTextField.setText(task1.getStartDate().toString());
+                    endDateTextField.setText(task1.getEndDate().toString());
+                    priorityTextField.setText(task1.getPriority());
+                    notesTextArea.setText(task1.getDescription());
+
                 }
             }
         });
@@ -98,17 +118,18 @@ public class TaskController {
         //TODO: look at filtered list and sorted list, for displaying tasks by category...
         tasksView.setItems(sortedList);
         tasksView.getSelectionModel().selectFirst();
-
-
     }
-
-
     @FXML
     public void changeSceneToAddTask() throws IOException{
         CiterClient.setRoot("addTask");
     }
 
-
+    private void clearText(){
+        for (int i = 0; i < textfieldList.size(); i++) {
+            textfieldList.get(i).setText(null);
+        }
+        notesTextArea.setText(null);
+    }
     @FXML
     public void handleKeyPressed(KeyEvent e){
         Task taskSelected = tasksView.getSelectionModel().getSelectedItem();
@@ -150,6 +171,7 @@ public class TaskController {
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             FileHandler.getInstance().deleteTask(task); //Deletes from list in FileHandler class
         }
-        task_information_TextArea.setText(null);
+        clearText();
+
     }
 }

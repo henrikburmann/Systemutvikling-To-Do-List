@@ -28,7 +28,7 @@ public class Task implements Serializable {
 //Constructor if all parameters are good and written in their respective FXML textfields
     public Task (String taskName, LocalDate startDate, LocalDate endDate, String priority){
         setEndDate(endDate);
-        setStartDate(startDate);
+        setStartDate(LocalDate.now());
         setEndDate(endDate);
         setTaskName(taskName);
         setPriority(priority);
@@ -119,6 +119,6 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        return "TaskName: " + taskName;
+        return taskName + "   Deadline: " + endDate;
     }
 }
