@@ -26,13 +26,13 @@ public class Task implements Serializable {
      */
 
 //Constructor if all parameters are good and written in their respective FXML textfields
-    public Task (String taskName, LocalDate startDate, LocalDate endDate, String priority){
+    public Task (String taskName, String category,LocalDate startDate, LocalDate endDate, String priority){
         setEndDate(endDate);
         setStartDate(LocalDate.now());
         setEndDate(endDate);
         setTaskName(taskName);
         setPriority(priority);
-
+        setCategory(category);
     }
 
     /**
@@ -42,6 +42,14 @@ public class Task implements Serializable {
      */
     public String getTaskName(){
         return taskName;
+    }
+
+    /**
+     * Get category
+     * @return category
+     */
+    public String getCategory() {
+        return category;
     }
 
     /**

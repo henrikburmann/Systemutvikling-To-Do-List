@@ -60,9 +60,9 @@ public class AddTaskController {
 
         String priority = priorityChoiceBox.getValue();
 
+        String category = categoryList.getSelectionModel().getSelectedItem();
 
-
-        Task task = new Task(taskName,LocalDate.now(),date,priority);
+        Task task = new Task(taskName, category,LocalDate.now(),date,priority);
 
         task.setEndDate(date);
         task.setPriority(priority);

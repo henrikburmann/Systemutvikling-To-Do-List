@@ -98,6 +98,7 @@ public class TaskController {
                     startDateTextField.setText(task1.getStartDate().toString());
                     endDateTextField.setText(task1.getEndDate().toString());
                     priorityTextField.setText(task1.getPriority());
+                    categoryTextField.setText(task1.getCategory());
                     notesTextArea.setText(task1.getDescription());
 
                 }
