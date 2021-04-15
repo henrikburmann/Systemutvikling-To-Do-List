@@ -59,14 +59,13 @@ public class AddTaskController {
                 date_time_box.getValue().getMonthValue(), date_time_box.getValue().getDayOfMonth());
 
         String priority = priorityChoiceBox.getValue();
-
-
+        String description = notes_textarea.getText();
 
         Task task = new Task(taskName,LocalDate.now(),date,priority);
 
         task.setEndDate(date);
         task.setPriority(priority);
-        task.setDescription(task.getDescription());
+        task.setDescription(description);
 
         FileHandler.getInstance().addTask(task);
 
