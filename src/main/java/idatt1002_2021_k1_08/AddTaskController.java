@@ -54,8 +54,6 @@ public class AddTaskController {
     public void addTaskMethod() throws IOException {
         String taskName = task_name_textfield.getText().trim();
 
-        String description = notes_textarea.getText().trim();
-
         LocalDate date = LocalDate.of(date_time_box.getValue().getYear(),
                 date_time_box.getValue().getMonthValue(), date_time_box.getValue().getDayOfMonth());
 
@@ -63,7 +61,7 @@ public class AddTaskController {
 
 
 
-        Task task = new Task(taskName, description);
+        Task task = new Task(taskName,LocalDate.now(),date,priority);
 
         task.setEndDate(date);
         task.setPriority(priority);
