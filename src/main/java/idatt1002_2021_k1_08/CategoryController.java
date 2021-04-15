@@ -24,6 +24,7 @@ public class CategoryController {
         CiterClient.setRoot("primary");
     }
 
+    @FXML
     public void addCategory() throws IOException {
         if(FileHandler.getCategories().stream().anyMatch(e -> e.equals(categoryName.getText()))){
             alertbox();

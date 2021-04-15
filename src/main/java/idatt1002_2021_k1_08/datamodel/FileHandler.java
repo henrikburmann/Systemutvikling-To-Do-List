@@ -19,7 +19,7 @@ public class FileHandler {
 
     private static final String FILE_PATH = "filepathName.txt";
     private ObservableList<Task> obTasks;
-    private static ObservableList<String> categories = FXCollections.observableArrayList();;
+    private static ObservableList<String> categories = FXCollections.observableArrayList();
     private static FileHandler fileHandlerInstance = new FileHandler();
 
     private final DateTimeFormatter formatter;

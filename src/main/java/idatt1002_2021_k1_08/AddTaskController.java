@@ -23,7 +23,7 @@ public class AddTaskController {
     @FXML
     DatePicker date_time_box;
     @FXML
-    ChoiceBox category_list;
+    ComboBox<String> categoryList;
     @FXML
     TextArea notes_textarea;
     @FXML
@@ -40,6 +40,7 @@ public class AddTaskController {
         logoImageView.setImage(logo);
         priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
         priorityChoiceBox.setValue("Medium");
+        categoryList.setItems(FileHandler.getCategories());
     }
 
     public AddTaskController() throws FileNotFoundException {

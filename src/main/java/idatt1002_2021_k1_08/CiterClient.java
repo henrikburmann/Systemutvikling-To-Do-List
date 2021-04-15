@@ -21,7 +21,6 @@ public class CiterClient extends Application{
         scene = new Scene(loadFXML("primary"));
         stage.setScene(scene);
         stage.show();
-
     }
 
     public static void setRoot(String fxml) throws IOException {

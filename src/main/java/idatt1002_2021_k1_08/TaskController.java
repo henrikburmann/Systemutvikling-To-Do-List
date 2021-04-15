@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -51,20 +52,17 @@ public class TaskController {
     MenuItem helpItem;
     @FXML
     TextField usernameTextField;
-
     @FXML
     DatePicker datePicker;
+    @FXML
+    ComboBox<String> categoryList;
 
-
-
-
-    public TaskController() throws FileNotFoundException {
-    }
+    public TaskController() throws FileNotFoundException { }
 
     public void initialize() {
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-
+        categoryList.setItems(FileHandler.getCategories());
         //Show information of task in description area
         //Also implements listener for every Task
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
@@ -109,8 +107,7 @@ public class TaskController {
 
     @FXML
     public void handleCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("newCategory.fxml"));
+       CiterClient.setRoot("newCategory");
     }
     /**
      *
