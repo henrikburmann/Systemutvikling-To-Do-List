@@ -106,9 +106,7 @@ public class FileHandler {
             System.out.println("Inni metode");
 
             for (int i = 0; i < list.size(); i++) {
-                Task task = new Task(list.get(i).getTaskName(), list.get(i).getStartDate(),
-                        list.get(i).getEndDate(), list.get(i).getPriority());
-                task.setDescription(list.get(i).getDescription());
+                Task task = new Task(list.get(i).getTaskName(), list.get(i).getStartDate(), list.get(i).getEndDate(), list.get(i).getPriority());
                 obTasks.add(task);
             }
 
