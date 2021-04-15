@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -57,6 +58,8 @@ public class TaskController {
     DatePicker datePicker;
     @FXML
     AnchorPane taskDisplayAnchor;
+    @FXML
+    ComboBox<String> categoryList;
 
     @FXML TextField taskNameTextField;
     @FXML TextField endDateTextField;
@@ -79,6 +82,9 @@ public class TaskController {
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
         categoryList.setItems(FileHandler.getCategories());
+        //TODO: look at filtered list and sorted list, for displaying tasks by category...
+        tasksView.setItems(sortedList);
+        tasksView.getSelectionModel().selectFirst();
         //Show information of task in description area
         //Also implements listener for every Task
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
@@ -97,12 +103,6 @@ public class TaskController {
                 }
             }
         });
-
-        sortedByDate = new Predicate<Task>() {
-            @Override
-            public boolean test(Task task) {
-                return true;
-            }
         };
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
@@ -117,10 +117,6 @@ public class TaskController {
             }
         });
 
-        //TODO: look at filtered list and sorted list, for displaying tasks by category...
-        tasksView.setItems(sortedList);
-        tasksView.getSelectionModel().selectFirst();
-    }
     @FXML
     public void changeSceneToAddTask() throws IOException{
         CiterClient.setRoot("addTask");
