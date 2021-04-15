@@ -20,6 +20,7 @@
 <AnchorPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="idatt1002_2021_k1_08.TaskController">
    <children>
       <AnchorPane fx:id="pane_left" prefHeight="500.0" prefWidth="225.0">
+         <DatePicker fx:id="datePicker" editable="false" layoutX="26.0" layoutY="383.0" onAction="#tasksOnChosenDate" prefHeight="79.0" prefWidth="174.0" promptText="Choose day" />
          <Label fx:id="label_header_left" prefHeight="45.0" prefWidth="225.0" />
          <MenuButton fx:id="menuButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Options">
            <items>
@@ -53,7 +54,8 @@
                <Image url="@../../../../images/CiterLogo.png" />
             </image>
          </ImageView>
-         <DatePicker fx:id="datePicker" editable="false" layoutX="27.0" layoutY="320.0" onAction="#tasksOnChosenDate" prefHeight="136.0" prefWidth="174.0" />
+         <Button fx:id="getAllDatesButton" layoutX="63.0" layoutY="268.0" mnemonicParsing="false" onAction="#viewAllTasks" prefHeight="25.0" prefWidth="99.0" text="View all tasks" textFill="floralwhite" />
+         <Text layoutX="27.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks from a chosen date" wrappingWidth="174.0" />
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
