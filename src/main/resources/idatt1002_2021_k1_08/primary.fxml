@@ -54,10 +54,11 @@
             </image>
          </ImageView>
          <DatePicker fx:id="datePicker" editable="false" layoutX="27.0" layoutY="320.0" onAction="#tasksOnChosenDate" prefHeight="136.0" prefWidth="174.0" />
+         <Button fx:id="getAllDatesButton" layoutX="72.0" layoutY="294.0" mnemonicParsing="false" onAction="#viewAllTasks" text="Get all dates" />
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
-         <ListView fx:id="tasksView" layoutY="43.0" onKeyPressed="#handleKeyPressed" prefHeight="457.0" prefWidth="300.0" />
+         <ListView fx:id="tasksView" layoutY="42.0" onKeyPressed="#handleKeyPressed" prefHeight="458.0" prefWidth="300.0" />
          <Label fx:id="label_header_middle" prefHeight="42.0" prefWidth="300.0" text="Overview">
             <font>
                <Font name="Times New Roman Bold" size="18.0" />

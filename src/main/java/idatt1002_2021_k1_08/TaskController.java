@@ -21,6 +21,8 @@ import javafx.scene.layout.AnchorPane;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -64,6 +66,7 @@ public class TaskController {
     @FXML TextField categoryTextField;
     @FXML TextArea notesTextArea;
     ArrayList<TextField> textfieldList = new ArrayList<>();
+    @FXML Button getAllDatesButton;
 
 
     public TaskController() throws FileNotFoundException {
@@ -97,12 +100,7 @@ public class TaskController {
             }
         });
 
-        sortedByDate = new Predicate<Task>() {
-            @Override
-            public boolean test(Task task) {
-                return true;
-            }
-        };
+
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
@@ -186,5 +184,10 @@ public class TaskController {
         }
         tasksView.setItems(tasksOnDate);
         System.out.println(tasksOnDate);
+    }
+
+    public void viewAllTasks(){
+        datePicker.setValue(null);
+        tasksView.setItems(FileHandler.getInstance().getTasks());
     }
 }
