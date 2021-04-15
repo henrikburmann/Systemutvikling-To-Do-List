@@ -61,6 +61,8 @@
 
 
          <ComboBox fx:id="categoryList" layoutX="22.0" layoutY="121.0" prefHeight="25.0" prefWidth="131.0" promptText="Category" />
+         <Text layoutX="13.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks with priority:" />
+         <ComboBox fx:id="priorityComboBox" layoutX="138.0" layoutY="164.0" onAction="#viewByPriority" prefHeight="25.0" prefWidth="85.0" />
 
       </AnchorPane>
 

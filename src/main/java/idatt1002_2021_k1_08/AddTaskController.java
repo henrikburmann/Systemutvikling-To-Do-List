@@ -66,6 +66,7 @@ public class AddTaskController {
 
         task.setEndDate(date);
         task.setPriority(priority);
+        task.setDescription(task.getDescription());
 
         FileHandler.getInstance().addTask(task);
 

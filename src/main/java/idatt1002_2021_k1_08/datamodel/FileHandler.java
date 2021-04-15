@@ -110,6 +110,7 @@ public class FileHandler {
 
             for (int i = 0; i < list.size(); i++) {
                 Task task = new Task(list.get(i).getTaskName(), list.get(i).getStartDate(), list.get(i).getEndDate(), list.get(i).getPriority());
+                task.setDescription(list.get(i).getDescription());
                 obTasks.add(task);
             }
 

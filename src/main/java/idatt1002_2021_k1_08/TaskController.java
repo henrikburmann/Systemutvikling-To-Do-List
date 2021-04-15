@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TaskController {
 
@@ -74,7 +75,7 @@ public class TaskController {
     TextArea notesTextArea;
     ArrayList<TextField> textfieldList = new ArrayList<>();
     @FXML Button getAllDatesButton;
-
+    @FXML ComboBox priorityComboBox;
 
     public TaskController() throws FileNotFoundException {
     }
@@ -86,6 +87,7 @@ public class TaskController {
         textfieldList.add(priorityTextField);
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
+
         menuButton = new MenuButton("Options", null, helpItem);
         categoryList.setItems(FileHandler.getCategories());
         //TODO: look at filtered list and sorted list, for displaying tasks by category...
@@ -101,9 +103,10 @@ public class TaskController {
 
                 }
             }
+
         });
 
-
+        addItemsInPriorityComboBox();
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
 
@@ -150,6 +153,14 @@ public class TaskController {
                 deleteTask(taskSelected);
             }
         }
+    }
+
+    private void addItemsInPriorityComboBox(){
+        priorityComboBox.getItems().add("All");
+        priorityComboBox.getItems().add("Low");
+        priorityComboBox.getItems().add("Medium");
+        priorityComboBox.getItems().add("High");
+        priorityComboBox.setValue("All");
     }
 
     @FXML
@@ -199,6 +210,23 @@ public class TaskController {
         }
         tasksView.setItems(tasksOnDate);
         System.out.println(tasksOnDate);
+    }
+
+    public void viewByPriority(){
+        ObservableList<Task> tasksOfPriority = FXCollections.observableArrayList();
+        String priority = (String) priorityComboBox.getValue();
+        if (priority.equals("All")){
+            tasksView.setItems(FileHandler.getInstance().getTasks());
+        }
+        else{
+            for (int i = 0; i < FileHandler.getInstance().getTasks().size(); i++) {
+                if (FileHandler.getInstance().getTasks().get(i).getPriority().equals(priority)){
+                    tasksOfPriority.add(FileHandler.getInstance().getTasks().get(i));
+                }
+            }
+            tasksView.setItems(tasksOfPriority);
+            System.out.println(priority);
+        }
     }
 
     public void viewAllTasks(){
