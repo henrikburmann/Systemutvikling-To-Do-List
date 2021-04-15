@@ -88,12 +88,7 @@ public class TaskController {
                 if(t1 != null){
 
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
-
-                    taskNameTextField.setText(task1.getTaskName());
-                    startDateTextField.setText(task1.getStartDate().toString());
-                    endDateTextField.setText(task1.getEndDate().toString());
-                    priorityTextField.setText(task1.getPriority());
-                    notesTextArea.setText(task1.getDescription());
+                    fillInformationArea(task1);
 
                 }
             }
@@ -101,8 +96,6 @@ public class TaskController {
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
-        //Should fix a sorting method here that displays a sortedList (by date f.eksample)
-//        taskFilteredList = new FilteredList<Task>(listOfTasks,sortedByDate);
 
         SortedList<Task> sortedList = new SortedList<Task>(listOfTasks, new Comparator<Task>() {
             @Override
@@ -120,12 +113,27 @@ public class TaskController {
         CiterClient.setRoot("addTask");
     }
 
+    /**
+     *
+     * @param task1
+     * Fills information area of Task with its information
+     */
+
+    private void fillInformationArea(Task task1){
+        taskNameTextField.setText(task1.getTaskName());
+        startDateTextField.setText(task1.getStartDate().toString());
+        endDateTextField.setText(task1.getEndDate().toString());
+        priorityTextField.setText(task1.getPriority());
+        notesTextArea.setText(task1.getDescription());
+    }
+
     private void clearText(){
         for (int i = 0; i < textfieldList.size(); i++) {
             textfieldList.get(i).setText(null);
         }
         notesTextArea.setText(null);
     }
+
     @FXML
     public void handleKeyPressed(KeyEvent e){
         Task taskSelected = tasksView.getSelectionModel().getSelectedItem();
@@ -171,8 +179,8 @@ public class TaskController {
             FileHandler.getInstance().deleteTask(task); //Deletes from list in FileHandler class
         }
         clearText();
-
+        Task task4 = tasksView.getSelectionModel().getSelectedItem();
+        //Set text for Task chosen after a task is deleted
+        fillInformationArea(task4);
     }
-
-
 }
