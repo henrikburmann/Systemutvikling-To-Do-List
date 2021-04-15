@@ -5,6 +5,8 @@ import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,15 +16,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Comparator;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class TaskController {
 
@@ -55,11 +56,26 @@ public class TaskController {
     @FXML
     DatePicker datePicker;
     @FXML
-    ComboBox<String> categoryList;
+    AnchorPane taskDisplayAnchor;
 
-    public TaskController() throws FileNotFoundException { }
+    @FXML TextField taskNameTextField;
+    @FXML TextField endDateTextField;
+    @FXML TextField startDateTextField;
+    @FXML TextField priorityTextField;
+    @FXML TextField categoryTextField;
+    @FXML TextArea notesTextArea;
+    ArrayList<TextField> textfieldList = new ArrayList<>();
+
+
+    public TaskController() throws FileNotFoundException {
+    }
 
     public void initialize() {
+        textfieldList.add(taskNameTextField);
+        textfieldList.add(endDateTextField);
+        textfieldList.add(startDateTextField);
+        textfieldList.add(priorityTextField);
+        textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
         categoryList.setItems(FileHandler.getCategories());
@@ -70,31 +86,52 @@ public class TaskController {
             public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
                 if(t1 != null){
 
-
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
 
-                    task_information_TextArea.setText(task1.toString());
+                    taskNameTextField.setText(task1.getTaskName());
+                    startDateTextField.setText(task1.getStartDate().toString());
+                    endDateTextField.setText(task1.getEndDate().toString());
+                    priorityTextField.setText(task1.getPriority());
+                    notesTextArea.setText(task1.getDescription());
+
                 }
             }
         });
 
+        sortedByDate = new Predicate<Task>() {
+            @Override
+            public boolean test(Task task) {
+                return true;
+            }
+        };
+
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
         //Should fix a sorting method here that displays a sortedList (by date f.eksample)
+//        taskFilteredList = new FilteredList<Task>(listOfTasks,sortedByDate);
+
+        SortedList<Task> sortedList = new SortedList<Task>(listOfTasks, new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return(task1.getEndDate().compareTo(task2.getEndDate()));
+            }
+        });
+
         //TODO: look at filtered list and sorted list, for displaying tasks by category...
-        tasksView.setItems(listOfTasks);
+        tasksView.setItems(sortedList);
         tasksView.getSelectionModel().selectFirst();
-
-
     }
-
-
     @FXML
     public void changeSceneToAddTask() throws IOException{
         CiterClient.setRoot("addTask");
     }
 
-
+    private void clearText(){
+        for (int i = 0; i < textfieldList.size(); i++) {
+            textfieldList.get(i).setText(null);
+        }
+        notesTextArea.setText(null);
+    }
     @FXML
     public void handleKeyPressed(KeyEvent e){
         Task taskSelected = tasksView.getSelectionModel().getSelectedItem();
@@ -131,15 +168,16 @@ public class TaskController {
      */
     public void deleteTask(Task task) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Todo Item");
-        alert.setHeaderText("Delete Item: " + task.getTaskName());
+        alert.setTitle("Delete Task");
+        alert.setHeaderText("Delete Task: " + task.getTaskName());
         alert.setContentText("Are you sure? Press OK to confirm, or cancel to Back out.");
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             FileHandler.getInstance().deleteTask(task); //Deletes from list in FileHandler class
         }
-        task_information_TextArea.setText(null);
+        clearText();
+
     }
 
 

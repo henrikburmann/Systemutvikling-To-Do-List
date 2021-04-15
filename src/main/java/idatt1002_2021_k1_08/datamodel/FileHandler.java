@@ -72,21 +72,20 @@ public class FileHandler {
              ObjectInputStream is = new ObjectInputStream(fs)) {
 
             //Will eventually throw exception
-            while(true){
-                tasks1.add((Task) is.readObject());
+            while (true) {                                                                   
+                tasks1.add((Task) is.readObject());                                                                   
             }
-
 
 
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (EOFException ignore) {
             //Expected
-        }catch (OptionalDataException e){
-            if(!e.eof){
+        } catch (OptionalDataException e) {
+            if (!e.eof) {
                 throw e;
             }
-        }
+        }                                                                    
         return tasks1;
     }
 
@@ -94,11 +93,13 @@ public class FileHandler {
     public void storeData() throws IOException {
         ArrayList<Task> store = new ArrayList<>();
         for (Task t : obTasks) {
-            Task task = new Task(t.getTaskName(), t.getDescription(), t.getStartDate(), t.getEndDate(), t.getPriority());
+            Task task = new Task(t.getTaskName(), t.getStartDate(), t.getEndDate(), t.getPriority());
+            task.setDescription(t.getDescription());
             store.add(task);
         }
         serializeTask(store);
     }
+
 
     public void loadData() throws IOException {
         obTasks = FXCollections.observableArrayList();
@@ -108,7 +109,7 @@ public class FileHandler {
             System.out.println("Inni metode");
 
             for (int i = 0; i < list.size(); i++) {
-                Task task = new Task(list.get(i).getTaskName(), list.get(i).getDescription());
+                Task task = new Task(list.get(i).getTaskName(), list.get(i).getStartDate(), list.get(i).getEndDate(), list.get(i).getPriority());
                 obTasks.add(task);
             }
 
