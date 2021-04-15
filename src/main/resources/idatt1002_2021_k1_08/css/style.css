@@ -83,3 +83,6 @@
     -fx-background-color: grey;
     -fx-text-fill: black;
 }
+#getAllDatesButton{
+    -fx-background-color: adadad ;
+}
