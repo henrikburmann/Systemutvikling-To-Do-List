@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -78,7 +79,7 @@ public class TaskController {
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-        categoryList.setItems(FileHandler.getCategories());
+
         //Show information of task in description area
         //Also implements listener for every Task
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
@@ -97,13 +98,6 @@ public class TaskController {
                 }
             }
         });
-
-        sortedByDate = new Predicate<Task>() {
-            @Override
-            public boolean test(Task task) {
-                return true;
-            }
-        };
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
