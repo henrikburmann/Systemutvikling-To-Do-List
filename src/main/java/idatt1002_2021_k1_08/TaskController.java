@@ -69,7 +69,6 @@ public class TaskController {
             public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
                 if(t1 != null){
 
-
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
 
                     task_information_TextArea.setText(task1.toString());
@@ -81,6 +80,8 @@ public class TaskController {
 
         //Should fix a sorting method here that displays a sortedList (by date f.eksample)
         //TODO: look at filtered list and sorted list, for displaying tasks by category...
+
+
         tasksView.setItems(listOfTasks);
         tasksView.getSelectionModel().selectFirst();
 
@@ -104,6 +105,7 @@ public class TaskController {
         }
     }
 
+
     /**
      *
      * @param delete
@@ -126,8 +128,8 @@ public class TaskController {
      */
     public void deleteTask(Task task) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Todo Item");
-        alert.setHeaderText("Delete Item: " + task.getTaskName());
+        alert.setTitle("Delete Task");
+        alert.setHeaderText("Delete Task: " + task.getTaskName());
         alert.setContentText("Are you sure? Press OK to confirm, or cancel to Back out.");
         Optional<ButtonType> result = alert.showAndWait();
 

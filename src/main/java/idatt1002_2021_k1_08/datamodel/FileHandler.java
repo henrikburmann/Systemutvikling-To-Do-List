@@ -69,21 +69,20 @@ public class FileHandler {
              ObjectInputStream is = new ObjectInputStream(fs)) {
 
             //Will eventually throw exception
-            while(true){
-                tasks1.add((Task) is.readObject());
+            while (true) {                                                                   
+                tasks1.add((Task) is.readObject());                                                                   
             }
-
 
 
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (EOFException ignore) {
             //Expected
-        }catch (OptionalDataException e){
-            if(!e.eof){
+        } catch (OptionalDataException e) {
+            if (!e.eof) {
                 throw e;
             }
-        }
+        }                                                                    
         return tasks1;
     }
 
@@ -96,6 +95,7 @@ public class FileHandler {
         }
         serializeTask(store);
     }
+
 
     public void loadData() throws IOException {
         obTasks = FXCollections.observableArrayList();
