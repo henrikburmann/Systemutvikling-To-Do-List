@@ -20,7 +20,6 @@ public class Task implements Serializable {
      * Instantiates a new Task.
      *
      * @param taskName    the task name
-
      * @param startDate   the start date
      * @param endDate     the end date
      * @param priority    the priority
@@ -28,7 +27,6 @@ public class Task implements Serializable {
 
 //Constructor if all parameters are good and written in their respective FXML textfields
     public Task (String taskName, LocalDate startDate, LocalDate endDate, String priority){
-        setDescription(description);
         setEndDate(endDate);
         setStartDate(LocalDate.now());
         setEndDate(endDate);
@@ -36,20 +34,6 @@ public class Task implements Serializable {
         setPriority(priority);
 
     }
-
-    /**
-     * Instantiates a new Task.
-     *
-     * @param taskName    the task name
-     * @param description the description
-     */
-//Constructor if there is no priority, start or end date to task.
-    /*public Task(String taskName, String description){
-        setDescription(description);
-        setTaskName(taskName);
-        this(taskName, description, LocalDate.now(), null);
-        this.startDate = LocalDate.now();
-    }*/
 
     /**
      * Get task name string.

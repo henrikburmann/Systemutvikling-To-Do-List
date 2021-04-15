@@ -6,6 +6,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,10 +21,9 @@ import javafx.scene.layout.AnchorPane;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Comparator;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class TaskController {
 
@@ -96,12 +97,27 @@ public class TaskController {
             }
         });
 
+        sortedByDate = new Predicate<Task>() {
+            @Override
+            public boolean test(Task task) {
+                return true;
+            }
+        };
+
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
         //Should fix a sorting method here that displays a sortedList (by date f.eksample)
-        //TODO: look at filtered list and sorted list, for displaying tasks by category...
+//        taskFilteredList = new FilteredList<Task>(listOfTasks,sortedByDate);
 
-        tasksView.setItems(listOfTasks);
+        SortedList<Task> sortedList = new SortedList<Task>(listOfTasks, new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return(task1.getEndDate().compareTo(task2.getEndDate()));
+            }
+        });
+
+        //TODO: look at filtered list and sorted list, for displaying tasks by category...
+        tasksView.setItems(sortedList);
         tasksView.getSelectionModel().selectFirst();
     }
     @FXML
