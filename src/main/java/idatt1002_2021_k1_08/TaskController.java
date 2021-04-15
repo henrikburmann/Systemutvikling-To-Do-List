@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -51,8 +52,16 @@ public class TaskController {
 
     @FXML
     DatePicker datePicker;
+    @FXML
+    AnchorPane taskDisplayAnchor;
 
-
+    @FXML TextField taskNameTextField;
+    @FXML TextField endDateTextField;
+    @FXML TextField startDateTextField;
+    @FXML TextField priorityTextField;
+    @FXML TextField categoryTextField;
+    @FXML TextArea notesTextArea;
+    ArrayList<TextField> textfieldList = new ArrayList<>();
 
 
     public TaskController() throws FileNotFoundException {
@@ -71,7 +80,12 @@ public class TaskController {
 
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
 
-                    task_information_TextArea.setText(task1.toString());
+                    taskNameTextField.setText(task1.getTaskName());
+                    startDateTextField.setText(task1.getStartDate().toString());
+                    endDateTextField.setText(task1.getEndDate().toString());
+                    priorityTextField.setText(task1.getPriority());
+                    notesTextArea.setText(task1.getDescription());
+
                 }
             }
         });
@@ -81,14 +95,9 @@ public class TaskController {
         //Should fix a sorting method here that displays a sortedList (by date f.eksample)
         //TODO: look at filtered list and sorted list, for displaying tasks by category...
 
-
         tasksView.setItems(listOfTasks);
         tasksView.getSelectionModel().selectFirst();
-
-
     }
-
-
     @FXML
     public void changeSceneToAddTask() throws IOException{
         CiterClient.setRoot("addTask");
@@ -136,6 +145,6 @@ public class TaskController {
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             FileHandler.getInstance().deleteTask(task); //Deletes from list in FileHandler class
         }
-        task_information_TextArea.setText(null);
+
     }
 }

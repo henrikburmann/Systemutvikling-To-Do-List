@@ -66,43 +66,8 @@
     -fx-alignment: center;
     -fx-font-size: 14;
 }
-#taskTextfield1{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-
-}
-#taskTextfield2{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-}
-#taskTextfield3{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-}
-#taskTextfield4{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-}
-#taskTextfield5{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-}
-#taskTextfield6{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-}
-#taskTextfield7{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-}
-#taskTextfield8{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-}
-#taskTextfield9{
-    -fx-background-color: #B7CEEC;
-    -fx-text-fill: 	black;
-}
 #priorityChoiceBox{
     selected-box-color: black;
 }
+#taskDisplayAnchor{
+    }
