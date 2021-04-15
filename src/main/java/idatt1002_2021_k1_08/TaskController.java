@@ -9,6 +9,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +33,8 @@ public class TaskController {
     Button edit_task_button;
     @FXML
     Button delete_task_button;
+    @FXML
+    Button newCategory;
 
     @FXML
     TextArea task_information_TextArea;
@@ -50,7 +53,6 @@ public class TaskController {
     MenuItem helpItem;
     @FXML
     TextField usernameTextField;
-
     @FXML
     DatePicker datePicker;
     @FXML
@@ -76,7 +78,7 @@ public class TaskController {
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-
+        categoryList.setItems(FileHandler.getCategories());
         //Show information of task in description area
         //Also implements listener for every Task
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
@@ -140,7 +142,10 @@ public class TaskController {
         }
     }
 
-
+    @FXML
+    public void handleCategory() throws IOException {
+       CiterClient.setRoot("newCategory");
+    }
     /**
      *
      * @param delete
@@ -174,4 +179,6 @@ public class TaskController {
         clearText();
 
     }
+
+
 }
