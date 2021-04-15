@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -35,7 +36,8 @@ public class TaskController {
     Button delete_task_button;
     @FXML
     Button newCategory;
-
+    @FXML
+    Button deleteCategory;
     @FXML
     TextArea task_information_TextArea;
 
@@ -64,7 +66,8 @@ public class TaskController {
     @FXML TextField priorityTextField;
     @FXML TextField categoryTextField;
     @FXML TextArea notesTextArea;
-    ArrayList<TextField> textfieldList = new ArrayList<>();
+    @FXML ArrayList<TextField> textfieldList = new ArrayList<>();
+    @FXML ComboBox<String> categoryList;
 
 
     public TaskController() throws FileNotFoundException {
@@ -97,13 +100,6 @@ public class TaskController {
                 }
             }
         });
-
-        sortedByDate = new Predicate<Task>() {
-            @Override
-            public boolean test(Task task) {
-                return true;
-            }
-        };
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
@@ -178,6 +174,23 @@ public class TaskController {
         }
         clearText();
 
+    }
+
+    public void deleteCategory (String category) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Category");
+        alert.setHeaderText("Delete Category: " + category);
+        alert.setContentText("Are you sure? Press OK to confirm, or cancel to Back out.");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && (result.get() == ButtonType.OK)) {
+            FileHandler.getInstance().deleteCategory(category); //Deletes Category string in filehandler Class
+        }
+        clearText();
+    }
+    //Metode laget på forhond, ingen deletebutton eller delete category laget enda
+    @FXML
+    public void handleDeleteCategoryButton(ActionEvent delete){
     }
 
 

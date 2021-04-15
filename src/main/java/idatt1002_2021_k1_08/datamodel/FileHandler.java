@@ -14,12 +14,12 @@ import java.util.ArrayList;
  */
 
 public class FileHandler {
-
+    //TODO: Should program check if a file exists at launch? And if so, should one be created with a createNewFile method?
     //TODO: Må forandre på dette fordi funker faen ikke! why?
-
-    private static final String FILE_PATH = "filepathName.txt";
+    private static final File FILE_PATH_CATEGORY = new File("src/main/resources/DataStorage/CategoryStrings.ser");
+    private static final File FILE_PATH = new File("src/main/resources/DataStorage/TaskData.ser");
     private ObservableList<Task> obTasks;
-    private static ObservableList<String> categories = FXCollections.observableArrayList();
+    private static ObservableList<String> categories;
     private static FileHandler fileHandlerInstance = new FileHandler();
 
     private final DateTimeFormatter formatter;
@@ -42,7 +42,7 @@ public class FileHandler {
         return obTasks;
     }
 
-    public static ObservableList<String> getCategories(){return categories;}
+    public static ObservableList<String> getCategories() {return categories;}
 
     public void addTask(Task task) {
         obTasks.add(task);
@@ -52,7 +52,7 @@ public class FileHandler {
      * Writes a Category to file
      */
     private void serializeTask(ArrayList<Task> tasks) throws IOException {
-        Path path = Paths.get(FILE_PATH);
+        Path path = Paths.get(String.valueOf(FILE_PATH));
         try (FileOutputStream fs = new FileOutputStream(String.valueOf(path)); //åpner opp en stream
              ObjectOutputStream os = new ObjectOutputStream(fs)) {
             for (Task task : obTasks) {
@@ -64,8 +64,7 @@ public class FileHandler {
     private ArrayList<Task> deserializeTask() throws IOException {
         ArrayList<Task> tasks1 = new ArrayList<>();
 
-        //TODO: Burde filen ligge i resources???
-        Path path = Paths.get(FILE_PATH);
+        Path path = Paths.get(String.valueOf(FILE_PATH));
 
         //try with resources, so that fs closes
         try (FileInputStream fs = new FileInputStream(String.valueOf(path));
@@ -90,23 +89,32 @@ public class FileHandler {
     }
 
     //TODO: Denne funker ikke som det skal så må fikse på den
-    public void storeData() throws IOException {
-        ArrayList<Task> store = new ArrayList<>();
+    public void storeData() throws IOException, ClassNotFoundException {
+        ArrayList<String> categoryStore = new ArrayList<>(categories);
+        ArrayList<Task> taskStore = new ArrayList<>();
+
         for (Task t : obTasks) {
             Task task = new Task(t.getTaskName(), t.getStartDate(), t.getEndDate(), t.getPriority());
             task.setDescription(t.getDescription());
-            store.add(task);
+            taskStore.add(task);
         }
-        serializeTask(store);
+        serializeCategory(categoryStore);
+        serializeTask(taskStore);
     }
 
 
     public void loadData() throws IOException {
+        categories = FXCollections.observableArrayList();
         obTasks = FXCollections.observableArrayList();
         try {
+            ArrayList<String> catlist = deserializeCategory(); // Denne burde returnere category string
             ArrayList<Task> list = deserializeTask();  //Denne burde returnere task
+            System.out.println("Størrelse på catlist i loadData() " + catlist.size());
+            System.out.println("Inni metode");
             System.out.println("Størrelse på liste i loadData()" + list.size());
             System.out.println("Inni metode");
+
+            categories.addAll(catlist);
 
             for (int i = 0; i < list.size(); i++) {
                 Task task = new Task(list.get(i).getTaskName(), list.get(i).getStartDate(), list.get(i).getEndDate(), list.get(i).getPriority());
@@ -133,6 +141,51 @@ public class FileHandler {
 
     public void newLoadData() {
         obTasks = FXCollections.observableArrayList();
+        categories = FXCollections.observableArrayList();
 
+    }
+
+    public void deleteCategory(String category){
+        categories.remove(category);
+    }
+
+
+    private void serializeCategory(ArrayList<String> category) throws IOException, ClassNotFoundException{
+        Path path = Paths.get(String.valueOf(FILE_PATH_CATEGORY));
+        try(FileOutputStream fos = new FileOutputStream(String.valueOf(path));
+            ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(category);
+
+        }catch (EOFException eofe){
+            eofe.printStackTrace();
+        }
+    }
+
+    private ArrayList<String> deserializeCategory()throws IOException{
+        ArrayList<String> category1 = new ArrayList<>();
+        Path path = Paths.get(String.valueOf(FILE_PATH_CATEGORY));
+
+        //Try with resources, so that fs closes
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(String.valueOf(path)))){
+
+            //Will eventually throw exception
+            while (true) {
+                category1.add((String) ois.readObject());
+            }
+        //Catches every needed exception
+        } catch (ClassNotFoundException cnf){
+            cnf.printStackTrace();
+        } catch (EOFException ignore){
+            //Expected
+        } catch (OptionalDataException ode){
+            if(!ode.eof) {
+                throw ode;
+            }
+        }
+        return category1;
+    }
+
+    public void addCategory(String category){
+        categories.add(category);
     }
 }
