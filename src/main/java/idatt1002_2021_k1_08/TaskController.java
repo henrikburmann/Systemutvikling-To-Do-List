@@ -4,6 +4,7 @@ import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -157,5 +158,17 @@ public class TaskController {
         }
         clearText();
 
+    }
+
+    public void tasksOnChosenDate(){
+        LocalDate date = datePicker.getValue();
+        ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
+        for (int i = 0; i < FileHandler.getInstance().getTasks().size(); i++) {
+            if (FileHandler.getInstance().getTasks().get(i).getEndDate().equals(date)){
+                tasksOnDate.add(FileHandler.getInstance().getTasks().get(i));
+            }
+        }
+        tasksView.setItems(tasksOnDate);
+        System.out.println(tasksOnDate);
     }
 }
