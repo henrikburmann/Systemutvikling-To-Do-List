@@ -68,6 +68,11 @@ public class TaskController {
     }
 
     public void initialize() {
+        textfieldList.add(taskNameTextField);
+        textfieldList.add(endDateTextField);
+        textfieldList.add(startDateTextField);
+        textfieldList.add(priorityTextField);
+        textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
 
@@ -103,7 +108,12 @@ public class TaskController {
         CiterClient.setRoot("addTask");
     }
 
-
+    private void clearText(){
+        for (int i = 0; i < textfieldList.size(); i++) {
+            textfieldList.get(i).setText(null);
+        }
+        notesTextArea.setText(null);
+    }
     @FXML
     public void handleKeyPressed(KeyEvent e){
         Task taskSelected = tasksView.getSelectionModel().getSelectedItem();
@@ -145,6 +155,7 @@ public class TaskController {
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             FileHandler.getInstance().deleteTask(task); //Deletes from list in FileHandler class
         }
+        clearText();
 
     }
 }

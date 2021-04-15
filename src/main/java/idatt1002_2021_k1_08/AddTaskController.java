@@ -63,10 +63,10 @@ public class AddTaskController {
 
 
 
-        Task task = new Task(taskName, description);
-
-        task.setEndDate(date);
-        task.setPriority(priority);
+        Task task = new Task(taskName, LocalDate.now(), date, priority);
+        task.setDescription(description);
+        //task.setEndDate(date);
+        //task.setPriority(priority);
 
         FileHandler.getInstance().addTask(task);
 

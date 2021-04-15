@@ -90,7 +90,8 @@ public class FileHandler {
     public void storeData() throws IOException {
         ArrayList<Task> store = new ArrayList<>();
         for (Task t : obTasks) {
-            Task task = new Task(t.getTaskName(), t.getDescription(), t.getStartDate(), t.getEndDate(), t.getPriority());
+            Task task = new Task(t.getTaskName(), t.getStartDate(), t.getEndDate(), t.getPriority());
+            task.setDescription(t.getDescription());
             store.add(task);
         }
         serializeTask(store);
@@ -105,7 +106,9 @@ public class FileHandler {
             System.out.println("Inni metode");
 
             for (int i = 0; i < list.size(); i++) {
-                Task task = new Task(list.get(i).getTaskName(), list.get(i).getDescription());
+                Task task = new Task(list.get(i).getTaskName(), list.get(i).getStartDate(),
+                        list.get(i).getEndDate(), list.get(i).getPriority());
+                task.setDescription(list.get(i).getDescription());
                 obTasks.add(task);
             }
 
