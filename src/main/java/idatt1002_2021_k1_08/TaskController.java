@@ -77,10 +77,7 @@ public class TaskController {
     @FXML Button getAllDatesButton;
     @FXML ComboBox priorityComboBox;
 
-    private ObservableList<Task> tasksFromFile;
-
     public TaskController() throws FileNotFoundException {
-        tasksFromFile = FileHandler.getInstance().getTasks();
     }
 
     public void initialize() {
@@ -90,16 +87,14 @@ public class TaskController {
         textfieldList.add(priorityTextField);
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
+        addItemsInPriorityComboBox();
         menuButton = new MenuButton("Options", null, helpItem);
         for(TextField textField : textfieldList){
             textField.setEditable(false);
         }
         notesTextArea.setEditable(false);
         categoryList.setItems(FileHandler.getCategories());
-        //TODO: look at filtered list and sorted list, for displaying tasks by category...
         tasksView.getSelectionModel().selectFirst();
-        //Show information of task in description area
-        //Also implements listener for every Task
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
             @Override
             public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
@@ -139,6 +134,14 @@ public class TaskController {
 
         tasksView.setItems(boo);
         tasksView.getSelectionModel().selectFirst();
+    }
+
+    private void addItemsInPriorityComboBox(){
+        priorityComboBox.getItems().add("All");
+        priorityComboBox.getItems().add("Low");
+        priorityComboBox.getItems().add("Medium");
+        priorityComboBox.getItems().add("High");
+        priorityComboBox.setValue("All");
     }
 
     @FXML
