@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08;
 
+import idatt1002_2021_k1_08.CiterClient;
 import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.beans.value.ChangeListener;
@@ -90,15 +91,26 @@ public class TaskController {
         logoImageView.setImage(logoImage);
         addItemsInPriorityComboBox();
         menuButton = new MenuButton("Options", null, helpItem);
+
         for(TextField textField : textfieldList){
             textField.setEditable(false);
         }
         notesTextArea.setEditable(false);
+
+        helpItem.setOnAction(e-> {
+            try {
+                changeSceneToHelp();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
         categoryList.setItems(FileHandler.getCategories());
         tasksView.getSelectionModel().selectFirst();
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
             @Override
             public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
+
                 if(t1 != null){
 
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
@@ -110,14 +122,17 @@ public class TaskController {
                     categoryTextField.setText(task1.getCategory());
                     notesTextArea.setText(task1.getDescription());
 
+
+                if (t1 != null) {
+                    Task task2 = tasksView.getSelectionModel().getSelectedItem();
+                    fillInformationArea(task2);
+
                 }
             }
-        });
+        };});
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
-        //Should fix a sorting method here that displays a sortedList (by date f.eksample)
-//        taskFilteredList = new FilteredList<Task>(listOfTasks,sortedByDate);
 
         SortedList<Task> sortedList = new SortedList<Task>(listOfTasks, new Comparator<Task>() {
             @Override
@@ -125,6 +140,7 @@ public class TaskController {
                 return(task1.getEndDate().compareTo(task2.getEndDate()));
             }
         });
+
 
         ObservableList<Task> boo = FXCollections.observableArrayList();
         for(Task t:sortedList){
@@ -136,7 +152,6 @@ public class TaskController {
         tasksView.setItems(boo);
         tasksView.getSelectionModel().selectFirst();
     }
-
     private void addItemsInPriorityComboBox(){
         priorityComboBox.getItems().add("All");
         priorityComboBox.getItems().add("Low");
@@ -145,9 +160,26 @@ public class TaskController {
         priorityComboBox.setValue("All");
     }
 
+
     @FXML
-    public void changeSceneToAddTask() throws IOException{
-        CiterClient.setRoot("addTask");
+    public void changeSceneToAddTask() throws IOException {
+            CiterClient.setRoot("addTask");
+        }
+    public void changeSceneToHelp() throws IOException {
+        CiterClient.setRoot("help");
+    }
+
+    /**
+     * @param task1 Fills information area of Task with its information
+     */
+
+    private void fillInformationArea(Task task1) {
+        taskNameTextField.setText(task1.getTaskName());
+        startDateTextField.setText(task1.getStartDate().toString());
+        endDateTextField.setText(task1.getEndDate().toString());
+        priorityTextField.setText(task1.getPriority());
+        notesTextArea.setText(task1.getDescription());
+
     }
 
     private void clearText(){

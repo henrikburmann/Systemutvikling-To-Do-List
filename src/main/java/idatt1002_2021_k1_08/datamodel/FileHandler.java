@@ -10,9 +10,6 @@ import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- * @author marcusjohannessen
- */
 
 public class FileHandler {
     //TODO: Should program check if a file exists at launch? And if so, should one be created with a createNewFile method?
