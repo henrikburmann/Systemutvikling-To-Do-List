@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08.datamodel;
 
+import idatt1002_2021_k1_08.CiterClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,10 +17,12 @@ import java.util.ArrayList;
 public class FileHandler {
     //TODO: Should program check if a file exists at launch? And if so, should one be created with a createNewFile method?
     //TODO: Må forandre på dette fordi funker faen ikke! why?
-    private static final File FILE_PATH_CATEGORY = new File("src/main/resources/DataStorage/CategoryStrings.ser");
-    private static final File FILE_PATH = new File("src/main/resources/DataStorage/TaskData.ser");
+    private static final File FILE_PATH_CATEGORY = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/CategoryStrings.ser");
+    private static final File FILE_PATH = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/TaskData.ser");
+    //private static final File FILE_COMPLETED_TASKS = new File ("src/main/resources/DataStorage/CompletedTasks.ser");
     private ObservableList<Task> obTasks;
     private static ObservableList<String> categories;
+    //private ObservableList<Task> obCompletedTasks;
     private static FileHandler fileHandlerInstance = new FileHandler();
 
     private final DateTimeFormatter formatter;
@@ -106,6 +109,13 @@ public class FileHandler {
     public void loadData() throws IOException {
         categories = FXCollections.observableArrayList();
         obTasks = FXCollections.observableArrayList();
+        if (FILE_PATH.createNewFile()) System.out.println("TaskData.ser doesn't exist, CREATING FILE");
+        if (FILE_PATH_CATEGORY.createNewFile()) System.out.println("CategoryStrings.ser doesn't exist, CREATING FILE");
+        //if (FILE_COMPLETED_TASKS.createNewFile()) System.out.println("CompletedTask.ser exists");
+            else {
+            System.out.println("Files already exists");
+            System.out.println("Loading from files");
+        }
         try {
             ArrayList<String> catlist = deserializeCategory(); // Denne burde returnere category string
             ArrayList<Task> list = deserializeTask();  //Denne burde returnere task
@@ -166,8 +176,8 @@ public class FileHandler {
         Path path = Paths.get(String.valueOf(FILE_PATH_CATEGORY));
 
         //Try with resources, so that fs closes
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(String.valueOf(path)))){
-
+        try(FileInputStream fis = new FileInputStream(String.valueOf(path));
+            ObjectInputStream ois = new ObjectInputStream(fis)){
             //Will eventually throw exception
             while (true) {
                 category1.add((String) ois.readObject());

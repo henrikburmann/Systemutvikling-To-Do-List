@@ -190,7 +190,7 @@ public class TaskController {
     }
     //Metode laget på forhond, ingen deletebutton eller delete category laget enda
     @FXML
-    public void handleDeleteCategoryButton(ActionEvent delete){
+    public void handleDeleteCategory(ActionEvent delete){
     }
 
 

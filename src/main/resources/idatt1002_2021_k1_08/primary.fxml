@@ -35,7 +35,7 @@
                <ColorAdjust brightness="0.3" />
             </effect>
          </TextField>
-         <Button fx:id="newCategory" layoutX="166.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleCategory" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: grey;" text="New">
+         <Button fx:id="newCategory" layoutX="154.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleCategory" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: grey;" text="New">
             <effect>
                <Glow level="0.61" />
             </effect>
@@ -55,7 +55,7 @@
             </image>
          </ImageView>
          <DatePicker fx:id="datePicker" layoutX="27.0" layoutY="320.0" prefHeight="136.0" prefWidth="174.0" />
-         <ComboBox fx:id="categoryList" layoutX="22.0" layoutY="121.0" prefHeight="25.0" prefWidth="131.0" promptText="Category" />
+         <ComboBox fx:id="categoryList" layoutX="14.0" layoutY="134.0" prefHeight="25.0" prefWidth="131.0" promptText="Category" />
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">

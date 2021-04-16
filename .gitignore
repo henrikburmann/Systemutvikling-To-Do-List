@@ -2,3 +2,6 @@
 .idea
 *.iml
 target
+"filepathName.txt"
+"CategoryStrings.ser"
+"TaskData.ser"
