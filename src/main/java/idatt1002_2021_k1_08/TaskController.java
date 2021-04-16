@@ -36,6 +36,10 @@ public class TaskController {
     Button delete_task_button;
     @FXML
     Button newCategory;
+    @FXML
+    Button complete_task_button;
+    @FXML
+    Button show_completed_tasks_button;
 
     @FXML
     TextArea task_information_TextArea;
@@ -74,10 +78,14 @@ public class TaskController {
     @FXML
     TextArea notesTextArea;
     ArrayList<TextField> textfieldList = new ArrayList<>();
+
     @FXML Button getAllDatesButton;
     @FXML ComboBox priorityComboBox;
 
+    private ObservableList<Task> tasksFromFile;
+
     public TaskController() throws FileNotFoundException {
+        tasksFromFile = FileHandler.getInstance().getTasks();
     }
 
     public void initialize() {
@@ -117,7 +125,14 @@ public class TaskController {
             }
         });
 
-        tasksView.setItems(sortedList);
+        ObservableList<Task> boo = FXCollections.observableArrayList();
+        for(Task t:sortedList){
+            if(!t.isCompleted()){
+                boo.add(t);
+            }
+        }
+
+        tasksView.setItems(boo);
         tasksView.getSelectionModel().selectFirst();
     }
 
@@ -200,6 +215,32 @@ public class TaskController {
         fillInformationArea(task4);
     }
 
+    @FXML
+    public void handleCompleteButton(ActionEvent complete){
+        Task selectedTask = tasksView.getSelectionModel().getSelectedItem();
+        if (selectedTask != null) {
+            if (complete.getSource().equals(complete_task_button)) {
+                completeTask(selectedTask);
+            }
+        }
+    }
+
+    private void completeTask(Task task){
+        task.setCompleted(true);
+    }
+
+    @FXML
+    public void viewCompletedTasks(){
+        ObservableList<Task> tasks = FileHandler.getInstance().getTasks();
+        ObservableList<Task> boo = FXCollections.observableArrayList();
+        for(Task t:tasks){
+            if(t.isCompleted()){
+                boo.add(t);
+            }
+        }
+        displayTasks(boo);
+    }
+
     public void tasksOnChosenDate(){
         LocalDate date = datePicker.getValue();
         ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
@@ -224,14 +265,25 @@ public class TaskController {
                     tasksOfPriority.add(FileHandler.getInstance().getTasks().get(i));
                 }
             }
-            tasksView.setItems(tasksOfPriority);
+           displayTasks(tasksOfPriority);
             System.out.println(priority);
         }
     }
 
     public void viewAllTasks(){
+        ObservableList<Task> boo = FXCollections.observableArrayList();
+        for(Task t:FileHandler.getInstance().getTasks()){
+            if(!t.isCompleted()){
+                boo.add(t);
+            }
+        }
+        displayTasks(boo);
+    }
+
+
+    public void displayTasks(ObservableList<Task> tasks){
         datePicker.setValue(null);
-        tasksView.setItems(FileHandler.getInstance().getTasks());
+        tasksView.setItems(tasks);
     }
 }
 

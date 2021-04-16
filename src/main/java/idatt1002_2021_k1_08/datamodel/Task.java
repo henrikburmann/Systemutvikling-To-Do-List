@@ -15,6 +15,7 @@ public class Task implements Serializable {
     private String priority;
     private static final long SerialVersionUID = 1L;
     private String category;
+    private boolean completed;
 
     /**
      * Instantiates a new Task.
@@ -32,7 +33,16 @@ public class Task implements Serializable {
         setEndDate(endDate);
         setTaskName(taskName);
         setPriority(priority);
+        setCompleted(false);
 
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     /**
