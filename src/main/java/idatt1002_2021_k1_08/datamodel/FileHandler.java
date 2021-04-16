@@ -3,15 +3,13 @@ package idatt1002_2021_k1_08.datamodel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- * @author marcusjohannessen
- */
 
 public class FileHandler {
 
