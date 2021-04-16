@@ -19,7 +19,7 @@ public class FileHandler {
     //TODO: Må forandre på dette fordi funker faen ikke! why?
     private static final File FILE_PATH_CATEGORY = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/CategoryStrings.ser");
     private static final File FILE_PATH = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/TaskData.ser");
-    //private static final File FILE_COMPLETED_TASKS = new File ("src/main/resources/DataStorage/CompletedTasks.ser");
+    //private static final File FILE_COMPLETED_TASKS = new File ("src/main/resources/idatt1002_2021_k1_08/DataStorage/CompletedTasks.ser");
     private ObservableList<Task> obTasks;
     private static ObservableList<String> categories;
     //private ObservableList<Task> obCompletedTasks;
