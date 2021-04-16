@@ -52,6 +52,10 @@ public class AddTaskController {
     }
 
     @FXML
+    public void handleNewCategoryButton(){
+        CategoryController.displayNewCategoryTextInput();
+    }
+    @FXML
     public void addTaskMethod() throws IOException {
         String taskName = task_name_textfield.getText().trim();
 

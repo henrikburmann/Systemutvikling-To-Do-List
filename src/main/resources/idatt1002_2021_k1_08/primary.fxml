@@ -35,7 +35,7 @@
                <ColorAdjust brightness="0.3" />
             </effect>
          </TextField>
-         <Button fx:id="newCategory" layoutX="166.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleCategory" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: grey;" text="New">
+         <Button fx:id="newCategory" layoutX="166.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleNewCategoryButton" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: grey;" text="New">
             <effect>
                <Glow level="0.61" />
             </effect>
@@ -73,7 +73,7 @@
       </AnchorPane>
       <AnchorPane fx:id="pane_right" layoutX="525.0" prefHeight="500.0" prefWidth="231.0">
          <Label fx:id="label_header_right" alignment="CENTER" prefHeight="42.0" prefWidth="231.0" text="Chosen task" />
-         <Button fx:id="edit_task_button" layoutX="14.0" layoutY="440.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" text="Edit Task" />
+         <Button fx:id="edit_task_button" layoutX="14.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="33.0" prefWidth="78.0" text="Edit Task" />
          <Button fx:id="delete_task_button" layoutX="126.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete Task" />
          <AnchorPane fx:id="taskDisplayAnchor" layoutY="42.0" prefHeight="380.0" prefWidth="231.0">
             <children>

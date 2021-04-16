@@ -5,26 +5,26 @@ import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 public class TaskController {
 
@@ -62,13 +62,12 @@ public class TaskController {
     ComboBox<String> categoryList;
 
     @FXML TextField taskNameTextField;
-    @FXML TextField endDateTextField;
-    @FXML TextField startDateTextField;
+    @FXML  TextField endDateTextField;
+    @FXML  TextField startDateTextField;
     @FXML TextField priorityTextField;
     @FXML TextField categoryTextField;
     @FXML TextArea notesTextArea;
     ArrayList<TextField> textfieldList = new ArrayList<>();
-
 
     public TaskController() throws FileNotFoundException {
     }
@@ -81,6 +80,10 @@ public class TaskController {
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
+        for(TextField textField : textfieldList){
+            textField.setEditable(false);
+        }
+        notesTextArea.setEditable(false);
         categoryList.setItems(FileHandler.getCategories());
         //TODO: look at filtered list and sorted list, for displaying tasks by category...
         tasksView.setItems(sortedList);
@@ -139,10 +142,40 @@ public class TaskController {
         }
     }
 
-    @FXML
-    public void handleCategory() throws IOException {
-       CiterClient.setRoot("newCategory");
+    public void handleEditButton(){
+        for(TextField textField : textfieldList){
+            textField.setEditable(true);
+        }
+        notesTextArea.setEditable(true);
+        delete_task_button.setText("Save");
+
     }
+    public void saveEditedTask(){
+        LocalDate startLocalDate = LocalDate.parse(startDateTextField.getText());
+        LocalDate endLocalDate = LocalDate.parse(endDateTextField.getText());
+        Task task1 = tasksView.getSelectionModel().getSelectedItem();
+
+        task1.setTaskName(taskNameTextField.getText());
+        task1.setStartDate(startLocalDate);
+        task1.setEndDate(endLocalDate);
+        task1.setPriority(priorityTextField.getText());
+        task1.setCategory(categoryTextField.getText());
+        task1.setDescription(notesTextArea.getText());
+        for(TextField textField : textfieldList){
+            textField.setEditable(false);
+        }
+        notesTextArea.setEditable(false);
+        delete_task_button.setText("Delete Task");
+    }
+
+    /**
+     * Directs user to add new category
+     * @throws IOException
+     */
+    @FXML
+    public void handleNewCategoryButton(){
+            CategoryController.displayNewCategoryTextInput();
+        }
     /**
      *
      * @param delete
