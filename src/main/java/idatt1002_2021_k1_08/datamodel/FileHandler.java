@@ -179,9 +179,9 @@ public class FileHandler {
         try(FileInputStream fis = new FileInputStream(String.valueOf(path));
             ObjectInputStream ois = new ObjectInputStream(fis)){
             //Will eventually throw exception
-            while (true) {
-                category1.add((String) ois.readObject());
-            }
+
+                category1 = (ArrayList<String>) ois.readObject();
+
         //Catches every needed exception
         } catch (ClassNotFoundException cnf){
             cnf.printStackTrace();
