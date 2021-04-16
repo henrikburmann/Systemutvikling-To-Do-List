@@ -36,6 +36,10 @@ public class TaskController {
     Button delete_task_button;
     @FXML
     Button newCategory;
+    @FXML
+    Button complete_task_button;
+    @FXML
+    Button show_completed_tasks_button;
 
     @FXML
     TextArea task_information_TextArea;
@@ -200,6 +204,25 @@ public class TaskController {
         fillInformationArea(task4);
     }
 
+    @FXML
+    public void handleCompleteButton(ActionEvent complete){
+        Task selectedTask = tasksView.getSelectionModel().getSelectedItem();
+        if (selectedTask != null) {
+            if (complete.getSource().equals(complete_task_button)) {
+                deleteTask(selectedTask);
+            }
+        }
+    }
+
+    private void completeTask(Task task){
+        task.setCompleted(true);
+    }
+
+    @FXML
+    public void showCompletedTasks(){
+
+    }
+
     public void tasksOnChosenDate(){
         LocalDate date = datePicker.getValue();
         ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
@@ -224,7 +247,7 @@ public class TaskController {
                     tasksOfPriority.add(FileHandler.getInstance().getTasks().get(i));
                 }
             }
-            tasksView.setItems(tasksOfPriority);
+           displayTasks(tasksOfPriority);
             System.out.println(priority);
         }
     }
@@ -232,6 +255,12 @@ public class TaskController {
     public void viewAllTasks(){
         datePicker.setValue(null);
         tasksView.setItems(FileHandler.getInstance().getTasks());
+    }
+
+
+    public void displayTasks(ObservableList<Task> tasks){
+        datePicker.setValue(null);
+        tasksView.setItems(tasks);
     }
 }
 

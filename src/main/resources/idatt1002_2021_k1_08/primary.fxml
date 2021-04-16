@@ -63,6 +63,7 @@
          <ComboBox fx:id="categoryList" layoutX="22.0" layoutY="121.0" prefHeight="25.0" prefWidth="131.0" promptText="Category" />
          <Text layoutX="13.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks with priority:" />
          <ComboBox fx:id="priorityComboBox" layoutX="138.0" layoutY="164.0" onAction="#viewByPriority" prefHeight="25.0" prefWidth="85.0" />
+         <Button fx:id="show_completed_tasks_button" layoutX="66.0" layoutY="227.0" mnemonicParsing="false" onAction="#viewCompletedTasks" prefHeight="25.0" prefWidth="125.0" text="show completed" textFill="floralwhite" />
 
       </AnchorPane>
 
@@ -82,21 +83,22 @@
       <AnchorPane fx:id="pane_right" layoutX="525.0" prefHeight="500.0" prefWidth="231.0">
          <Label fx:id="label_header_right" alignment="CENTER" prefHeight="42.0" prefWidth="231.0" text="Chosen task" />
          <Button fx:id="edit_task_button" layoutX="14.0" layoutY="440.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="78.0" text="Edit Task" />
-         <Button fx:id="delete_task_button" layoutX="126.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete Task" />
+         <Button fx:id="delete_task_button" layoutX="133.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete Task" />
          <AnchorPane fx:id="taskDisplayAnchor" layoutY="42.0" prefHeight="380.0" prefWidth="231.0">
             <children>
                <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Name" />
                <Text layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start date" />
                <Text layoutX="13.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End date" />
                <Text layoutX="11.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority" />
-               <Text layoutX="14.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" />
+               <Text layoutX="14.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" />
                <Text layoutX="10.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="51.5859375" />
                <TextField fx:id="taskNameTextField" editable="false" layoutX="97.0" layoutY="15.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="startDateTextField" editable="false" layoutX="97.0" layoutY="51.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="endDateTextField" editable="false" layoutX="97.0" layoutY="86.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="priorityTextField" editable="false" layoutX="97.0" layoutY="122.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="categoryTextField" editable="false" layoutX="97.0" layoutY="157.0" prefHeight="6.0" prefWidth="109.0" />
-               <TextArea fx:id="notesTextArea" editable="false" layoutX="49.0" layoutY="240.0" prefHeight="136.0" prefWidth="166.0" />
+               <TextArea fx:id="notesTextArea" editable="false" layoutX="60.0" layoutY="218.0" prefHeight="121.0" prefWidth="151.0" />
+               <Button fx:id="complete_task_button" layoutX="68.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleCompleteButton" prefHeight="33.0" prefWidth="95.0" text="Complete Task" />
             </children>
          </AnchorPane>
       </AnchorPane>
