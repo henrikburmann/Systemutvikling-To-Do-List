@@ -127,7 +127,7 @@ public class TaskController {
 
         ObservableList<Task> boo = FXCollections.observableArrayList();
         for(Task t:sortedList){
-            if(t.isCompleted()){
+            if(!t.isCompleted()){
                 boo.add(t);
             }
         }
@@ -238,7 +238,7 @@ public class TaskController {
                 boo.add(t);
             }
         }
-        displayTasks(tasks);
+        displayTasks(boo);
     }
 
     public void tasksOnChosenDate(){
