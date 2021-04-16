@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08;
 
+import idatt1002_2021_k1_08.CiterClient;
 import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.beans.value.ChangeListener;
@@ -89,6 +90,13 @@ public class TaskController {
         logoImageView.setImage(logoImage);
 
         menuButton = new MenuButton("Options", null, helpItem);
+        helpItem.setOnAction(e-> {
+            try {
+                changeSceneToHelp();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
         categoryList.setItems(FileHandler.getCategories());
         //TODO: look at filtered list and sorted list, for displaying tasks by category...
         //Show information of task in description area
@@ -97,10 +105,8 @@ public class TaskController {
             @Override
             public void changed(ObservableValue<? extends Task> observableValue, Task task, Task t1) {
                 if (t1 != null) {
-
                     Task task1 = tasksView.getSelectionModel().getSelectedItem();
                     fillInformationArea(task1);
-
                 }
             }
 
@@ -116,7 +122,6 @@ public class TaskController {
                 return (task1.getEndDate().compareTo(task2.getEndDate()));
             }
         });
-
         tasksView.setItems(sortedList);
         tasksView.getSelectionModel().selectFirst();
     }
@@ -124,6 +129,10 @@ public class TaskController {
     @FXML
     public void changeSceneToAddTask() throws IOException {
         CiterClient.setRoot("addTask");
+    }
+
+    public void changeSceneToHelp() throws IOException {
+        CiterClient.setRoot("help");
     }
 
     /**

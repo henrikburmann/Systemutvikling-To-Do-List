@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="764.0" style="-fx-background-color: #addadd;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="idatt1002_2021_k1_08.HelpController">
+   <children>
+      <TextArea editable="false" layoutX="253.0" layoutY="14.0" prefHeight="401.0" prefWidth="283.0" text="Citer is an application made to &#10;help you keep track of your daily&#10;tasks in a simple way. &#10;&#10;At the top of the main menu you have&#10;the option to add tasks. After you have&#10;confirmed the tasks it will be added &#10;the list displayed on the screen.&#10;&#10;You have the option to view tasks by&#10;criterea priority and by category. By &#10;choosing a date in the calender down&#10;on the left side you can view all&#10;tasks at the chosen date&#10;&#10;&#10;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="getBackButton" layoutX="258.0" layoutY="425.0" mnemonicParsing="false" onAction="#changeSceneToPrimary" prefHeight="97.0" prefWidth="274.0" text="Get back to main menu" />
+   </children>
+</AnchorPane>
