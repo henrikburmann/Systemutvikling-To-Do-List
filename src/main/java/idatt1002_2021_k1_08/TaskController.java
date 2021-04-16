@@ -41,7 +41,8 @@ public class TaskController {
     Button complete_task_button;
     @FXML
     Button show_completed_tasks_button;
-
+    @FXML
+    Button deleteCategory;
     @FXML
     TextArea task_information_TextArea;
 
@@ -72,10 +73,10 @@ public class TaskController {
     @FXML TextField priorityTextField;
     @FXML TextField categoryTextField;
     @FXML TextArea notesTextArea;
-    ArrayList<TextField> textfieldList = new ArrayList<>();
+    @FXML ArrayList<TextField> textfieldList = new ArrayList<>();
 
     @FXML Button getAllDatesButton;
-    @FXML ComboBox priorityComboBox;
+    @FXML ComboBox<String> priorityComboBox;
 
     public TaskController() throws FileNotFoundException {
     }
@@ -270,6 +271,23 @@ public class TaskController {
         tasksView.setItems(tasksOnDate);
         System.out.println(tasksOnDate);
     }
+    public void deleteCategory (String category) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Category");
+        alert.setHeaderText("Delete Category: " + category);
+        alert.setContentText("Are you sure? Press OK to confirm, or cancel to Back out.");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && (result.get() == ButtonType.OK)) {
+            FileHandler.getInstance().deleteCategory(category); //Deletes Category string in filehandler Class
+        }
+        clearText();
+    }
+    //Metode laget på forhond, ingen deletebutton eller delete category laget enda
+    @FXML
+    public void handleDeleteCategory(ActionEvent delete){
+    }
+
 
     public void viewByPriority(){
         ObservableList<Task> tasksOfPriority = FXCollections.observableArrayList();
