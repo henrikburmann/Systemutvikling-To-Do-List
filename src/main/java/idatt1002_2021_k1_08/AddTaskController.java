@@ -52,6 +52,10 @@ public class AddTaskController {
     }
 
     @FXML
+    public void handleNewCategoryButton(){
+        CategoryController.displayNewCategoryTextInput();
+    }
+    @FXML
     public void addTaskMethod() throws IOException {
         String taskName = task_name_textfield.getText().trim();
 
@@ -59,13 +63,13 @@ public class AddTaskController {
                 date_time_box.getValue().getMonthValue(), date_time_box.getValue().getDayOfMonth());
 
         String priority = priorityChoiceBox.getValue();
-        String description = notes_textarea.getText();
 
-        Task task = new Task(taskName,LocalDate.now(),date,priority);
+        String category = categoryList.getSelectionModel().getSelectedItem();
+
+        Task task = new Task(taskName, category,LocalDate.now(),date,priority);
 
         task.setEndDate(date);
         task.setPriority(priority);
-        task.setDescription(description);
 
         FileHandler.getInstance().addTask(task);
 

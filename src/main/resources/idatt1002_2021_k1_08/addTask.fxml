@@ -47,7 +47,8 @@
                <Button fx:id="add_task_complete_button" layoutX="101.0" layoutY="339.0" mnemonicParsing="false" onAction="#addTaskMethod" prefHeight="33.0" prefWidth="67.0" text="Add Task" />
                <Label layoutX="22.0" layoutY="65.0" text="Task name" />
                <ChoiceBox fx:id="priorityChoiceBox" layoutX="104.0" layoutY="174.0" prefWidth="150.0" />
-               <ComboBox fx:id="categoryList" layoutX="104.0" layoutY="136.0" prefWidth="150.0" promptText="Category" />
+               <ComboBox fx:id="categoryList" layoutX="104.0" layoutY="136.0" prefHeight="26.0" prefWidth="99.0" promptText="Category" />
+               <Button layoutX="205.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleNewCategoryButton" text="New" />
             </children>
          </AnchorPane>
             <Label fx:id="label_header_middle" prefHeight="45.0" prefWidth="300.0" text="Add Task" />
