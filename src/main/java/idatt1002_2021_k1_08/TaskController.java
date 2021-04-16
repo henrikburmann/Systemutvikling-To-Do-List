@@ -78,10 +78,14 @@ public class TaskController {
     @FXML
     TextArea notesTextArea;
     ArrayList<TextField> textfieldList = new ArrayList<>();
+
     @FXML Button getAllDatesButton;
     @FXML ComboBox priorityComboBox;
 
+    private ObservableList<Task> tasksFromFile;
+
     public TaskController() throws FileNotFoundException {
+        tasksFromFile = FileHandler.getInstance().getTasks();
     }
 
     public void initialize() {
@@ -121,7 +125,14 @@ public class TaskController {
             }
         });
 
-        tasksView.setItems(sortedList);
+        ObservableList<Task> boo = FXCollections.observableArrayList();
+        for(Task t:sortedList){
+            if(t.isCompleted()){
+                boo.add(t);
+            }
+        }
+
+        tasksView.setItems(boo);
         tasksView.getSelectionModel().selectFirst();
     }
 
@@ -209,7 +220,7 @@ public class TaskController {
         Task selectedTask = tasksView.getSelectionModel().getSelectedItem();
         if (selectedTask != null) {
             if (complete.getSource().equals(complete_task_button)) {
-                deleteTask(selectedTask);
+                completeTask(selectedTask);
             }
         }
     }
@@ -219,8 +230,15 @@ public class TaskController {
     }
 
     @FXML
-    public void showCompletedTasks(){
-
+    public void viewCompletedTasks(){
+        ObservableList<Task> tasks = FileHandler.getInstance().getTasks();
+        ObservableList<Task> boo = FXCollections.observableArrayList();
+        for(Task t:tasks){
+            if(t.isCompleted()){
+                boo.add(t);
+            }
+        }
+        displayTasks(tasks);
     }
 
     public void tasksOnChosenDate(){
@@ -253,8 +271,13 @@ public class TaskController {
     }
 
     public void viewAllTasks(){
-        datePicker.setValue(null);
-        tasksView.setItems(FileHandler.getInstance().getTasks());
+        ObservableList<Task> boo = FXCollections.observableArrayList();
+        for(Task t:FileHandler.getInstance().getTasks()){
+            if(!t.isCompleted()){
+                boo.add(t);
+            }
+        }
+        displayTasks(boo);
     }
 
 

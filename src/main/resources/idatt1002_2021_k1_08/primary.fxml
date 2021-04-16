@@ -56,14 +56,14 @@
             </image>
          </ImageView>
 
-         <Button fx:id="getAllDatesButton" layoutX="63.0" layoutY="268.0" mnemonicParsing="false" onAction="#viewAllTasks" prefHeight="25.0" prefWidth="99.0" text="View all tasks" textFill="floralwhite" />
+         <Button fx:id="getAllDatesButton" layoutX="48.0" layoutY="269.0" mnemonicParsing="false" onAction="#viewAllTasks" prefHeight="25.0" prefWidth="131.0" text="view unfinished tasks" textFill="floralwhite" />
          <Text layoutX="27.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks from a chosen date" wrappingWidth="174.0" />
 
 
          <ComboBox fx:id="categoryList" layoutX="22.0" layoutY="121.0" prefHeight="25.0" prefWidth="131.0" promptText="Category" />
          <Text layoutX="13.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks with priority:" />
          <ComboBox fx:id="priorityComboBox" layoutX="138.0" layoutY="164.0" onAction="#viewByPriority" prefHeight="25.0" prefWidth="85.0" />
-         <Button fx:id="show_completed_tasks_button" layoutX="66.0" layoutY="227.0" mnemonicParsing="false" onAction="#viewCompletedTasks" prefHeight="25.0" prefWidth="125.0" text="show completed" textFill="floralwhite" />
+         <Button fx:id="show_completed_tasks_button" layoutX="50.0" layoutY="224.0" mnemonicParsing="false" onAction="#viewCompletedTasks" prefHeight="25.0" prefWidth="125.0" text="show completed" textFill="floralwhite" />
 
       </AnchorPane>
 
