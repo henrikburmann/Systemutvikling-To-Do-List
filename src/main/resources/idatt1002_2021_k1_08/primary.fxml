@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -9,20 +8,18 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="idatt1002_2021_k1_08.TaskController">
    <children>
-      <AnchorPane fx:id="pane_left" prefHeight="500.0" prefWidth="225.0">
-         <Label fx:id="label_header_left" prefHeight="45.0" prefWidth="225.0" />
-         <MenuButton fx:id="menuButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Options">
+      <AnchorPane fx:id="pane_left" layoutY="1.0" prefHeight="500.0" prefWidth="225.0">
+         <Label fx:id="label_header_left" prefHeight="58.0" prefWidth="226.0" />
+         <MenuButton fx:id="menuButton" layoutX="126.0" layoutY="16.0" mnemonicParsing="false" text="Options">
            <items>
              <MenuItem fx:id="helpItem" mnemonicParsing="false" onAction="#changeSceneToAddTask" text="Help" />
            </items>
@@ -30,77 +27,87 @@
                <Glow level="0.06" />
             </effect>
          </MenuButton>
-         <TextField editable="false" layoutY="44.0" prefHeight="63.0" prefWidth="225.0" style="-fx-background-color: grey;">
-            <effect>
-               <ColorAdjust brightness="0.3" />
-            </effect>
-         </TextField>
-         <Button fx:id="newCategory" layoutX="166.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleNewCategoryButton" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: grey;" text="New">
-            <effect>
-               <Glow level="0.61" />
-            </effect>
-         </Button>
-         <Circle fill="#851e1e" layoutX="41.0" layoutY="76.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
-         <TextField fx:id="usernameTextField" layoutX="75.0" layoutY="60.0" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: grey;" text="Username">
-            <effect>
-               <ColorAdjust brightness="0.3" />
-            </effect>
-            <font>
-               <Font size="15.0" />
-            </font>
-         </TextField>
-         <ImageView fx:id="logoImageView" fitHeight="79.0" fitWidth="78.0" layoutX="127.0" layoutY="-17.0">
+         <ImageView fx:id="logoImageView" fitHeight="95.0" fitWidth="95.0" layoutY="-15.0">
             <image>
                <Image url="@../../../../images/CiterLogo.png" />
             </image>
          </ImageView>
+         <Text layoutX="10.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks from a chosen date" wrappingWidth="206.39999999999986">
+            <font>
+               <Font size="15.0" />
+            </font></Text>
 
-         <Button fx:id="getAllDatesButton" layoutX="48.0" layoutY="269.0" mnemonicParsing="false" onAction="#viewAllTasks" prefHeight="25.0" prefWidth="131.0" text="view unfinished tasks" textFill="floralwhite" />
-         <Text layoutX="27.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks from a chosen date" wrappingWidth="174.0" />
-
-
-         <ComboBox fx:id="categoryList" layoutX="22.0" layoutY="121.0" prefHeight="25.0" prefWidth="131.0" promptText="Category" />
-         <Text layoutX="13.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks with priority:" />
-         <ComboBox fx:id="priorityComboBox" layoutX="138.0" layoutY="164.0" onAction="#viewByPriority" prefHeight="25.0" prefWidth="85.0" />
-         <Button fx:id="show_completed_tasks_button" layoutX="50.0" layoutY="224.0" mnemonicParsing="false" onAction="#viewCompletedTasks" prefHeight="25.0" prefWidth="125.0" text="show completed" textFill="floralwhite" />
-
-         <DatePicker fx:id="datePicker" layoutX="27.0" layoutY="320.0" prefHeight="136.0" prefWidth="174.0" />
+         <DatePicker fx:id="datePicker" layoutX="26.0" layoutY="100.0" prefHeight="30.0" prefWidth="174.0" />
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
-         <ListView fx:id="tasksView" layoutY="43.0" onKeyPressed="#handleKeyPressed" prefHeight="457.0" prefWidth="300.0" />
-         <Label fx:id="label_header_middle" prefHeight="42.0" prefWidth="300.0" text="Overview">
+         <Label fx:id="label_header_middle" prefHeight="58.0" prefWidth="300.0">
             <font>
                <Font name="Times New Roman Bold" size="18.0" />
             </font></Label>
-         <Button fx:id="add_task_button" layoutX="190.0" layoutY="6.0" mnemonicParsing="false" onAction="#changeSceneToAddTask" onMouseClicked="#changeSceneToAddTask" prefHeight="33.0" prefWidth="95.0" text="ADD TASK">
-            <effect>
-               <Glow />
-            </effect></Button>
+         <ListView fx:id="tasksView" layoutY="58.0" onKeyPressed="#handleKeyPressed" prefHeight="444.0" prefWidth="300.0" />
+         <Label layoutX="97.0" layoutY="13.0" text="TO DO LIST" textFill="#f0ebeb">
+            <font>
+               <Font size="22.0" />
+            </font>
+         </Label>
+         <MenuButton fx:id="filter" layoutX="233.0" layoutY="16.0" mnemonicParsing="false" text="Filter">
+           <items>
+             <MenuItem mnemonicParsing="false" text="Action 1" />
+             <MenuItem mnemonicParsing="false" text="Action 2" />
+           </items>
+         </MenuButton>
 
 
       </AnchorPane>
       <AnchorPane fx:id="pane_right" layoutX="525.0" prefHeight="500.0" prefWidth="231.0">
-         <Label fx:id="label_header_right" alignment="CENTER" prefHeight="42.0" prefWidth="231.0" text="Chosen task" />
-         <Button fx:id="delete_task_button" layoutX="133.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete Task" />
-         <Button fx:id="edit_task_button" layoutX="14.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="33.0" prefWidth="78.0" text="Edit Task" />
+         <Label fx:id="label_header_right" alignment="CENTER" prefHeight="58.0" prefWidth="231.0" />
          <AnchorPane fx:id="taskDisplayAnchor" layoutY="42.0" prefHeight="380.0" prefWidth="231.0">
             <children>
-               <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Name" />
-               <Text layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start date" />
-               <Text layoutX="13.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End date" />
-               <Text layoutX="11.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority" />
-               <Text layoutX="14.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" />
-               <Text layoutX="10.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="51.5859375" />
-               <TextField fx:id="taskNameTextField" editable="false" layoutX="97.0" layoutY="15.0" prefHeight="6.0" prefWidth="109.0" />
-               <TextField fx:id="startDateTextField" editable="false" layoutX="97.0" layoutY="51.0" prefHeight="6.0" prefWidth="109.0" />
-               <TextField fx:id="endDateTextField" editable="false" layoutX="97.0" layoutY="86.0" prefHeight="6.0" prefWidth="109.0" />
-               <TextField fx:id="priorityTextField" editable="false" layoutX="97.0" layoutY="122.0" prefHeight="6.0" prefWidth="109.0" />
-               <TextField fx:id="categoryTextField" editable="false" layoutX="97.0" layoutY="157.0" prefHeight="6.0" prefWidth="109.0" />
-               <TextArea fx:id="notesTextArea" editable="false" layoutX="60.0" layoutY="218.0" prefHeight="121.0" prefWidth="151.0" />
-               <Button fx:id="complete_task_button" layoutX="68.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleCompleteButton" prefHeight="33.0" prefWidth="95.0" text="Complete Task" />
+               <Text layoutX="56.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Text>
+               <Text layoutX="17.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start date">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Text>
+               <Text layoutX="20.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End date">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Text>
+               <Text layoutX="33.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Text>
+               <Text layoutX="17.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Text>
+               <Text layoutX="22.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="78.39999999999986">
+                  <font>
+                     <Font size="18.0" />
+                  </font></Text>
+               <TextField fx:id="taskNameTextField" editable="false" layoutX="97.0" layoutY="41.0" prefHeight="6.0" prefWidth="109.0" />
+               <TextField fx:id="startDateTextField" editable="false" layoutX="97.0" layoutY="87.0" prefHeight="6.0" prefWidth="109.0" />
+               <TextField fx:id="endDateTextField" editable="false" layoutX="97.0" layoutY="132.0" prefHeight="6.0" prefWidth="109.0" />
+               <TextField fx:id="priorityTextField" editable="false" layoutX="97.0" layoutY="172.0" prefHeight="6.0" prefWidth="109.0" />
+               <TextField fx:id="categoryTextField" editable="false" layoutX="97.0" layoutY="208.0" prefHeight="6.0" prefWidth="109.0" />
+               <TextArea fx:id="notesTextArea" editable="false" layoutX="12.0" layoutY="269.0" prefHeight="84.0" prefWidth="206.0" />
+               <Button fx:id="complete_task_button" layoutX="93.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleCompleteButton" prefHeight="34.0" prefWidth="125.0" text="Complete Task" />
             </children>
          </AnchorPane>
+         <Label layoutX="69.0" layoutY="14.0" text="TASK" textFill="#e5dfdf">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Label>
+         <Button fx:id="edit_task_button" layoutX="6.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="33.0" prefWidth="78.0" text="Edit" />
+         <Button fx:id="delete_task_button" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete" />
+         <Button fx:id="add_task_button" layoutX="162.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeSceneToAddTask" onMouseClicked="#changeSceneToAddTask" prefHeight="30.0" prefWidth="57.0" text="NEW">
+            <effect>
+               <Glow />
+            </effect></Button>
       </AnchorPane>
    </children>
 </AnchorPane>

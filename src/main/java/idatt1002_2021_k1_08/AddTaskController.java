@@ -19,22 +19,13 @@ public class AddTaskController {
     @FXML
     ImageView logoImageView;
     Image logo = new Image(new FileInputStream("images/CiterLogo.png"));
-    @FXML
-    TextField task_name_textfield;
-    @FXML
-    DatePicker date_time_box;
-    @FXML
-    ComboBox<String> categoryList;
-    @FXML
-    TextArea notes_textarea;
-    @FXML
-    Button add_task_complete_button;
-
-    @FXML
-    ChoiceBox <String> priorityChoiceBox;
-
-    @FXML
-    TextArea task_information_TextArea;
+    @FXML TextField task_name_textfield;
+    @FXML DatePicker date_time_box;
+    @FXML ComboBox<String> categoryList;
+    @FXML TextArea notes_textarea;
+    @FXML Button add_task_complete_button;
+    @FXML ChoiceBox <String> priorityChoiceBox;
+    @FXML Button newCategoryButton;
 
 
     public void initialize(){

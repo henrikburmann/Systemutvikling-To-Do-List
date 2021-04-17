@@ -30,43 +30,22 @@ import java.util.Optional;
 
 public class TaskController {
 
-    @FXML
-    Button add_task_button;
-    @FXML
-    Button edit_task_button;
-    @FXML
-    Button delete_task_button;
-    @FXML
-    Button newCategory;
-    @FXML
-    Button complete_task_button;
-    @FXML
-    Button show_completed_tasks_button;
-    @FXML
-    Button deleteCategory;
-    @FXML
-    TextArea task_information_TextArea;
-
-    @FXML
-    private ListView<Task> tasksView;
-
-    @FXML
-    Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
-
-    @FXML
-    ImageView logoImageView;
-    @FXML
-    MenuButton menuButton;
-    @FXML
-    MenuItem helpItem;
-    @FXML
-    TextField usernameTextField;
-    @FXML
-    DatePicker datePicker;
-    @FXML
-    AnchorPane taskDisplayAnchor;
-    @FXML
-    ComboBox<String> categoryList;
+    @FXML Button add_task_button;
+    @FXML Button edit_task_button;
+    @FXML Button delete_task_button;
+    @FXML Button complete_task_button;
+    @FXML MenuButton filter;
+    @FXML MenuItem showCompletedTasks;
+    @FXML MenuItem sortbyPriority;
+    @FXML MenuItem sortByCategory;
+    @FXML Button deleteCategory;
+    @FXML private ListView<Task> tasksView;
+    @FXML Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
+    @FXML ImageView logoImageView;
+    @FXML MenuButton menuButton;
+    @FXML MenuItem helpItem;
+    @FXML DatePicker datePicker;
+    @FXML AnchorPane taskDisplayAnchor;
 
     @FXML TextField taskNameTextField;
     @FXML  TextField endDateTextField;
@@ -75,12 +54,10 @@ public class TaskController {
     @FXML TextField categoryTextField;
     @FXML TextArea notesTextArea;
     @FXML ArrayList<TextField> textfieldList = new ArrayList<>();
-
     @FXML Button getAllDatesButton;
-    @FXML ComboBox<String> priorityComboBox;
 
-    public TaskController() throws FileNotFoundException {
-    }
+
+    public TaskController() throws FileNotFoundException { }
 
     public void initialize() {
         textfieldList.add(taskNameTextField);
@@ -89,14 +66,12 @@ public class TaskController {
         textfieldList.add(priorityTextField);
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
-        addItemsInPriorityComboBox();
         menuButton = new MenuButton("Options", null, helpItem);
-
+        filter = new MenuButton("Filter", null, sortByCategory, sortbyPriority, showCompletedTasks);
         for(TextField textField : textfieldList){
             textField.setEditable(false);
         }
         notesTextArea.setEditable(false);
-
         helpItem.setOnAction(e-> {
             try {
                 changeSceneToHelp();
@@ -105,7 +80,6 @@ public class TaskController {
             }
         });
 
-        categoryList.setItems(FileHandler.getCategories());
         tasksView.getSelectionModel().selectFirst();
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
             @Override
@@ -133,7 +107,6 @@ public class TaskController {
 
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
 
-
         SortedList<Task> sortedList = new SortedList<Task>(listOfTasks, new Comparator<Task>() {
             @Override
             public int compare(Task task1, Task task2) {
@@ -151,13 +124,6 @@ public class TaskController {
 
         tasksView.setItems(boo);
         tasksView.getSelectionModel().selectFirst();
-    }
-    private void addItemsInPriorityComboBox(){
-        priorityComboBox.getItems().add("All");
-        priorityComboBox.getItems().add("Low");
-        priorityComboBox.getItems().add("Medium");
-        priorityComboBox.getItems().add("High");
-        priorityComboBox.setValue("All");
     }
 
 
@@ -204,7 +170,7 @@ public class TaskController {
         }
         notesTextArea.setEditable(true);
         delete_task_button.setText("Save");
-
+        saveEditedTask();
     }
     public void saveEditedTask(){
         LocalDate startLocalDate = LocalDate.parse(startDateTextField.getText());
@@ -228,10 +194,6 @@ public class TaskController {
      * Directs user to add new category
      * @throws IOException
      */
-    @FXML
-    public void handleNewCategoryButton(){
-            CategoryController.displayNewCategoryTextInput();
-        }
     /**
      *
      * @param delete
@@ -280,18 +242,6 @@ public class TaskController {
         task.setCompleted(true);
     }
 
-    @FXML
-    public void viewCompletedTasks(){
-        ObservableList<Task> tasks = FileHandler.getInstance().getTasks();
-        ObservableList<Task> boo = FXCollections.observableArrayList();
-        for(Task t:tasks){
-            if(t.isCompleted()){
-                boo.add(t);
-            }
-        }
-        displayTasks(boo);
-    }
-
     public void tasksOnChosenDate(){
         LocalDate date = datePicker.getValue();
         ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
@@ -320,23 +270,6 @@ public class TaskController {
     public void handleDeleteCategory(ActionEvent delete){
     }
 
-
-    public void viewByPriority(){
-        ObservableList<Task> tasksOfPriority = FXCollections.observableArrayList();
-        String priority = (String) priorityComboBox.getValue();
-        if (priority.equals("All")){
-            tasksView.setItems(FileHandler.getInstance().getTasks());
-        }
-        else{
-            for (int i = 0; i < FileHandler.getInstance().getTasks().size(); i++) {
-                if (FileHandler.getInstance().getTasks().get(i).getPriority().equals(priority)){
-                    tasksOfPriority.add(FileHandler.getInstance().getTasks().get(i));
-                }
-            }
-           displayTasks(tasksOfPriority);
-            System.out.println(priority);
-        }
-    }
 
     public void viewAllTasks(){
         ObservableList<Task> boo = FXCollections.observableArrayList();
