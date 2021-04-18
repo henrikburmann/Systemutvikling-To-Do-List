@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
@@ -59,12 +60,48 @@ public class TaskController {
     @FXML TextArea notesTextArea;
     @FXML ArrayList<TextField> textfieldList = new ArrayList<>();
     @FXML ToggleButton chooseCompletedToggleButton;
+
+    @FXML ChoiceBox choiceBox;
     
 
 
     public TaskController() throws FileNotFoundException { }
 
     public void initialize() {
+
+        choiceBox.setValue("filter");
+        choiceBox.getItems().add(0,"Sort by category");
+        choiceBox.getItems().add(1,"Sort by priority");
+        choiceBox.getItems().add(2,"Show completed tasks");
+        choiceBox.getItems().add(3,"Show uncompleted tasks");
+        choiceBox.getItems().add(4,"Show all tasks");
+
+        choiceBox.setOnAction((event) -> {
+            int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
+            switch(selectedIndex) {
+                case 0:
+                    viewByCategory();
+                    break;
+                case 1:
+                    viewByPriority();
+                    break;
+                case 2:
+                    viewCompletedTasks();
+                    break;
+                case 3:
+                    viewUnCompletedTasks();
+                    break;
+                case 4:
+                    viewAllTasks();
+                    break;
+                default:
+            }
+            System.out.println("Selection made: [" + selectedIndex + "]");
+            System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
+
+
+        });
+
         textfieldList.add(taskNameTextField);
         textfieldList.add(endDateTextField);
         textfieldList.add(startDateTextField);
@@ -114,16 +151,45 @@ public class TaskController {
         tasksView.getSelectionModel().selectFirst();
     }
 
-
-    @FXML
-    private void filterMethodHandler(ActionEvent event){
-        if(event.getSource().equals(sortByCategoryItem)){
-            System.out.printf("cat");
-        }
-        else{
-            System.out.println("else");
+    public void filterOptionHandler() {
+        int selectedIndex1 = choiceBox.getSelectionModel().getSelectedIndex();
+        System.out.println(selectedIndex1);
+        if (!(selectedIndex1 == -1)) {
+                int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
+                switch (selectedIndex) {
+                    case 0:
+                        viewByCategory();
+                        break;
+                    case 1:
+                        viewByPriority();
+                        break;
+                    case 2:
+                        viewCompletedTasks();
+                        break;
+                    case 3:
+                        viewUnCompletedTasks();
+                        break;
+                    case 4:
+                        viewAllTasks();
+                        break;
+                    default:
+                System.out.println("Selection made: [" + selectedIndex + "]");
+                System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
+            };
         }
     }
+
+
+    @FXML
+    public void changeSceneToAddTask() throws IOException {
+        CiterClient.setRoot("addTask");
+    }
+    public void changeSceneToHelp() throws IOException {
+        CiterClient.setRoot("help");
+    }
+
+
+
 
     public ObservableList<Task> sortListofTaskUnFinished(){
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
@@ -143,24 +209,21 @@ public class TaskController {
         return boo;
     }
 
-    @FXML
-    public void changeSceneToAddTask() throws IOException {
-            CiterClient.setRoot("addTask");
-        }
-    public void changeSceneToHelp() throws IOException {
-        CiterClient.setRoot("help");
-    }
+
 
     @FXML
     public void viewCompletedTasks(){
-        ObservableList<Task> tasks = FileHandler.getInstance().getTasks();
         ObservableList<Task> boo = FXCollections.observableArrayList();
-        for(Task t:tasks){
+        for(Task t:getTasksFilehandler()){
             if(t.isCompleted()){
                 boo.add(t);
             }
         }
         displayTasks(boo);
+    }
+
+    private void viewUnCompletedTasks(){
+        displayTasks(filterOutUnCompleted());
     }
 
     public ObservableList<Task> getTasksFilehandler(){
@@ -177,7 +240,6 @@ public class TaskController {
         return boo;
     }
 
-    @FXML
     public void viewByPriority(){
         ObservableList<Task> tasksOfPriority;
         if(chooseCompletedToggleButton.isSelected()){
@@ -195,7 +257,7 @@ public class TaskController {
         });
         displayTasks(sortedList);
     }
-    @FXML
+
     public void viewByCategory(){
         ObservableList<Task> tasksOfCategory = checkOfCompleted();
         SortedList<Task> sortedList = new SortedList<>(tasksOfCategory, new Comparator<Task>() {
@@ -220,6 +282,26 @@ public class TaskController {
         return tasksOfCategory;
     }
 
+    public void tasksOnChosenDate(){
+        LocalDate date = datePicker.getValue();
+        ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
+        for (int i = 0; i < getTasksFilehandler().size(); i++) {
+            if (getTasksFilehandler().get(i).getEndDate().equals(date)){
+                tasksOnDate.add(getTasksFilehandler().get(i));
+            }
+        }
+        tasksView.setItems(tasksOnDate);
+        System.out.println(tasksOnDate);
+    }
+    public void viewAllTasks(){
+        displayTasks(getTasksFilehandler());
+    }
+
+
+    public void displayTasks(ObservableList<Task> tasks){
+        datePicker.setValue(null);
+        tasksView.setItems(tasks);
+    }
     /**
      * @param task1 Fills information area of Task with its information
      */
@@ -324,19 +406,15 @@ public class TaskController {
 
     private void completeTask(Task task){
         task.setCompleted(true);
+        if(choiceBox.getSelectionModel().getSelectedIndex() == -1){
+            displayTasks(sortListofTaskUnFinished());
+        }
+        else{
+            filterOptionHandler();
+        }
     }
 
-    public void tasksOnChosenDate(){
-        LocalDate date = datePicker.getValue();
-        ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
-        for (int i = 0; i < getTasksFilehandler().size(); i++) {
-            if (getTasksFilehandler().get(i).getEndDate().equals(date)){
-                tasksOnDate.add(getTasksFilehandler().get(i));
-            }
-        }
-        tasksView.setItems(tasksOnDate);
-        System.out.println(tasksOnDate);
-    }
+
 
     public void deleteCategory (String category) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -356,20 +434,6 @@ public class TaskController {
     }
 
 
-    public void viewAllTasks(){
-        ObservableList<Task> boo = FXCollections.observableArrayList();
-        for(Task t:FileHandler.getInstance().getTasks()){
-            if(!t.isCompleted()){
-                boo.add(t);
-            }
-        }
-        displayTasks(boo);
-    }
 
-
-    public void displayTasks(ObservableList<Task> tasks){
-        datePicker.setValue(null);
-        tasksView.setItems(tasks);
-    }
 }
 
