@@ -71,3 +71,6 @@
 }
 #taskDisplayAnchor{
     }
+#complete_task_button{
+    -fx-background-color: #adadad;
+}

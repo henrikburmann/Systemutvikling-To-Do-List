@@ -17,6 +17,7 @@ public class Task implements Serializable {
     private String category;
     private boolean completed;
 
+
     /**
      * Instantiates a new Task.
      *
@@ -35,6 +36,7 @@ public class Task implements Serializable {
         setPriority(priority);
         setCompleted(false);
         setCategory(category);
+
     }
 
     public boolean isCompleted() {
@@ -135,8 +137,21 @@ public class Task implements Serializable {
         this.category = category;
     }
 
+    public int setPriorityNumber(){
+        if (priority.equals("High")){
+            return 3;
+        }
+        else if (priority.equals("Medium")){
+            return 2;
+        }
+        else{
+            return 1;
+        }
+    }
+
+
     @Override
     public String toString() {
-        return taskName + "   Deadline: " + endDate;
+        return taskName + "   Deadline: " + endDate + "   Priority " + priority;
     }
 }

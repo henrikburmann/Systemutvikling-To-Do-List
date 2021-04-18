@@ -3,6 +3,7 @@ package idatt1002_2021_k1_08;
 import idatt1002_2021_k1_08.CiterClient;
 import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -34,10 +36,12 @@ public class TaskController {
     @FXML Button edit_task_button;
     @FXML Button delete_task_button;
     @FXML Button complete_task_button;
-    @FXML MenuButton filter;
-    @FXML MenuItem showCompletedTasks;
-    @FXML MenuItem sortbyPriority;
-    @FXML MenuItem sortByCategory;
+    @FXML MenuButton filterButton;
+    @FXML MenuItem showCompletedTasksItem;
+    @FXML MenuItem sortbyPriorityItem;
+    @FXML MenuItem sortByCategoryItem;
+    @FXML MenuItem showUnCompletedTasksItem;
+    @FXML MenuItem showAllTasksItem;
     @FXML Button deleteCategory;
     @FXML private ListView<Task> tasksView;
     @FXML Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
@@ -54,7 +58,8 @@ public class TaskController {
     @FXML TextField categoryTextField;
     @FXML TextArea notesTextArea;
     @FXML ArrayList<TextField> textfieldList = new ArrayList<>();
-    @FXML Button getAllDatesButton;
+    @FXML ToggleButton chooseCompletedToggleButton;
+    
 
 
     public TaskController() throws FileNotFoundException { }
@@ -67,7 +72,7 @@ public class TaskController {
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-        filter = new MenuButton("Filter", null, sortByCategory, sortbyPriority, showCompletedTasks);
+        filterButton = new MenuButton("Filter", null, sortByCategoryItem, sortbyPriorityItem, showCompletedTasksItem, showUnCompletedTasksItem, showAllTasksItem);
         for(TextField textField : textfieldList){
             textField.setEditable(false);
         }
@@ -105,8 +110,23 @@ public class TaskController {
             }
         };});
 
-        ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
+        tasksView.setItems(sortListofTaskUnFinished());
+        tasksView.getSelectionModel().selectFirst();
+    }
 
+
+    @FXML
+    private void filterMethodHandler(ActionEvent event){
+        if(event.getSource().equals(sortByCategoryItem)){
+            System.out.printf("cat");
+        }
+        else{
+            System.out.println("else");
+        }
+    }
+
+    public ObservableList<Task> sortListofTaskUnFinished(){
+        ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
         SortedList<Task> sortedList = new SortedList<Task>(listOfTasks, new Comparator<Task>() {
             @Override
             public int compare(Task task1, Task task2) {
@@ -114,18 +134,14 @@ public class TaskController {
             }
         });
 
-
         ObservableList<Task> boo = FXCollections.observableArrayList();
         for(Task t:sortedList){
             if(!t.isCompleted()){
                 boo.add(t);
             }
         }
-
-        tasksView.setItems(boo);
-        tasksView.getSelectionModel().selectFirst();
+        return boo;
     }
-
 
     @FXML
     public void changeSceneToAddTask() throws IOException {
@@ -133,6 +149,75 @@ public class TaskController {
         }
     public void changeSceneToHelp() throws IOException {
         CiterClient.setRoot("help");
+    }
+
+    @FXML
+    public void viewCompletedTasks(){
+        ObservableList<Task> tasks = FileHandler.getInstance().getTasks();
+        ObservableList<Task> boo = FXCollections.observableArrayList();
+        for(Task t:tasks){
+            if(t.isCompleted()){
+                boo.add(t);
+            }
+        }
+        displayTasks(boo);
+    }
+
+    public ObservableList<Task> getTasksFilehandler(){
+        return FileHandler.getInstance().getTasks();
+    }
+
+    public ObservableList<Task> filterOutUnCompleted(){
+        ObservableList<Task> boo = FXCollections.observableArrayList();
+        for(Task t:getTasksFilehandler()){
+            if(!t.isCompleted()){
+                boo.add(t);
+            }
+        }
+        return boo;
+    }
+
+    @FXML
+    public void viewByPriority(){
+        ObservableList<Task> tasksOfPriority;
+        if(chooseCompletedToggleButton.isSelected()){
+            tasksOfPriority = getTasksFilehandler();
+        }
+        else{
+            tasksOfPriority = filterOutUnCompleted();
+        }
+
+        SortedList<Task> sortedList = new SortedList<Task>(tasksOfPriority, new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return (task2.setPriorityNumber()-(task1.setPriorityNumber()));
+            }
+        });
+        displayTasks(sortedList);
+    }
+    @FXML
+    public void viewByCategory(){
+        ObservableList<Task> tasksOfCategory = checkOfCompleted();
+        SortedList<Task> sortedList = new SortedList<>(tasksOfCategory, new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return (task1.getCategory().compareTo(task2.getCategory()));
+            }
+        });
+        displayTasks(sortedList);
+    }
+
+    public ObservableList<Task> checkOfCompleted(){
+        ObservableList<Task> tasksOfCategory;
+        if(chooseCompletedToggleButton.isSelected()){
+            tasksOfCategory = getTasksFilehandler();
+        }
+        else{
+            tasksOfCategory = filterOutUnCompleted();
+        }
+        displayTasks(tasksOfCategory);
+
+        return tasksOfCategory;
     }
 
     /**
@@ -225,7 +310,6 @@ public class TaskController {
             FileHandler.getInstance().deleteTask(task); //Deletes from list in FileHandler class
         }
         clearText();
-
     }
 
     @FXML
@@ -245,14 +329,15 @@ public class TaskController {
     public void tasksOnChosenDate(){
         LocalDate date = datePicker.getValue();
         ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
-        for (int i = 0; i < FileHandler.getInstance().getTasks().size(); i++) {
-            if (FileHandler.getInstance().getTasks().get(i).getEndDate().equals(date)){
-                tasksOnDate.add(FileHandler.getInstance().getTasks().get(i));
+        for (int i = 0; i < getTasksFilehandler().size(); i++) {
+            if (getTasksFilehandler().get(i).getEndDate().equals(date)){
+                tasksOnDate.add(getTasksFilehandler().get(i));
             }
         }
         tasksView.setItems(tasksOnDate);
         System.out.println(tasksOnDate);
     }
+
     public void deleteCategory (String category) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Category");
@@ -265,7 +350,7 @@ public class TaskController {
         }
         clearText();
     }
-    //Metode laget på forhond, ingen deletebutton eller delete category laget enda
+    //Metode laget på forhånd, ingen deletebutton eller delete category laget enda
     @FXML
     public void handleDeleteCategory(ActionEvent delete){
     }
