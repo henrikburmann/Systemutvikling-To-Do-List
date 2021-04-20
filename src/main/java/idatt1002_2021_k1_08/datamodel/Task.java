@@ -147,13 +147,13 @@ public class Task implements Serializable {
             return 1;
         }
     }
-    private void checkifNull(String string){
+    public void checkifNull(String string){
         if(string == (null)){
             throw new NullPointerException("String cant be null");
         }
     }
 
-    private void checkIfEmpty(String string){
+    public void checkIfEmpty(String string){
         if(string.isEmpty()){
             throw new IllegalArgumentException("String cant be empty");
         }

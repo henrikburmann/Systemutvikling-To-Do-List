@@ -22,18 +22,17 @@ public class CategoryRegister {
     }
 
 
-    public boolean addCategory(Category category){
-        for (Category c: categories){
-            if (c.equals(category)){
-                return false;
-            }
-        }
-        categories.add(category);
-        return true;
+    public void addCategory(Category category){
+        if(!categories.contains(category)){
+            categories.add(category);
+        } else throw new IllegalArgumentException("Already in list");
     }
 
     public void removeCategory(Category category){
-        categories.remove(category);
+        if(categories.contains(category)){
+            categories.remove(category);
+        }
+        else throw new IllegalArgumentException("Category not in list");
     }
 
     public String toString(){
