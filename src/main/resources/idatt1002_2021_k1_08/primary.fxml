@@ -15,6 +15,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -23,9 +24,9 @@
       <AnchorPane fx:id="pane_left" layoutY="1.0" prefHeight="500.0" prefWidth="225.0">
          <Label fx:id="label_header_left" prefHeight="58.0" prefWidth="226.0" />
          <MenuButton fx:id="menuButton" layoutX="126.0" layoutY="16.0" mnemonicParsing="false" text="Options">
-           <items>
-             <MenuItem fx:id="helpItem" mnemonicParsing="false" onAction="#changeSceneToAddTask" text="Help" />
-           </items>
+            <items>
+               <MenuItem fx:id="helpItem" mnemonicParsing="false" onAction="#changeSceneToAddTask" text="Help" />
+            </items>
             <effect>
                <Glow level="0.06" />
             </effect>
@@ -41,6 +42,18 @@
             </font></Text>
 
          <DatePicker fx:id="datePicker" editable="false" layoutX="26.0" layoutY="100.0" onAction="#tasksOnChosenDate" prefHeight="30.0" prefWidth="174.0" />
+         <Circle fill="#ff1f1f" layoutX="40.0" layoutY="290.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+         <Text layoutX="74.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed tasks" wrappingWidth="125.33333333333326">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="74.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks over due" wrappingWidth="125.33333333333326">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Text>
+         <Circle fill="#5dff21" layoutX="40.0" layoutY="238.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
@@ -110,7 +123,7 @@
          <Button fx:id="edit_task_button" layoutX="6.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="33.0" prefWidth="78.0" text="Edit" />
          <Button fx:id="delete_task_button" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete" />
          <Button fx:id="add_task_button" layoutX="162.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeSceneToAddTask" onMouseClicked="#changeSceneToAddTask" prefHeight="30.0" prefWidth="57.0" text="NEW">
-            <effect>
+            <effect> 
                <Glow />
             </effect></Button>
          <Button fx:id="saveEditedTask" layoutX="14.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveEditedTask" prefHeight="33.0" prefWidth="70.0" text="Save" />
