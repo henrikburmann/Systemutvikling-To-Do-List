@@ -12,7 +12,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 
 public class AddTaskController {
@@ -49,11 +50,17 @@ public class AddTaskController {
     }
     @FXML
     public void addTaskMethod() throws IOException {
-        if(date_time_box.getValue().isBefore(LocalDate.now())){
+        if(date_time_box.getValue() == null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("INPUT WARNING");
             alert.setHeaderText("WRONG DATE INPUT");
             alert.setContentText("Date input can be at the earliest today");
+            alert.show();
+        }else if(date_time_box.getValue().isBefore(LocalDate.now())){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("INPUT WARNING");
+            alert.setHeaderText("WRONG DATE INPUT");
+            alert.setContentText("Date input cannot be empty");
             alert.show();
         }else{
             String taskName = task_name_textfield.getText().trim();
