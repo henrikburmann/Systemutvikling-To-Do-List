@@ -164,7 +164,7 @@ public class TaskController {
                         }else{
                             setText(task.toString());
                             //If task is due for tomorrow of beyond
-                            if(task.getEndDate().isAfter(LocalDate.now())){
+                            if(task.getEndDate().isBefore(LocalDate.now())){
                                 setTextFill(Color.RED);
                             }
                         }
