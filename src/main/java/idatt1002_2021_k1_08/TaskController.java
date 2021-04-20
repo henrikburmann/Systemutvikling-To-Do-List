@@ -270,16 +270,16 @@ public class TaskController {
     }
 
     public ObservableList<Task> checkOfCompleted(){
-        ObservableList<Task> tasksOfCategory;
+        ObservableList<Task> completedList;
         if(chooseCompletedToggleButton.isSelected()){
-            tasksOfCategory = getTasksFilehandler();
+            completedList = getTasksFilehandler();
         }
         else{
-            tasksOfCategory = filterOutUnCompleted();
+            completedList = filterOutUnCompleted();
         }
-        displayTasks(tasksOfCategory);
-
-        return tasksOfCategory;
+        //displayTasks(tasksOfCategory);
+        tasksView.setItems(completedList);
+        return completedList;
     }
 
     public void tasksOnChosenDate(){

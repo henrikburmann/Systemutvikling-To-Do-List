@@ -96,6 +96,7 @@ public class FileHandler {
         for (Task t : obTasks) {
             Task task = new Task(t.getTaskName(),t.getCategory(), t.getStartDate(), t.getEndDate(), t.getPriority());
             task.setDescription(t.getDescription());
+            task.setCompleted(t.isCompleted());
             taskStore.add(task);
         }
         serializeCategory(categoryStore);
@@ -125,6 +126,7 @@ public class FileHandler {
 
             for (int i = 0; i < list.size(); i++) {
                 Task task = new Task(list.get(i).getTaskName(), list.get(i).getCategory(),list.get(i).getStartDate(), list.get(i).getEndDate(), list.get(i).getPriority());
+                task.setCompleted(list.get(i).isCompleted());
                 obTasks.add(task);
             }
 
