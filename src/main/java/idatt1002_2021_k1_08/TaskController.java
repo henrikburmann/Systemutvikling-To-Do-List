@@ -178,7 +178,6 @@ public class TaskController {
     public void filterOptionHandler() {
         int selectedIndex1 = choiceBox.getSelectionModel().getSelectedIndex();
         System.out.println(selectedIndex1);
-        if (!(selectedIndex1 == -1)) {
                 int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
                 switch (selectedIndex) {
                     case 0:
@@ -196,12 +195,14 @@ public class TaskController {
                     case 4:
                         viewAllTasks();
                         break;
+                    case -1:
+                        viewUnCompletedTasks();
+                        break;
                     default:
                 System.out.println("Selection made: [" + selectedIndex + "]");
                 System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
             };
         }
-    }
 
 
     @FXML
@@ -416,6 +417,7 @@ public class TaskController {
         }
         clearText();
         filterOptionHandler();
+
     }
 
     @FXML

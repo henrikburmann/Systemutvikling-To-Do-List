@@ -45,7 +45,7 @@
                   </font></Label>
                <TextField fx:id="task_name_textfield" layoutX="31.0" layoutY="101.0" prefHeight="30.0" prefWidth="218.0" />
                <DatePicker fx:id="date_time_box" editable="false" layoutX="304.0" layoutY="101.0" prefHeight="30.0" prefWidth="166.0" promptText="Select End Date" />
-               <TextArea fx:id="notes_textarea" layoutX="31.0" layoutY="181.0" prefHeight="112.0" prefWidth="218.0" />
+               <TextArea fx:id="notes_textarea" layoutX="31.0" layoutY="181.0" prefHeight="112.0" prefWidth="218.0" wrapText="true"/>
                <Button fx:id="add_task_complete_button" layoutX="193.0" layoutY="329.0" mnemonicParsing="false" onAction="#addTaskMethod" prefHeight="50.0" prefWidth="123.0" text="ADD TASK">
                   <font>
                      <Font size="18.0" />
