@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -23,9 +24,9 @@
       <AnchorPane fx:id="pane_left" layoutY="1.0" prefHeight="500.0" prefWidth="225.0">
          <Label fx:id="label_header_left" prefHeight="58.0" prefWidth="226.0" />
          <MenuButton fx:id="menuButton" layoutX="126.0" layoutY="16.0" mnemonicParsing="false" text="Options">
-           <items>
-             <MenuItem fx:id="helpItem" mnemonicParsing="false" onAction="#changeSceneToAddTask" text="Help" />
-           </items>
+            <items>
+               <MenuItem fx:id="helpItem" mnemonicParsing="false" onAction="#changeSceneToAddTask" text="Help" />
+            </items>
             <effect>
                <Glow level="0.06" />
             </effect>
@@ -41,18 +42,18 @@
             </font></Text>
 
          <DatePicker fx:id="datePicker" editable="false" layoutX="26.0" layoutY="100.0" onAction="#tasksOnChosenDate" prefHeight="30.0" prefWidth="174.0" />
-         <Circle fill="#1fff51" layoutX="31.0" layoutY="233.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-         <Text layoutX="62.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed tasks" wrappingWidth="150.0">
+         <Circle fill="#ff1f1f" layoutX="40.0" layoutY="290.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+         <Text layoutX="74.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed tasks" wrappingWidth="125.33333333333326">
             <font>
-               <Font size="18.0" />
+               <Font size="16.0" />
             </font>
          </Text>
-         <Circle fill="#ff2121" layoutX="31.0" layoutY="287.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-         <Text layoutX="62.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks over due" wrappingWidth="150.0">
+         <Text layoutX="74.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks over due" wrappingWidth="125.33333333333326">
             <font>
-               <Font size="18.0" />
+               <Font size="15.0" />
             </font>
          </Text>
+         <Circle fill="#5dff21" layoutX="40.0" layoutY="238.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
@@ -60,7 +61,7 @@
             <font>
                <Font name="Times New Roman Bold" size="18.0" />
             </font></Label>
-         <ListView fx:id="tasksView" layoutY="66.0" onKeyPressed="#handleKeyPressed" prefHeight="444.0" prefWidth="300.0" />
+         <ListView fx:id="tasksView" layoutY="58.0" onKeyPressed="#handleKeyPressed" prefHeight="444.0" prefWidth="300.0" />
          <Label layoutX="14.0" layoutY="13.0" text="TO DO LIST" textFill="#f0ebeb">
             <font>
                <Font size="22.0" />
@@ -106,8 +107,12 @@
                <TextField fx:id="endDateTextField" editable="false" layoutX="97.0" layoutY="132.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="priorityTextField" editable="false" layoutX="97.0" layoutY="172.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="categoryTextField" editable="false" layoutX="97.0" layoutY="208.0" prefHeight="6.0" prefWidth="109.0" />
-               <TextArea fx:id="notesTextArea" editable="false" layoutX="12.0" layoutY="269.0" prefHeight="84.0" prefWidth="206.0" />
+               <TextArea fx:id="notesTextArea" editable="false" layoutX="12.0" layoutY="269.0" prefHeight="84.0" prefWidth="206.0" wrapText="true" />
                <Button fx:id="complete_task_button" layoutX="52.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleCompleteButton" prefHeight="34.0" prefWidth="125.0" text="Complete Task" />
+               <ComboBox fx:id="categoryList" layoutX="104.0" layoutY="211.0" prefHeight="24.0" prefWidth="102.0" />
+               <ChoiceBox fx:id="priorityChoiceBox" layoutX="104.0" layoutY="175.0" prefHeight="25.0" prefWidth="109.0" />
+               <DatePicker fx:id="startDateEdit" layoutX="97.0" layoutY="87.0" prefHeight="30.0" prefWidth="115.0" />
+               <DatePicker fx:id="endDateEdit" layoutX="101.0" layoutY="136.0" prefHeight="30.0" prefWidth="109.0" />
             </children>
          </AnchorPane>
          <Label layoutX="69.0" layoutY="14.0" text="TASK" textFill="#e5dfdf">
@@ -118,9 +123,10 @@
          <Button fx:id="edit_task_button" layoutX="6.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="33.0" prefWidth="78.0" text="Edit" />
          <Button fx:id="delete_task_button" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete" />
          <Button fx:id="add_task_button" layoutX="162.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeSceneToAddTask" onMouseClicked="#changeSceneToAddTask" prefHeight="30.0" prefWidth="57.0" text="NEW">
-            <effect>
+            <effect> 
                <Glow />
             </effect></Button>
+         <Button fx:id="saveEditedTask" layoutX="14.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveEditedTask" prefHeight="33.0" prefWidth="70.0" text="Save" />
       </AnchorPane>
    </children>
 </AnchorPane>
