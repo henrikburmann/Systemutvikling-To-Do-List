@@ -110,17 +110,9 @@ public class FileHandler {
         if (FILE_PATH.createNewFile()) System.out.println("TaskData.ser doesn't exist, CREATING FILE");
         if (FILE_PATH_CATEGORY.createNewFile()) System.out.println("CategoryStrings.ser doesn't exist, CREATING FILE");
         //if (FILE_COMPLETED_TASKS.createNewFile()) System.out.println("CompletedTask.ser exists");
-            else {
-            System.out.println("Files already exists");
-            System.out.println("Loading from files");
-        }
         try {
             ArrayList<String> catlist = deserializeCategory(); // Denne burde returnere category string
             ArrayList<Task> list = deserializeTask();  //Denne burde returnere task
-            System.out.println("Størrelse på catlist i loadData() " + catlist.size());
-            System.out.println("Inni metode");
-            System.out.println("Størrelse på liste i loadData()" + list.size());
-            System.out.println("Inni metode");
 
             categories.addAll(catlist);
 
