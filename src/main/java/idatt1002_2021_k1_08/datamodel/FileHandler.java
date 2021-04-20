@@ -1,6 +1,5 @@
 package idatt1002_2021_k1_08.datamodel;
 
-import idatt1002_2021_k1_08.CiterClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
