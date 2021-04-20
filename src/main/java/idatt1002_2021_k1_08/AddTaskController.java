@@ -1,6 +1,5 @@
 package idatt1002_2021_k1_08;
 
-import idatt1002_2021_k1_08.CiterClient;
 import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.fxml.FXML;
@@ -12,8 +11,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 
 public class AddTaskController {

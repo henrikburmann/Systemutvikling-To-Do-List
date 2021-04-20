@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 
 /**
  * JavaFX App
@@ -46,7 +45,6 @@ public class CiterClient extends Application{
     @Override
     public void init() throws Exception {
         try{
-
             FileHandler.getInstance().loadData();
         }catch (IOException e){
             e.printStackTrace();
@@ -65,8 +63,6 @@ public class CiterClient extends Application{
     public void stop() throws Exception {
         try {
             FileHandler.getInstance().storeData();
-            System.out.println("Denne burde printes " + FileHandler.getInstance().getTasks().toString());
-            System.out.println("Denne burde også printes " + FileHandler.getCategories().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

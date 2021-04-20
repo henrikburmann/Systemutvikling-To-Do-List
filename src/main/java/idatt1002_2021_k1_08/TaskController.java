@@ -1,35 +1,26 @@
 package idatt1002_2021_k1_08;
 
-import idatt1002_2021_k1_08.CiterClient;
 import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -166,6 +157,8 @@ public class TaskController {
                             //If task is due for tomorrow of beyond
                             if(task.getEndDate().isBefore(LocalDate.now())){
                                 setTextFill(Color.RED);
+                            }else if(task.isCompleted()){
+                                setTextFill(Color.GREEN);
                             }
                         }
                     }
@@ -458,8 +451,4 @@ public class TaskController {
     @FXML
     public void handleDeleteCategory(ActionEvent delete){
     }
-
-
-
 }
-
