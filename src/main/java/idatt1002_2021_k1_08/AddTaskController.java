@@ -62,7 +62,13 @@ public class AddTaskController {
             alert.setHeaderText("WRONG DATE INPUT");
             alert.setContentText("Date input cannot be empty");
             alert.show();
-        }else{
+        }else if(task_name_textfield.getText() == null || task_name_textfield.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("INPUT WARNING");
+            alert.setHeaderText("Null INPUT");
+            alert.setContentText("Name input cannot be empty");
+            alert.show();
+        }else {
             String taskName = task_name_textfield.getText().trim();
 
             LocalDate date = LocalDate.of(date_time_box.getValue().getYear(),
@@ -72,14 +78,15 @@ public class AddTaskController {
 
             String category = categoryList.getSelectionModel().getSelectedItem();
 
-            Task task = new Task(taskName, category,date,priority);
-            task.setDescription(notes_textarea.getText());
-            task.setEndDate(date);
-            task.setPriority(priority);
+                Task task = new Task(taskName, category,date,priority);
+                task.setDescription(notes_textarea.getText());
+                task.setEndDate(date);
+                task.setPriority(priority);
 
-            FileHandler.getInstance().addTask(task);
-            System.out.println(task.getDescription());
-            changeSceneToPrimary();
+                FileHandler.getInstance().addTask(task);
+                System.out.println(task.getDescription());
+                changeSceneToPrimary();
+
         }
     }
 }
