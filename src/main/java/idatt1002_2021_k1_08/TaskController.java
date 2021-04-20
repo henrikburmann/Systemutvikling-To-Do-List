@@ -65,7 +65,8 @@ public class TaskController {
     public void initialize() {
 
 
-        //choiceBox.setValue("Show all uncompleted");
+        viewUnCompletedTasks();
+        choiceBox.setValue("Show all uncompleted");
         choiceBox.getItems().add(0,"Sort by category");
         choiceBox.getItems().add(1,"Sort by priority");
         choiceBox.getItems().add(2,"Show all completed tasks");
