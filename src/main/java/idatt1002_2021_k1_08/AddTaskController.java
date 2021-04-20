@@ -72,7 +72,7 @@ public class AddTaskController {
 
             String category = categoryList.getSelectionModel().getSelectedItem();
 
-            Task task = new Task(taskName, category,LocalDate.now(),date,priority);
+            Task task = new Task(taskName, category,date,priority);
             task.setDescription(notes_textarea.getText());
             task.setEndDate(date);
             task.setPriority(priority);

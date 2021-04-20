@@ -20,7 +20,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,12 +39,7 @@ public class TaskController {
     @FXML Button edit_task_button;
     @FXML Button delete_task_button;
     @FXML Button complete_task_button;
-    @FXML MenuButton filterButton;
-    @FXML MenuItem showCompletedTasksItem;
-    @FXML MenuItem sortbyPriorityItem;
-    @FXML MenuItem sortByCategoryItem;
-    @FXML MenuItem showUnCompletedTasksItem;
-    @FXML MenuItem showAllTasksItem;
+
     @FXML Button deleteCategory;
     @FXML private ListView<Task> tasksView;
     @FXML Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
@@ -69,7 +66,9 @@ public class TaskController {
 
     public void initialize() {
 
-        choiceBox.setValue("filter");
+
+        viewUnCompletedTasks();
+        choiceBox.setValue("Show all uncompleted");
         choiceBox.getItems().add(0,"Sort by category");
         choiceBox.getItems().add(1,"Sort by priority");
         choiceBox.getItems().add(2,"Show all completed tasks");
@@ -96,6 +95,7 @@ public class TaskController {
                     break;
                 default:
             }
+
             System.out.println("Selection made: [" + selectedIndex + "]");
             System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
 
@@ -109,7 +109,7 @@ public class TaskController {
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-        filterButton = new MenuButton("Filter", null, sortByCategoryItem, sortbyPriorityItem, showCompletedTasksItem, showUnCompletedTasksItem, showAllTasksItem);
+
         for(TextField textField : textfieldList){
             textField.setEditable(false);
         }
@@ -149,6 +149,30 @@ public class TaskController {
 
         tasksView.setItems(sortListofTaskUnFinished());
         tasksView.getSelectionModel().selectFirst();
+
+        //Changes color of task if it is due today or begyond
+        tasksView.setCellFactory(new Callback<ListView<Task>, ListCell<Task>>() {
+            @Override
+            public ListCell<Task> call(ListView<Task> taskListView) {
+                ListCell<Task> taskCell = new ListCell<Task>(){
+
+                    @Override
+                    protected void updateItem(Task task, boolean empty) {
+                        super.updateItem(task, empty);
+                        if(empty){
+                            setText(null);
+                        }else{
+                            setText(task.toString());
+                            //If task is due for tomorrow of beyond
+                            if(task.getEndDate().isAfter(LocalDate.now())){
+                                setTextFill(Color.RED);
+                            }
+                        }
+                    }
+                };
+                return taskCell;
+            }
+        });
     }
 
     public void filterOptionHandler() {
