@@ -20,6 +20,9 @@ public class CategoryController {
     @FXML
     Button okButton;
 
+    /**
+     * Method that opens an input box that allows user to create their own specified category instead of generic ones
+     */
     public static void displayNewCategoryTextInput() {
         TextInputDialog td = new TextInputDialog();
         td.setTitle("Press Ok to add new category");
@@ -34,6 +37,12 @@ public class CategoryController {
         }
     }
 
+    /**
+     * Adds category into categoryList
+     * Will not add if already exists
+     *
+     * @param name the name of the category
+     */
     @FXML
     public static void addCategory(String name){
         if(FileHandler.getCategories().stream().anyMatch(e -> e.equals(name))){
@@ -45,6 +54,9 @@ public class CategoryController {
         }
     }
 
+    /**
+     * Alerybox if category already exists
+     */
     public static void alertbox(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Error: category already exists");

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Category {
     private String name;
     private ArrayList<Task> tasks;
+    private static final Long serialVersionUID = 1L;
 
     /**
      * Instantiates a new Category.
@@ -74,6 +75,11 @@ public class Category {
        }
     }
 
+    /**
+     *
+     * @param o object
+     * @return true or false
+     */
     @Override
     public boolean equals(Object o){
         if (this == o){
@@ -86,6 +92,10 @@ public class Category {
         return category.getName().equals(this.getName());
     }
 
+    /**
+     * Stringbuilder for category
+     * @return text
+     */
     public String toString(){
         StringBuilder text = new StringBuilder();
         text.append(name).append(":\n");

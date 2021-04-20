@@ -22,14 +22,24 @@ public class CiterClient extends Application{
         scene = new Scene(loadFXML("primary"));
         stage.setScene(scene);
         stage.show();
-        System.out.println(stage.getWidth());
-        System.out.println(stage.getHeight());
     }
 
+    /**
+     * Sets the start window for the application
+     * @param fxml the fxml file that is to be loaded
+     * @throws IOException
+     */
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * Loader for the fxml file
+     *
+     * @param fxml all fxml files inside resources file
+     * @return the loaded fxml for the fxml indicated by method
+     * @throws IOException
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(CiterClient.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
@@ -40,8 +50,8 @@ public class CiterClient extends Application{
     }
 
     /*
-    *When initializing Application
-    * get Data from former
+     * When initializing Application
+     * get Data from formerly saved state
      */
     @Override
     public void init() throws Exception {
@@ -65,8 +75,6 @@ public class CiterClient extends Application{
     public void stop() throws Exception {
         try {
             FileHandler.getInstance().storeData();
-            System.out.println("Denne burde printes " + FileHandler.getInstance().getTasks().toString());
-            System.out.println("Denne burde også printes " + FileHandler.getCategories().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

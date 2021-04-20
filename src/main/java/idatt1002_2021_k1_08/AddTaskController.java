@@ -28,7 +28,9 @@ public class AddTaskController {
     @FXML ChoiceBox <String> priorityChoiceBox;
     @FXML Button newCategoryButton;
 
-
+    /**
+     * Initializes the window for creating a new task
+     */
     public void initialize(){
         logoImageView.setImage(logo);
         priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
@@ -36,31 +38,53 @@ public class AddTaskController {
         categoryList.setItems(FileHandler.getCategories());
     }
 
+    /**
+     * Default constructor for controller class
+     *
+     * @throws FileNotFoundException
+     */
     public AddTaskController() throws FileNotFoundException {
     }
 
+    /**
+     * Changes scene to primary, "primary" being the name of the fxml
+     *
+     * @throws IOException
+     */
     @FXML
     public void changeSceneToPrimary() throws IOException {
         CiterClient.setRoot("primary");
     }
 
+    /**
+     * Handler for creating a new category
+     */
     @FXML
     public void handleNewCategoryButton(){
         CategoryController.displayNewCategoryTextInput();
     }
+
+    /**
+     * Method for adding a task
+     * This method adds a task according to input inside application
+     * Here we also validate according to clients wishes whatever input is permitted
+     * {@code} changeSceneToPrimary(); {@code} only happens if these requirements are met
+     *
+     * @throws IOException
+     */
     @FXML
     public void addTaskMethod() throws IOException {
         if(date_time_box.getValue() == null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("INPUT WARNING");
             alert.setHeaderText("WRONG DATE INPUT");
-            alert.setContentText("Date input can be at the earliest today");
+            alert.setContentText("Date input cannot be empty");
             alert.show();
         }else if(date_time_box.getValue().isBefore(LocalDate.now())){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("INPUT WARNING");
             alert.setHeaderText("WRONG DATE INPUT");
-            alert.setContentText("Date input cannot be empty");
+            alert.setContentText("Date input can be at the earliest today");
             alert.show();
         }else if(task_name_textfield.getText() == null || task_name_textfield.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -84,7 +108,6 @@ public class AddTaskController {
                 task.setPriority(priority);
 
                 FileHandler.getInstance().addTask(task);
-                System.out.println(task.getDescription());
                 changeSceneToPrimary();
 
         }

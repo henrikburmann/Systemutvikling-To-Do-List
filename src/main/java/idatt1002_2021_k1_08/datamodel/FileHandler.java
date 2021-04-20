@@ -12,14 +12,11 @@ import java.util.ArrayList;
 
 
 public class FileHandler {
-    //TODO: Should program check if a file exists at launch? And if so, should one be created with a createNewFile method?
-    //TODO: Må forandre på dette fordi funker faen ikke! why?
+
     private static final File FILE_PATH_CATEGORY = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/CategoryStrings.ser");
     private static final File FILE_PATH = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/TaskData.ser");
-    //private static final File FILE_COMPLETED_TASKS = new File ("src/main/resources/idatt1002_2021_k1_08/DataStorage/CompletedTasks.ser");
     private ObservableList<Task> obTasks;
     private static ObservableList<String> categories;
-    //private ObservableList<Task> obCompletedTasks;
     private static FileHandler fileHandlerInstance = new FileHandler();
 
     private final DateTimeFormatter formatter;
@@ -38,12 +35,24 @@ public class FileHandler {
         return fileHandlerInstance;
     }
 
+    /**
+     *
+     * @return Observablelist of tasks
+     */
     public ObservableList<Task> getTasks() {
         return obTasks;
     }
 
+    /**
+     *
+     * @return Observablelist of categories
+     */
     public static ObservableList<String> getCategories() {return categories;}
 
+    /**
+     * Adds task object to the observable list
+     * @param task the task object
+     */
     public void addTask(Task task) {
         obTasks.add(task);
     }
@@ -61,6 +70,11 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Method to deserialize all tasks
+     * @return ArrayList of tasks that gets deserialized from TaskData.ser file
+     * @throws IOException
+     */
     private ArrayList<Task> deserializeTask() throws IOException {
         ArrayList<Task> tasks1 = new ArrayList<>();
 
@@ -88,7 +102,13 @@ public class FileHandler {
         return tasks1;
     }
 
-    //TODO: Denne funker ikke som det skal så må fikse på den
+    /**
+     * StoreData runs when application is closed.
+     * Stores all data regarding tasks and categories into separate files with a .ser extension
+     * Files stored in src/resources/idatt1002_2021_k1_08/DataStorage
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void storeData() throws IOException, ClassNotFoundException {
         ArrayList<String> categoryStore = new ArrayList<>(categories);
         ArrayList<Task> taskStore = new ArrayList<>();
@@ -104,13 +124,17 @@ public class FileHandler {
         serializeTask(taskStore);
     }
 
-
+    /**
+     * LoadData is run when init method from application is run.
+     * Method gets data from files inside DataStorage folder.
+     * Reads deserialize and adds all objects and/or Strings to each observableList
+     * @throws IOException
+     */
     public void loadData() throws IOException {
         categories = FXCollections.observableArrayList();
         obTasks = FXCollections.observableArrayList();
-        if (FILE_PATH.createNewFile()) System.out.println("TaskData.ser doesn't exist, CREATING FILE");
-        if (FILE_PATH_CATEGORY.createNewFile()) System.out.println("CategoryStrings.ser doesn't exist, CREATING FILE");
-        //if (FILE_COMPLETED_TASKS.createNewFile()) System.out.println("CompletedTask.ser exists");
+        if (FILE_PATH.createNewFile());
+        if (FILE_PATH_CATEGORY.createNewFile());
         try {
             ArrayList<String> catlist = deserializeCategory(); // Denne burde returnere category string
             ArrayList<Task> list = deserializeTask();  //Denne burde returnere task
@@ -138,22 +162,20 @@ public class FileHandler {
         obTasks.remove(task);
     }
 
-
-    public void newStoreData() {
-
-    }
-
-    public void newLoadData() {
-        obTasks = FXCollections.observableArrayList();
-        categories = FXCollections.observableArrayList();
-
-    }
-
+    /**
+     *
+     * @param category deletes item from observableList
+     */
     public void deleteCategory(String category){
         categories.remove(category);
     }
 
-
+    /**
+     * Serializes CategoryList
+     * @param category the ArrayList containing each item of category created inside application
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void serializeCategory(ArrayList<String> category) throws IOException, ClassNotFoundException{
         Path path = Paths.get(String.valueOf(FILE_PATH_CATEGORY));
         try(FileOutputStream fos = new FileOutputStream(String.valueOf(path));
@@ -165,6 +187,14 @@ public class FileHandler {
         }
     }
 
+    /**
+     *
+     * @return ArrayList containing each object of category previously stored inside CategoryStrings.ser
+     * category1 = (ArrayList<String>) ois.readObject(); This line warns us of an unchecked cast,
+     * But since we know that each item of category inside category1 is a object with only string content,
+     * and the need for it to be sorted is not there we can ignore this warning.
+     * @throws IOException
+     */
     private ArrayList<String> deserializeCategory()throws IOException{
         ArrayList<String> category1 = new ArrayList<>();
         Path path = Paths.get(String.valueOf(FILE_PATH_CATEGORY));
@@ -189,7 +219,4 @@ public class FileHandler {
         return category1;
     }
 
-    public void addCategory(String category){
-        categories.add(category);
-    }
 }

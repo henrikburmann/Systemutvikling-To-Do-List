@@ -1,69 +1,124 @@
 package idatt1002_2021_k1_08;
 
-import idatt1002_2021_k1_08.CiterClient;
 import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
 
 public class TaskController {
 
+    /**
+     * Button to add task
+     */
     @FXML Button add_task_button;
+    /**
+     * Button to edit already existing task
+     */
     @FXML Button edit_task_button;
+    /**
+     * Button to delete existing task
+     */
     @FXML Button delete_task_button;
+    /**
+     * Button to mark existing task as completed for sorting purposes
+     */
     @FXML Button complete_task_button;
-
-    @FXML Button deleteCategory;
+    /**
+     * List of all tasks that exists inside application
+     */
     @FXML private ListView<Task> tasksView;
+    /**
+     * Our logo for the project
+     */
     @FXML Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
+    /**
+     * ImageView for our logo
+     */
     @FXML ImageView logoImageView;
+    /**
+     * Button for the menu
+     */
     @FXML MenuButton menuButton;
+    /**
+     *  Help item inside menu
+     */
     @FXML MenuItem helpItem;
+    /**
+     * DatePicker item for sorting purposes
+     */
     @FXML DatePicker datePicker;
+    /**
+     * AnchorPane for fxml
+     */
     @FXML AnchorPane taskDisplayAnchor;
-
+    /**
+     * Display field for Task name
+     */
     @FXML TextField taskNameTextField;
+    /**
+     * Display field for End Date
+     */
     @FXML  TextField endDateTextField;
+    /**
+     * Display field for Start Date
+     */
     @FXML  TextField startDateTextField;
+    /**
+     * Display field for priority
+     */
     @FXML TextField priorityTextField;
+    /**
+     * Display field for Category
+     */
     @FXML TextField categoryTextField;
+    /**
+     * Display field for Notes / Details on each task
+     */
     @FXML TextArea notesTextArea;
+    /**
+     * List of all textfields
+     */
     @FXML ArrayList<TextField> textfieldList = new ArrayList<>();
+    /**
+     * Button for sorting completed and uncompleted tasks
+     */
     @FXML ToggleButton chooseCompletedToggleButton;
-
+    /**
+     * choiceBox for sorting
+     */
     @FXML ChoiceBox choiceBox;
-    
 
 
+    /**
+     * Default constructor for controller
+     *
+     * @throws FileNotFoundException
+     */
     public TaskController() throws FileNotFoundException { }
 
+    /**
+     * Initialize method for all items inside primary fxml
+     * provides an initial load for all items and sets all items to designated values
+     */
     public void initialize() {
 
 
@@ -95,11 +150,6 @@ public class TaskController {
                     break;
                 default:
             }
-
-            System.out.println("Selection made: [" + selectedIndex + "]");
-            System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
-
-
         });
 
         textfieldList.add(taskNameTextField);
@@ -175,6 +225,10 @@ public class TaskController {
         });
     }
 
+    /**
+     * This method updates list after a change has happened.
+     * A change could be sorting, editing, deleting etc.
+     */
     public void filterOptionHandler() {
         int selectedIndex1 = choiceBox.getSelectionModel().getSelectedIndex();
         System.out.println(selectedIndex1);
@@ -199,23 +253,34 @@ public class TaskController {
                         viewUnCompletedTasks();
                         break;
                     default:
-                System.out.println("Selection made: [" + selectedIndex + "]");
-                System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
             };
         }
 
-
+    /**
+     * Changes scene to addTask if "NEW" button is pressed
+     *
+     * @throws IOException
+     */
     @FXML
     public void changeSceneToAddTask() throws IOException {
         CiterClient.setRoot("addTask");
     }
+
+    /**
+     * Changes scene to "help" if help is pressed inside menu
+     *
+     * @throws IOException
+     */
     public void changeSceneToHelp() throws IOException {
         CiterClient.setRoot("help");
     }
 
 
-
-
+    /**
+     * method sorts list based on status of completed or not completed
+     *
+     * @return ObservableList boo
+     */
     public ObservableList<Task> sortListofTaskUnFinished(){
         ObservableList<Task> listOfTasks = FileHandler.getInstance().getTasks();
         SortedList<Task> sortedList = new SortedList<Task>(listOfTasks, new Comparator<Task>() {
@@ -235,7 +300,10 @@ public class TaskController {
     }
 
 
-
+    /**
+     * Sorts tasks based on their status of completion
+     * Then display method is called on the list to update
+     */
     @FXML
     public void viewCompletedTasks(){
         ObservableList<Task> boo = FXCollections.observableArrayList();
@@ -247,14 +315,30 @@ public class TaskController {
         displayTasks(boo);
     }
 
+    /**
+     * Helper method
+     *
+     * Sort tasks based on their status of completion
+     * Then display method is called on the list to update, with filter method to do the sorting
+     */
     private void viewUnCompletedTasks(){
         displayTasks(filterOutUnCompleted());
     }
 
+    /**
+     * Gets tasks stored at a earlier stage if tasks exists.
+     * Will load if any, else will create file and launch application with a new clean .ser file
+     * @return ObservableList obTasks
+     */
     public ObservableList<Task> getTasksFilehandler(){
         return FileHandler.getInstance().getTasks();
     }
 
+    /**
+     * Sorter for uncompleted tasks
+     *
+     * @return ObservableList boo
+     */
     public ObservableList<Task> filterOutUnCompleted(){
         ObservableList<Task> boo = FXCollections.observableArrayList();
         for(Task t:getTasksFilehandler()){
@@ -265,6 +349,10 @@ public class TaskController {
         return boo;
     }
 
+    /**
+     * Sorter for tasks based on their priority value
+     * then displays with displayTasks method
+     */
     public void viewByPriority(){
         ObservableList<Task> tasksOfPriority;
         if(chooseCompletedToggleButton.isSelected()){
@@ -283,6 +371,10 @@ public class TaskController {
         displayTasks(sortedList);
     }
 
+    /**
+     * Sorter to enable user the viewing of tasks connected to a specific category
+     * will only display tasks that are uncompleted
+     */
     public void viewByCategory(){
         ObservableList<Task> tasksOfCategory = checkOfCompleted();
         SortedList<Task> sortedList = new SortedList<>(tasksOfCategory, new Comparator<Task>() {
@@ -294,6 +386,11 @@ public class TaskController {
         displayTasks(sortedList);
     }
 
+    /**
+     * helper method to check if list contains completed tasks after initial sorting
+     *
+     * @return completedList
+     */
     public ObservableList<Task> checkOfCompleted(){
         ObservableList<Task> completedList;
         if(chooseCompletedToggleButton.isSelected()){
@@ -307,6 +404,9 @@ public class TaskController {
         return completedList;
     }
 
+    /**
+     * Sorter that allows the user to view tasks due on a specific date
+     */
     public void tasksOnChosenDate(){
         LocalDate date = datePicker.getValue();
         ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
@@ -316,13 +416,19 @@ public class TaskController {
             }
         }
         tasksView.setItems(tasksOnDate);
-        System.out.println(tasksOnDate);
     }
+
+    /**
+     * Method to remove all sorting done. To view all tasks inside application in bulk
+     */
     public void viewAllTasks(){
         displayTasks(getTasksFilehandler());
     }
 
-
+    /**
+     * Helper method to display tasks
+     * @param tasks tasks inside list
+     */
     public void displayTasks(ObservableList<Task> tasks){
         datePicker.setValue(null);
         tasksView.setItems(tasks);
@@ -339,12 +445,20 @@ public class TaskController {
         notesTextArea.setText(task1.getDescription());
     }
 
+    /**
+     * Helper method to clear text from textfield after deletion
+     */
     private void clearText(){
         for (int i = 0; i < textfieldList.size(); i++) {
             textfieldList.get(i).setText(null);
         }
         notesTextArea.setText(null);
     }
+
+    /**
+     * Delete action handler for key pressed
+     * @param e the action registered to the buttonpress
+     */
     @FXML
     public void handleKeyPressed(KeyEvent e){
         Task taskSelected = tasksView.getSelectionModel().getSelectedItem();
@@ -355,6 +469,9 @@ public class TaskController {
         }
     }
 
+    /**
+     * Handler for editbutton
+     */
     public void handleEditButton(){
         for(TextField textField : textfieldList){
             textField.setEditable(true);
@@ -363,6 +480,10 @@ public class TaskController {
         delete_task_button.setText("Save");
         saveEditedTask();
     }
+
+    /**
+     * Helper method to save edited task after edit is done
+     */
     public void saveEditedTask(){
         LocalDate startLocalDate = LocalDate.parse(startDateTextField.getText());
         LocalDate endLocalDate = LocalDate.parse(endDateTextField.getText());
@@ -381,10 +502,7 @@ public class TaskController {
         delete_task_button.setText("Delete Task");
     }
 
-    /**
-     * Directs user to add new category
-     * @throws IOException
-     */
+
     /**
      *
      * @param delete
@@ -420,6 +538,11 @@ public class TaskController {
 
     }
 
+    /**
+     * Handler for complete button
+     *
+     * @param complete the complete button
+     */
     @FXML
     public void handleCompleteButton(ActionEvent complete){
         Task selectedTask = tasksView.getSelectionModel().getSelectedItem();
@@ -430,6 +553,10 @@ public class TaskController {
         }
     }
 
+    /**
+     * Helper method for complete task handler
+     * @param task the selected task that provides the task inndata
+     */
     private void completeTask(Task task){
         task.setCompleted(true);
         if(choiceBox.getSelectionModel().getSelectedIndex() == -1){
@@ -439,26 +566,6 @@ public class TaskController {
             filterOptionHandler();
         }
     }
-
-
-
-    public void deleteCategory (String category) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Category");
-        alert.setHeaderText("Delete Category: " + category);
-        alert.setContentText("Are you sure? Press OK to confirm, or cancel to Back out.");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isPresent() && (result.get() == ButtonType.OK)) {
-            FileHandler.getInstance().deleteCategory(category); //Deletes Category string in filehandler Class
-        }
-        clearText();
-    }
-    //Metode laget på forhånd, ingen deletebutton eller delete category laget enda
-    @FXML
-    public void handleDeleteCategory(ActionEvent delete){
-    }
-
 
 
 }
