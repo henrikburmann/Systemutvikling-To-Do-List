@@ -39,12 +39,7 @@ public class TaskController {
     @FXML Button edit_task_button;
     @FXML Button delete_task_button;
     @FXML Button complete_task_button;
-    @FXML MenuButton filterButton;
-    @FXML MenuItem showCompletedTasksItem;
-    @FXML MenuItem sortbyPriorityItem;
-    @FXML MenuItem sortByCategoryItem;
-    @FXML MenuItem showUnCompletedTasksItem;
-    @FXML MenuItem showAllTasksItem;
+
     @FXML Button deleteCategory;
     @FXML private ListView<Task> tasksView;
     @FXML Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
@@ -71,7 +66,9 @@ public class TaskController {
 
     public void initialize() {
 
-        choiceBox.setValue("filter");
+
+        viewUnCompletedTasks();
+        choiceBox.setValue("Show all uncompleted");
         choiceBox.getItems().add(0,"Sort by category");
         choiceBox.getItems().add(1,"Sort by priority");
         choiceBox.getItems().add(2,"Show all completed tasks");
@@ -98,6 +95,7 @@ public class TaskController {
                     break;
                 default:
             }
+
             System.out.println("Selection made: [" + selectedIndex + "]");
             System.out.println("   ChoiceBox.getValue(): " + choiceBox.getValue());
 
@@ -111,7 +109,7 @@ public class TaskController {
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
         menuButton = new MenuButton("Options", null, helpItem);
-        filterButton = new MenuButton("Filter", null, sortByCategoryItem, sortbyPriorityItem, showCompletedTasksItem, showUnCompletedTasksItem, showAllTasksItem);
+
         for(TextField textField : textfieldList){
             textField.setEditable(false);
         }

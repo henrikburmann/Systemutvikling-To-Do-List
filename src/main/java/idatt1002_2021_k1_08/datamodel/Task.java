@@ -22,20 +22,21 @@ public class Task implements Serializable {
      * Instantiates a new Task.
      *
      * @param taskName    the task name
-     * @param startDate   the start date
      * @param endDate     the end date
      * @param priority    the priority
      */
 
 //Constructor if all parameters are good and written in their respective FXML textfields
-    public Task (String taskName, String category,LocalDate startDate, LocalDate endDate, String priority){
-        setEndDate(endDate);
-        setStartDate(LocalDate.now());
+    public Task (String taskName, String category, LocalDate endDate, String priority){
+        this.startDate = LocalDate.now();
         setEndDate(endDate);
         setTaskName(taskName);
         setPriority(priority);
         setCompleted(false);
         setCategory(category);
+        if (category == null){
+            setCategory("");
+        }
 
     }
 
@@ -70,7 +71,8 @@ public class Task implements Serializable {
      * @param taskName the task name
      */
     public void setTaskName(String taskName) {
-
+        checkifNull(taskName);
+        checkIfEmpty(taskName);
         this.taskName = taskName;
     }
 
@@ -96,10 +98,6 @@ public class Task implements Serializable {
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
     }
 
     /**
@@ -149,8 +147,30 @@ public class Task implements Serializable {
             return 1;
         }
     }
+    private void checkifNull(String string){
+        if(string == (null)){
+            throw new NullPointerException("String cant be null");
+        }
+    }
 
+    private void checkIfEmpty(String string){
+        if(string.isEmpty()){
+            throw new IllegalArgumentException("String cant be empty");
+        }
+    }
+    public void setEndDate(LocalDate endDate) {
+        if(endDate.isBefore(startDate)){
+            throw new IllegalArgumentException("End date cant be before start date - " + startDate);
+        }
+        this.endDate = endDate;
+        System.out.println(startDate + "Startdato");
+        System.out.println(this.endDate + "Sluttdato");
+        System.out.println(startDate.isBefore(this.endDate));
+    }
 
+    /*public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }*/
 
     @Override
     public String toString() {

@@ -31,7 +31,7 @@
                   <font>
                      <Font size="18.0" />
                   </font></Label>
-               <Label layoutX="302.0" layoutY="223.0" text="Category">
+               <Label layoutX="280.0" layoutY="223.0" text="Category">
                   <font>
                      <Font size="18.0" />
                   </font></Label>
@@ -55,8 +55,8 @@
                      <Font size="18.0" />
                   </font></Label>
                <ChoiceBox fx:id="priorityChoiceBox" layoutX="302.0" layoutY="181.0" prefHeight="26.0" prefWidth="166.0" />
-               <ComboBox fx:id="categoryList" layoutX="304.0" layoutY="251.0" prefHeight="26.0" prefWidth="166.0" promptText="CHOOSE" />
-               <Button fx:id="newCategoryButton" layoutX="398.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleNewCategoryButton" prefHeight="30.0" prefWidth="72.0" text="NEW">
+               <ComboBox fx:id="categoryList" layoutX="278.0" layoutY="250.0" prefHeight="26.0" prefWidth="166.0" promptText="CHOOSE" />
+               <Button fx:id="newCategoryButton" layoutX="444.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleNewCategoryButton" prefHeight="26.0" prefWidth="60.0" text="NEW">
                   <font>
                      <Font size="14.0" />
                   </font></Button>
