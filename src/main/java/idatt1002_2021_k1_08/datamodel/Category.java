@@ -27,7 +27,10 @@ public class Category {
      * @param task the task
      */
     public void addTask(Task task){
-        tasks.add(task);
+        if(!tasks.contains(task)){
+            tasks.add(task);
+        }
+        else throw new IllegalArgumentException("Task already exist in tasks");
     }
 
     /**
@@ -36,7 +39,10 @@ public class Category {
      * @param task the task
      */
     public void removeTask(Task task){
-        tasks.remove(task);
+        if(tasks.contains(task)){
+            tasks.remove(task);
+        }
+        else throw new IllegalArgumentException("Task does not exist in tasks");
     }
 
     /**

@@ -21,12 +21,12 @@ public class Task implements Serializable {
     /**
      * Instantiates a new Task.
      *
-     * @param taskName    the task name
-     * @param startDate   the start date
-     * @param endDate     the end date
-     * @param priority    the priority
+     * @param taskName  the task name
+     * @param category  the category
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @param priority  the priority
      */
-
 //Constructor if all parameters are good and written in their respective FXML textfields
     public Task (String taskName, String category,LocalDate startDate, LocalDate endDate, String priority){
         setEndDate(endDate);
@@ -39,11 +39,24 @@ public class Task implements Serializable {
 
     }
 
+    /**
+     * Is completed boolean.
+     *
+     * @return the boolean
+     */
     public boolean isCompleted() {
         return completed;
     }
 
+    /**
+     * Sets completed.
+     *
+     * @param completed the completed
+     */
     public void setCompleted(boolean completed) {
+        if(this.completed == completed){
+            throw new IllegalArgumentException("Completed value cant be the same");
+        }
         this.completed = completed;
     }
 
@@ -58,7 +71,8 @@ public class Task implements Serializable {
 
     /**
      * Get category
-     * @return category
+     *
+     * @return category category
      */
     public String getCategory() {
         return category;
@@ -70,7 +84,8 @@ public class Task implements Serializable {
      * @param taskName the task name
      */
     public void setTaskName(String taskName) {
-
+        checkIfEmpty(taskName);
+        checkifNull(taskName);
         this.taskName = taskName;
     }
 
@@ -89,16 +104,30 @@ public class Task implements Serializable {
      * @param description the description
      */
     public void setDescription(String description) {
-
+        checkifNull(description);
+        checkIfEmpty(description);
         this.description = description;
     }
 
 
+    /**
+     * Sets start date.
+     *
+     * @param startDate the start date
+     */
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
+    /**
+     * Sets end date.
+     *
+     * @param endDate the end date
+     */
     public void setEndDate(LocalDate endDate) {
+        if(endDate.isBefore(this.startDate)){
+            throw new IllegalArgumentException("End date cant be before start date - " + this.startDate);
+        }
         this.endDate = endDate;
     }
 
@@ -130,14 +159,33 @@ public class Task implements Serializable {
         return priority;
     }
 
+    /**
+     * Sets priority.
+     *
+     * @param priority the priority
+     */
     public void setPriority(String priority) {
+        checkIfEmpty(priority);
+        checkifNull(priority);
         this.priority = priority;
     }
 
+    /**
+     * Sets category.
+     *
+     * @param category the category
+     */
     public void setCategory(String category) {
+        checkifNull(category);
+        checkIfEmpty(category);
         this.category = category;
     }
 
+    /**
+     * Set priority number int.
+     *
+     * @return the int
+     */
     public int setPriorityNumber(){
         if (priority.equals("High")){
             return 3;
@@ -150,7 +198,17 @@ public class Task implements Serializable {
         }
     }
 
+    private void checkifNull(String string){
+        if(string == (null)){
+            throw new NullPointerException("String cant be null");
+        }
+    }
 
+    private void checkIfEmpty(String string){
+        if(string.isEmpty()){
+            throw new IllegalArgumentException("String cant be empty");
+        }
+    }
 
     @Override
     public String toString() {
