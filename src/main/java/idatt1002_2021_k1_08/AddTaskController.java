@@ -49,14 +49,15 @@ public class AddTaskController {
     }
     @FXML
     public void addTaskMethod() throws IOException {
-        String taskName = task_name_textfield.getText().trim();
         if(date_time_box.getValue().isBefore(LocalDate.now())){
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("DATE WARNING");
-            alert.setHeaderText("DATE INPUT RULES");
-            alert.setContentText("Date input cannot be a previous date");
+            alert.setTitle("INPUT WARNING");
+            alert.setHeaderText("WRONG DATE INPUT");
+            alert.setContentText("Date input can be at the earliest today");
             alert.show();
         }else{
+            String taskName = task_name_textfield.getText().trim();
+
             LocalDate date = LocalDate.of(date_time_box.getValue().getYear(),
                     date_time_box.getValue().getMonthValue(), date_time_box.getValue().getDayOfMonth());
 
@@ -65,12 +66,12 @@ public class AddTaskController {
             String category = categoryList.getSelectionModel().getSelectedItem();
 
             Task task = new Task(taskName, category,LocalDate.now(),date,priority);
-
+            task.setDescription(notes_textarea.getText());
             task.setEndDate(date);
             task.setPriority(priority);
 
             FileHandler.getInstance().addTask(task);
-
+            System.out.println(task.getDescription());
             changeSceneToPrimary();
         }
     }

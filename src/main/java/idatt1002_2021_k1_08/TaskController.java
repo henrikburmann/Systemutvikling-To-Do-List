@@ -72,8 +72,8 @@ public class TaskController {
         choiceBox.setValue("filter");
         choiceBox.getItems().add(0,"Sort by category");
         choiceBox.getItems().add(1,"Sort by priority");
-        choiceBox.getItems().add(2,"Show completed tasks");
-        choiceBox.getItems().add(3,"Show uncompleted tasks");
+        choiceBox.getItems().add(2,"Show all completed tasks");
+        choiceBox.getItems().add(3,"Show all uncompleted tasks");
         choiceBox.getItems().add(4,"Show all tasks");
 
         choiceBox.setOnAction((event) -> {
@@ -312,7 +312,6 @@ public class TaskController {
         endDateTextField.setText(task1.getEndDate().toString());
         priorityTextField.setText(task1.getPriority());
         notesTextArea.setText(task1.getDescription());
-
     }
 
     private void clearText(){
@@ -392,6 +391,7 @@ public class TaskController {
             FileHandler.getInstance().deleteTask(task); //Deletes from list in FileHandler class
         }
         clearText();
+        filterOptionHandler();
     }
 
     @FXML
