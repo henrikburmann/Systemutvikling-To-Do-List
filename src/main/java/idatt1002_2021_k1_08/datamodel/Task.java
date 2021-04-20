@@ -220,6 +220,6 @@ public class Task implements Serializable {
      */
     @Override
     public String toString() {
-        return taskName + "   Deadline: " + endDate + "   Priority " + priority;
+        return taskName + "   Deadline: " + endDate + "   Priority " + priority + completed;
     }
 }

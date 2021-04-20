@@ -136,7 +136,7 @@ public class TaskController {
         categoryList.setItems(FileHandler.getCategories());
         categoryList.setVisible(false);
         saveEditedTask.setVisible(false);
-        choiceBox.setValue("filter");
+
         startDateEdit.setVisible(false);
         endDateEdit.setVisible(false);
         choiceBox.getItems().add(0,"Sort by category");
