@@ -380,15 +380,25 @@ public class TaskController {
     }
 
     public void saveEditedTask(){
-        LocalDate startDateEdited = LocalDate.of(startDateEdit.getValue().getYear(),
-                startDateEdit.getValue().getMonthValue(), startDateEdit.getValue().getDayOfMonth());
-        LocalDate endDateEdited = LocalDate.of(endDateEdit.getValue().getYear(),
-                endDateEdit.getValue().getMonthValue(), endDateEdit.getValue().getDayOfMonth());
+        LocalDate startDate;
+        LocalDate endDate;
+        if(startDateEdit.getValue()!=null) {
+            startDate = LocalDate.of(startDateEdit.getValue().getYear(),
+                    startDateEdit.getValue().getMonthValue(), startDateEdit.getValue().getDayOfMonth());
+        }
+            else{
+                startDate = tasksView.getSelectionModel().getSelectedItem().getStartDate();
+            }
+        if(endDateEdit.getValue()!=null){
+        endDate = LocalDate.of(endDateEdit.getValue().getYear(),
+                endDateEdit.getValue().getMonthValue(), endDateEdit.getValue().getDayOfMonth());}
+                else{
+        endDate = tasksView.getSelectionModel().getSelectedItem().getEndDate();}
 
         tasksView.getSelectionModel().getSelectedItem().setTaskName(taskNameTextField.getText());
-        tasksView.getSelectionModel().getSelectedItem().setStartDate(startDateEdited);
-        tasksView.getSelectionModel().getSelectedItem().setEndDate(endDateEdited);
         tasksView.getSelectionModel().getSelectedItem().setPriority(priorityChoiceBox.getValue());
+        tasksView.getSelectionModel().getSelectedItem().setStartDate(startDate);
+        tasksView.getSelectionModel().getSelectedItem().setEndDate(endDate);
         tasksView.getSelectionModel().getSelectedItem().setCategory(categoryList.getSelectionModel().getSelectedItem());
         tasksView.getSelectionModel().getSelectedItem().setDescription(notesTextArea.getText());
 
