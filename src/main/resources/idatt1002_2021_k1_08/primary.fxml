@@ -41,7 +41,6 @@
             </font></Text>
 
          <DatePicker fx:id="datePicker" layoutX="26.0" layoutY="100.0" onAction="#tasksOnChosenDate" prefHeight="30.0" prefWidth="174.0" />
-         <DatePicker layoutX="50.0" layoutY="181.0" prefWidth="112.0" />
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
