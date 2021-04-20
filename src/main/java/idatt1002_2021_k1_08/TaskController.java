@@ -20,7 +20,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -149,6 +151,30 @@ public class TaskController {
 
         tasksView.setItems(sortListofTaskUnFinished());
         tasksView.getSelectionModel().selectFirst();
+
+        //Changes color of task if it is due today or begyond
+        tasksView.setCellFactory(new Callback<ListView<Task>, ListCell<Task>>() {
+            @Override
+            public ListCell<Task> call(ListView<Task> taskListView) {
+                ListCell<Task> taskCell = new ListCell<Task>(){
+
+                    @Override
+                    protected void updateItem(Task task, boolean empty) {
+                        super.updateItem(task, empty);
+                        if(empty){
+                            setText(null);
+                        }else{
+                            setText(task.toString());
+                            //If task is due for tomorrow of beyond
+                            if(task.getEndDate().isAfter(LocalDate.now())){
+                                setTextFill(Color.RED);
+                            }
+                        }
+                    }
+                };
+                return taskCell;
+            }
+        });
     }
 
     public void filterOptionHandler() {
