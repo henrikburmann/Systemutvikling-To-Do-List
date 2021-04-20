@@ -59,12 +59,12 @@ public class AddTaskController {
         String category = categoryList.getSelectionModel().getSelectedItem();
 
         Task task = new Task(taskName, category,LocalDate.now(),date,priority);
-
+        task.setDescription(notes_textarea.getText());
         task.setEndDate(date);
         task.setPriority(priority);
 
         FileHandler.getInstance().addTask(task);
-
+        System.out.println(task.getDescription());
         changeSceneToPrimary();
     }
 }
