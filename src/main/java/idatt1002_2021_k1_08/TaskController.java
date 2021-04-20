@@ -1,5 +1,6 @@
 package idatt1002_2021_k1_08;
 
+
 import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
 import javafx.beans.value.ChangeListener;
@@ -14,8 +15,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -45,6 +48,7 @@ public class TaskController {
     /**
      * List of all tasks that exists inside application
      */
+
     @FXML private ListView<Task> tasksView;
     /**
      * Our logo for the project
@@ -107,6 +111,11 @@ public class TaskController {
      */
     @FXML ChoiceBox choiceBox;
 
+    @FXML ComboBox<String> categoryList = new ComboBox<>();
+    @FXML ChoiceBox <String> priorityChoiceBox = new ChoiceBox<>();
+    @FXML Button saveEditedTask;
+    @FXML DatePicker startDateEdit;
+    @FXML DatePicker endDateEdit;
 
     /**
      * Default constructor for controller
@@ -120,10 +129,16 @@ public class TaskController {
      * provides an initial load for all items and sets all items to designated values
      */
     public void initialize() {
-
-
         viewUnCompletedTasks();
         choiceBox.setValue("Show all uncompleted");
+        priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
+        priorityChoiceBox.setVisible(false);
+        categoryList.setItems(FileHandler.getCategories());
+        categoryList.setVisible(false);
+        saveEditedTask.setVisible(false);
+        choiceBox.setValue("filter");
+        startDateEdit.setVisible(false);
+        endDateEdit.setVisible(false);
         choiceBox.getItems().add(0,"Sort by category");
         choiceBox.getItems().add(1,"Sort by priority");
         choiceBox.getItems().add(2,"Show all completed tasks");
@@ -475,33 +490,56 @@ public class TaskController {
      * Handler for editbutton
      */
     public void handleEditButton(){
-        for(TextField textField : textfieldList){
-            textField.setEditable(true);
-        }
-        notesTextArea.setEditable(true);
-        delete_task_button.setText("Save");
-        saveEditedTask();
+        setToEdit(true);
     }
 
     /**
-     * Helper method to save edited task after edit is done
+     * help method to set primary in edit mode
+     * @param a
+     */
+    public void setToEdit(boolean a){
+        taskNameTextField.setEditable(a);
+        notesTextArea.setEditable(a);
+        categoryList.setVisible(a);
+        priorityChoiceBox.setVisible(a);
+        saveEditedTask.setVisible(a);
+        startDateEdit.setVisible(a);
+        endDateEdit.setVisible(a);
+        boolean b  = !a;
+        edit_task_button.setVisible(b);
+        categoryTextField.setVisible(b);
+        startDateTextField.setVisible(b);
+        endDateTextField.setVisible(b);
+        priorityTextField.setVisible(b);
+    }
+
+    /**
+     * Method to save the edited Task
      */
     public void saveEditedTask(){
-        LocalDate startLocalDate = LocalDate.parse(startDateTextField.getText());
-        LocalDate endLocalDate = LocalDate.parse(endDateTextField.getText());
-        Task task1 = tasksView.getSelectionModel().getSelectedItem();
-
-        task1.setTaskName(taskNameTextField.getText());
-        task1.setStartDate(startLocalDate);
-        task1.setEndDate(endLocalDate);
-        task1.setPriority(priorityTextField.getText());
-        task1.setCategory(categoryTextField.getText());
-        task1.setDescription(notesTextArea.getText());
-        for(TextField textField : textfieldList){
-            textField.setEditable(false);
+        LocalDate startDate;
+        LocalDate endDate;
+        if(startDateEdit.getValue()!=null) {
+            startDate = LocalDate.of(startDateEdit.getValue().getYear(),
+                    startDateEdit.getValue().getMonthValue(), startDateEdit.getValue().getDayOfMonth());
         }
-        notesTextArea.setEditable(false);
-        delete_task_button.setText("Delete Task");
+            else{
+                startDate = tasksView.getSelectionModel().getSelectedItem().getStartDate();
+            }
+        if(endDateEdit.getValue()!=null){
+        endDate = LocalDate.of(endDateEdit.getValue().getYear(),
+                endDateEdit.getValue().getMonthValue(), endDateEdit.getValue().getDayOfMonth());}
+                else{
+        endDate = tasksView.getSelectionModel().getSelectedItem().getEndDate();}
+
+        tasksView.getSelectionModel().getSelectedItem().setTaskName(taskNameTextField.getText());
+        tasksView.getSelectionModel().getSelectedItem().setPriority(priorityChoiceBox.getValue());
+        tasksView.getSelectionModel().getSelectedItem().setStartDate(startDate);
+        tasksView.getSelectionModel().getSelectedItem().setEndDate(endDate);
+        tasksView.getSelectionModel().getSelectedItem().setCategory(categoryList.getSelectionModel().getSelectedItem());
+        tasksView.getSelectionModel().getSelectedItem().setDescription(notesTextArea.getText());
+
+        setToEdit(false);
     }
 
 

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -95,6 +96,10 @@
                <TextField fx:id="categoryTextField" editable="false" layoutX="97.0" layoutY="208.0" prefHeight="6.0" prefWidth="109.0" />
                <TextArea fx:id="notesTextArea" editable="false" layoutX="12.0" layoutY="269.0" prefHeight="84.0" prefWidth="206.0" wrapText="true" />
                <Button fx:id="complete_task_button" layoutX="52.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleCompleteButton" prefHeight="34.0" prefWidth="125.0" text="Complete Task" />
+               <ComboBox fx:id="categoryList" layoutX="104.0" layoutY="211.0" prefHeight="24.0" prefWidth="102.0" />
+               <ChoiceBox fx:id="priorityChoiceBox" layoutX="104.0" layoutY="175.0" prefHeight="25.0" prefWidth="109.0" />
+               <DatePicker fx:id="startDateEdit" layoutX="97.0" layoutY="87.0" prefHeight="30.0" prefWidth="115.0" />
+               <DatePicker fx:id="endDateEdit" layoutX="101.0" layoutY="136.0" prefHeight="30.0" prefWidth="109.0" />
             </children>
          </AnchorPane>
          <Label layoutX="69.0" layoutY="14.0" text="TASK" textFill="#e5dfdf">
@@ -108,6 +113,7 @@
             <effect>
                <Glow />
             </effect></Button>
+         <Button fx:id="saveEditedTask" layoutX="14.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveEditedTask" prefHeight="33.0" prefWidth="70.0" text="Save" />
       </AnchorPane>
    </children>
 </AnchorPane>

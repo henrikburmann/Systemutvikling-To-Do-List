@@ -1,24 +1,13 @@
 package idatt1002_2021_k1_08;
 
-import idatt1002_2021_k1_08.CiterClient;
 import idatt1002_2021_k1_08.datamodel.FileHandler;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.StageStyle;
-
-import java.io.IOException;
 import java.util.Optional;
 
 public class CategoryController {
 
-    @FXML
-    TextField categoryName;
-    @FXML
-    Button addButton;
-    @FXML
-    Button okButton;
 
     /**
      * Method that opens an input box that allows user to create their own specified category instead of generic ones
