@@ -1,12 +1,11 @@
 package idatt1002_2021_k1_08;
 
-import idatt1002_2021_k1_08.datamodel.FileHandler;
+import idatt1002_2021_k1_08.datamodel.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 /**
@@ -50,8 +49,6 @@ public class CiterClient extends Application{
             e.printStackTrace();
         }
     }
-
-
 
     /**
      *
