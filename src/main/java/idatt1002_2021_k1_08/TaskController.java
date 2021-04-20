@@ -43,7 +43,6 @@ public class TaskController {
     @FXML MenuItem sortByCategoryItem;
     @FXML MenuItem showUnCompletedTasksItem;
     @FXML MenuItem showAllTasksItem;
-    @FXML Button deleteCategory;
     @FXML private ListView<Task> tasksView;
     @FXML Image logoImage = new Image(new FileInputStream("images/CiterLogo.png"));
     @FXML ImageView logoImageView;
@@ -336,8 +335,8 @@ public class TaskController {
             textField.setEditable(true);
         }
         notesTextArea.setEditable(true);
-        delete_task_button.setText("Save");
-        saveEditedTask();
+        edit_task_button.setText("Save");
+        edit_task_button.setOnAction(saveEditedTask());
     }
     public void saveEditedTask(){
         LocalDate startLocalDate = LocalDate.parse(startDateTextField.getText());
