@@ -42,18 +42,18 @@
             </font></Text>
 
          <DatePicker fx:id="datePicker" editable="false" layoutX="26.0" layoutY="100.0" onAction="#tasksOnChosenDate" prefHeight="30.0" prefWidth="174.0" />
-         <Circle fill="#ff1f1f" layoutX="40.0" layoutY="290.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-         <Text layoutX="74.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed tasks" wrappingWidth="125.33333333333326">
+         <Text layoutX="41.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed tasks" wrappingWidth="125.33333333333326">
             <font>
                <Font size="16.0" />
             </font>
          </Text>
-         <Text layoutX="74.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks over due" wrappingWidth="125.33333333333326">
+         <Text layoutX="41.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks over due" wrappingWidth="125.33333333333326">
             <font>
                <Font size="15.0" />
             </font>
          </Text>
-         <Circle fill="#5dff21" layoutX="40.0" layoutY="238.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+         <Circle fx:id="circle_red" fill="#f5870a" layoutX="32.0" layoutY="473.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+         <Circle fx:id="circle_green" fill="#5fb839" layoutX="32.0" layoutY="453.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
@@ -109,10 +109,10 @@
                <TextField fx:id="categoryTextField" editable="false" layoutX="97.0" layoutY="208.0" prefHeight="6.0" prefWidth="109.0" />
                <TextArea fx:id="notesTextArea" editable="false" layoutX="12.0" layoutY="269.0" prefHeight="84.0" prefWidth="206.0" wrapText="true" />
                <Button fx:id="complete_task_button" layoutX="52.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleCompleteButton" prefHeight="34.0" prefWidth="125.0" text="Complete Task" />
-               <ComboBox fx:id="categoryList" layoutX="104.0" layoutY="211.0" prefHeight="24.0" prefWidth="102.0" />
-               <ChoiceBox fx:id="priorityChoiceBox" layoutX="104.0" layoutY="175.0" prefHeight="25.0" prefWidth="109.0" />
+               <ComboBox fx:id="categoryList" layoutX="95.0" layoutY="210.0" prefHeight="30.0" prefWidth="112.0" />
+               <ChoiceBox fx:id="priorityChoiceBox" layoutX="98.0" layoutY="170.0" prefHeight="30.0" prefWidth="115.0" />
                <DatePicker fx:id="startDateEdit" layoutX="97.0" layoutY="87.0" prefHeight="30.0" prefWidth="115.0" />
-               <DatePicker fx:id="endDateEdit" layoutX="101.0" layoutY="136.0" prefHeight="30.0" prefWidth="109.0" />
+               <DatePicker fx:id="endDateEdit" layoutX="91.0" layoutY="132.0" prefHeight="34.0" prefWidth="125.0" />
             </children>
          </AnchorPane>
          <Label layoutX="69.0" layoutY="14.0" text="TASK" textFill="#e5dfdf">

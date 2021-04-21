@@ -15,10 +15,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.util.Callback;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,6 +27,12 @@ import java.util.Comparator;
 import java.util.Optional;
 
 public class TaskController {
+
+    /**
+     * Circles indicates color coding for completed tasks
+     */
+    @FXML Circle circle_red;
+    @FXML Circle circle_green;
 
     /**
      * Button to add task
@@ -230,7 +235,7 @@ public class TaskController {
                             setText(task.toString());
                             //If task is due for tomorrow of beyond
                             if(task.getEndDate().isBefore(LocalDate.now())){
-                                setTextFill(Color.RED);
+                                setTextFill(Color.ORANGE);
                             }else if(task.isCompleted()){
                                 setTextFill(Color.GREEN);
                             }
