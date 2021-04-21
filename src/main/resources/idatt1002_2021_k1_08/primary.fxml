@@ -42,19 +42,19 @@
             </font></Text>
 
          <DatePicker fx:id="datePicker" editable="false" layoutX="26.0" layoutY="100.0" onAction="#tasksOnChosenDate" prefHeight="30.0" prefWidth="174.0" />
-         <Label fx:id="label_dow_left" layoutX="-3.0" layoutY="451.0" prefHeight="52.0" prefWidth="231.0" />
-         <Text fx:id="completedTaskLable" layoutX="35.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed tasks" wrappingWidth="125.33333333333326">
+         <Label fx:id="label_dow_left" layoutX="-3.0" layoutY="451.0" prefHeight="58.0" prefWidth="231.0" />
+         <Circle fx:id="circle_orange" fill="#f5870a" layoutX="26.0" layoutY="489.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+         <Circle fx:id="circle_green" fill="#5fb839" layoutX="26.0" layoutY="469.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+         <Label layoutX="37.0" layoutY="456.0" text="Completed Tasks" textFill="#e5dfdf">
             <font>
                <Font size="16.0" />
             </font>
-         </Text>
-         <Text fx:id="taskOverDueLabel" layoutX="35.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks over due" wrappingWidth="125.33333333333326">
+         </Label>
+         <Label layoutX="35.0" layoutY="476.0" text="Tasks Over Duedate" textFill="#e5dfdf">
             <font>
-               <Font size="15.0" />
+               <Font size="16.0" />
             </font>
-         </Text>
-         <Circle fx:id="circle_orange" fill="#f5870a" layoutX="26.0" layoutY="489.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-         <Circle fx:id="circle_green" fill="#5fb839" layoutX="26.0" layoutY="469.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+         </Label>
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
