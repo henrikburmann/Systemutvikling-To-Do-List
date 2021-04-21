@@ -11,11 +11,12 @@ public class Task implements Serializable {
     private String taskName;
     private String description;
     private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDate deadline;
     private String priority;
     private static final long SerialVersionUID = 1L;
     private String category;
     private boolean completed;
+    private LocalDate finishDate;
 
 
     /**
@@ -129,8 +130,8 @@ public class Task implements Serializable {
      *
      * @return the end date
      */
-    public LocalDate getEndDate() {
-        return endDate;
+    public LocalDate getDeadline() {
+        return deadline;
     }
 
 
@@ -211,7 +212,7 @@ public class Task implements Serializable {
         if(endDate.isBefore(startDate)){
             throw new IllegalArgumentException("End date cant be before start date - " + startDate);
         }
-        this.endDate = endDate;
+        this.deadline = endDate;
     }
 
     /**
@@ -220,6 +221,18 @@ public class Task implements Serializable {
      */
     @Override
     public String toString() {
-        return taskName + "   Deadline: " + endDate + "   Priority " + priority + completed;
+        return taskName + "   Deadline: " + deadline + "   Priority " + priority + completed;
+    }
+
+    /**
+     * Get and set finishDate
+     * @return
+     */
+    public LocalDate getFinishDate() {
+        return finishDate;
+    }
+
+    public void setFinishDate(LocalDate finishDate) {
+        this.finishDate = finishDate;
     }
 }

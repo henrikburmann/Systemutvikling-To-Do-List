@@ -203,7 +203,7 @@ public class TaskController {
 
                     taskNameTextField.setText(task1.getTaskName());
                     startDateTextField.setText(task1.getStartDate().toString());
-                    endDateTextField.setText(task1.getEndDate().toString());
+                    endDateTextField.setText(task1.getDeadline().toString());
                     priorityTextField.setText(task1.getPriority());
                     categoryTextField.setText(task1.getCategory());
                     notesTextArea.setText(task1.getDescription());
@@ -234,7 +234,7 @@ public class TaskController {
                         }else{
                             setText(task.toString());
                             //If task is due for tomorrow of beyond
-                            if(task.getEndDate().isBefore(LocalDate.now())){
+                            if(task.getDeadline().isBefore(LocalDate.now())){
                                 setTextFill(Color.ORANGE);
                             }else if(task.isCompleted()){
                                 setTextFill(Color.GREEN);
@@ -308,7 +308,7 @@ public class TaskController {
         SortedList<Task> sortedList = new SortedList<Task>(listOfTasks, new Comparator<Task>() {
             @Override
             public int compare(Task task1, Task task2) {
-                return(task1.getEndDate().compareTo(task2.getEndDate()));
+                return(task1.getDeadline().compareTo(task2.getDeadline()));
             }
         });
 
@@ -433,7 +433,7 @@ public class TaskController {
         LocalDate date = datePicker.getValue();
         ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
         for (int i = 0; i < getTasksFilehandler().size(); i++) {
-            if (getTasksFilehandler().get(i).getEndDate().equals(date)){
+            if (getTasksFilehandler().get(i).getDeadline().equals(date)){
                 tasksOnDate.add(getTasksFilehandler().get(i));
             }
         }
@@ -462,7 +462,7 @@ public class TaskController {
     private void fillInformationArea(Task task1) {
         taskNameTextField.setText(task1.getTaskName());
         startDateTextField.setText(task1.getStartDate().toString());
-        endDateTextField.setText(task1.getEndDate().toString());
+        endDateTextField.setText(task1.getDeadline().toString());
         priorityTextField.setText(task1.getPriority());
         notesTextArea.setText(task1.getDescription());
     }
@@ -535,7 +535,7 @@ public class TaskController {
         endDate = LocalDate.of(endDateEdit.getValue().getYear(),
                 endDateEdit.getValue().getMonthValue(), endDateEdit.getValue().getDayOfMonth());}
                 else{
-        endDate = tasksView.getSelectionModel().getSelectedItem().getEndDate();}
+        endDate = tasksView.getSelectionModel().getSelectedItem().getDeadline();}
 
         tasksView.getSelectionModel().getSelectedItem().setTaskName(taskNameTextField.getText());
         tasksView.getSelectionModel().getSelectedItem().setPriority(priorityChoiceBox.getValue());
