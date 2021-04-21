@@ -113,14 +113,7 @@ public class FileHandler {
         ArrayList<String> categoryStore = new ArrayList<>(categories);
         ArrayList<Task> taskStore = new ArrayList<>();
 
-        for (Task t : obTasks) {
-            Task task = new Task(t.getTaskName(),t.getCategory(), t.getDeadline(), t.getPriority());
-            task.setDescription(t.getDescription());
-            task.setCompleted(t.isCompleted());
-            task.setStartDate(t.getStartDate());
-            task.setFinishDate(t.getFinishDate());
-            taskStore.add(task);
-        }
+        taskStore.addAll(obTasks);
         serializeCategory(categoryStore);
         serializeTask(taskStore);
     }
