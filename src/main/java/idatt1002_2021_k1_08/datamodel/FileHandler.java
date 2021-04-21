@@ -114,10 +114,11 @@ public class FileHandler {
         ArrayList<Task> taskStore = new ArrayList<>();
 
         for (Task t : obTasks) {
-            Task task = new Task(t.getTaskName(),t.getCategory(), t.getEndDate(), t.getPriority());
+            Task task = new Task(t.getTaskName(),t.getCategory(), t.getDeadline(), t.getPriority());
             task.setDescription(t.getDescription());
             task.setCompleted(t.isCompleted());
             task.setStartDate(t.getStartDate());
+            task.setFinishDate(t.getFinishDate());
             taskStore.add(task);
         }
         serializeCategory(categoryStore);
@@ -142,10 +143,11 @@ public class FileHandler {
             categories.addAll(catlist);
 
             for (int i = 0; i < list.size(); i++) {
-                Task task = new Task(list.get(i).getTaskName(), list.get(i).getCategory(), list.get(i).getEndDate(), list.get(i).getPriority());
+                Task task = new Task(list.get(i).getTaskName(), list.get(i).getCategory(), list.get(i).getDeadline(), list.get(i).getPriority());
                 task.setCompleted(list.get(i).isCompleted());
                 task.setStartDate(list.get(i).getStartDate());
                 task.setDescription(list.get(i).getDescription());
+                task.setFinishDate(list.get(i).getFinishDate());
                 obTasks.add(task);
             }
 

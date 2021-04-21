@@ -18,6 +18,15 @@
 #label_header_left{
     -fx-background-color:#075075;
 }
+#completedTaskLable{
+    -fx-prompt-text-fill:  white;
+}
+#taskOverDueLabel{
+    -fx-background-color: white;
+}
+#label_dow_left{
+    -fx-background-color: #075075;
+}
 #label_header_middle {
     -fx-background-color: #3C866F;
 }

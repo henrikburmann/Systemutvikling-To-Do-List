@@ -31,7 +31,7 @@ public class TaskController {
     /**
      * Circles indicates color coding for completed tasks
      */
-    @FXML Circle circle_red;
+    @FXML Circle circle_orange;
     @FXML Circle circle_green;
 
     /**
@@ -108,6 +108,14 @@ public class TaskController {
      */
     @FXML ArrayList<TextField> textfieldList = new ArrayList<>();
     /**
+     * Label taht shows finished date
+     */
+    @FXML Label finished;
+    /**
+     * EndDate Label
+     */
+    @FXML Label endDate;
+    /**
      * Button for sorting completed and uncompleted tasks
      */
     @FXML ToggleButton chooseCompletedToggleButton;
@@ -141,7 +149,7 @@ public class TaskController {
         categoryList.setItems(FileHandler.getCategories());
         categoryList.setVisible(false);
         saveEditedTask.setVisible(false);
-
+        finished.setVisible(false);
         startDateEdit.setVisible(false);
         endDateEdit.setVisible(false);
         choiceBox.getItems().add(0,"Sort by category");
@@ -286,6 +294,14 @@ public class TaskController {
     @FXML
     public void changeSceneToAddTask() throws IOException {
         CiterClient.setRoot("addTask");
+    }
+
+    /**
+     * Shows finish date for completed task
+     */
+    public void showFinishDate(boolean a){
+        finished.setVisible(a);
+        endDate.setVisible(!a);
     }
 
     /**
@@ -460,9 +476,16 @@ public class TaskController {
      */
 
     private void fillInformationArea(Task task1) {
+        showFinishDate(false);
         taskNameTextField.setText(task1.getTaskName());
         startDateTextField.setText(task1.getStartDate().toString());
-        endDateTextField.setText(task1.getDeadline().toString());
+        if(task1.isCompleted()){
+            showFinishDate(true);
+            endDateTextField.setText(task1.getFinishDate().toString());
+        }
+        else {
+            endDateTextField.setText(task1.getDeadline().toString());
+        }
         priorityTextField.setText(task1.getPriority());
         notesTextArea.setText(task1.getDescription());
     }
@@ -523,7 +546,7 @@ public class TaskController {
      */
     public void saveEditedTask(){
         LocalDate startDate;
-        LocalDate endDate;
+        LocalDate deadLine;
         if(startDateEdit.getValue()!=null) {
             startDate = LocalDate.of(startDateEdit.getValue().getYear(),
                     startDateEdit.getValue().getMonthValue(), startDateEdit.getValue().getDayOfMonth());
@@ -532,15 +555,15 @@ public class TaskController {
                 startDate = tasksView.getSelectionModel().getSelectedItem().getStartDate();
             }
         if(endDateEdit.getValue()!=null){
-        endDate = LocalDate.of(endDateEdit.getValue().getYear(),
+        deadLine = LocalDate.of(endDateEdit.getValue().getYear(),
                 endDateEdit.getValue().getMonthValue(), endDateEdit.getValue().getDayOfMonth());}
                 else{
-        endDate = tasksView.getSelectionModel().getSelectedItem().getDeadline();}
+        deadLine = tasksView.getSelectionModel().getSelectedItem().getDeadline();}
 
         tasksView.getSelectionModel().getSelectedItem().setTaskName(taskNameTextField.getText());
         tasksView.getSelectionModel().getSelectedItem().setPriority(priorityChoiceBox.getValue());
         tasksView.getSelectionModel().getSelectedItem().setStartDate(startDate);
-        tasksView.getSelectionModel().getSelectedItem().setEndDate(endDate);
+        tasksView.getSelectionModel().getSelectedItem().setDeadline(deadLine);
         tasksView.getSelectionModel().getSelectedItem().setCategory(categoryList.getSelectionModel().getSelectedItem());
         tasksView.getSelectionModel().getSelectedItem().setDescription(notesTextArea.getText());
 
@@ -604,6 +627,7 @@ public class TaskController {
      */
     private void completeTask(Task task){
         task.setCompleted(true);
+        task.setFinishDate(LocalDate.now());
         if(choiceBox.getSelectionModel().getSelectedIndex() == -1){
             displayTasks(sortListofTaskUnFinished());
         }

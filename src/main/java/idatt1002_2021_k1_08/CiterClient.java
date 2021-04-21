@@ -18,7 +18,7 @@ public class CiterClient extends Application{
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"));
-        stage.setMaxHeight(527);
+        stage.setMaxHeight(535);
         stage.setMaxWidth(770);
         stage.setScene(scene);
         stage.show();

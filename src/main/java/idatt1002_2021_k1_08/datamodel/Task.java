@@ -23,14 +23,14 @@ public class Task implements Serializable {
      * Instantiates a new Task.
      *
      * @param taskName    the task name
-     * @param endDate     the end date
+     * @param deadline     the end date
      * @param priority    the priority
      */
 
 //Constructor if all parameters are good and written in their respective FXML textfields
-    public Task (String taskName, String category, LocalDate endDate, String priority){
+    public Task (String taskName, String category, LocalDate deadline, String priority){
         this.startDate = LocalDate.now();
-        setEndDate(endDate);
+        setDeadline(deadline);
         setTaskName(taskName);
         setPriority(priority);
         setCompleted(false);
@@ -206,13 +206,13 @@ public class Task implements Serializable {
      * @throws IllegalArgumentException will happen if endDate is Earlier that startDate.
      * This will only display in terminal. In app, this will be an alertbox for the user.
      *
-     * @param endDate LocalDate endDate will be read from input in datepicker
+     * @param deadline LocalDate endDate will be read from input in datepicker
      */
-    public void setEndDate(LocalDate endDate) {
-        if(endDate.isBefore(startDate)){
+    public void setDeadline(LocalDate deadline) {
+        if(deadline.isBefore(startDate)){
             throw new IllegalArgumentException("End date cant be before start date - " + startDate);
         }
-        this.deadline = endDate;
+        this.deadline = deadline;
     }
 
     /**

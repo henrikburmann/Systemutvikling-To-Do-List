@@ -101,7 +101,7 @@ public class AddTaskController {
 
                 Task task = new Task(taskName, category,date,priority);
                 task.setDescription(notes_textarea.getText());
-                task.setEndDate(date);
+                task.setDeadline(date);
                 task.setPriority(priority);
 
                 FileHandler.getInstance().addTask(task);
