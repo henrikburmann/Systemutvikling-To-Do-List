@@ -75,19 +75,19 @@ public class AddTaskController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("INPUT WARNING");
             alert.setHeaderText("WRONG DATE INPUT");
-            alert.setContentText("Date input cannot be empty");
+            alert.setContentText("Please choose a deadline");
             alert.show();
         }else if(date_time_box.getValue().isBefore(LocalDate.now())){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("INPUT WARNING");
             alert.setHeaderText("WRONG DATE INPUT");
-            alert.setContentText("Date input can be at the earliest today");
+            alert.setContentText("Deadline can be at the earliest today");
             alert.show();
         }else if(task_name_textfield.getText() == null || task_name_textfield.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("INPUT WARNING");
             alert.setHeaderText("Null INPUT");
-            alert.setContentText("Name input cannot be empty");
+            alert.setContentText("Please set a name for the new task");
             alert.show();
         }else {
             String taskName = task_name_textfield.getText().trim();
