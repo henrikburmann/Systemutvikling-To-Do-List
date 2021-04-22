@@ -546,27 +546,40 @@ public class TaskController {
      */
     public void saveEditedTask(){
         LocalDate startDate;
-        LocalDate deadLine;
+        LocalDate deadline = null;
+
         if(startDateEdit.getValue()!=null) {
             startDate = LocalDate.of(startDateEdit.getValue().getYear(),
                     startDateEdit.getValue().getMonthValue(), startDateEdit.getValue().getDayOfMonth());
-        }
-            else{
+        } else{
                 startDate = tasksView.getSelectionModel().getSelectedItem().getStartDate();
-            }
-        if(endDateEdit.getValue()!=null){
-        deadLine = LocalDate.of(endDateEdit.getValue().getYear(),
+        }if(endDateEdit.getValue()!=null){
+            if(endDateEdit.getValue().isBefore(LocalDate.now())){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("INPUT WARNING");
+                alert.setHeaderText("WRONG DATE INPUT");
+                alert.setContentText("Deadline can be at the earliest today");
+                alert.show();}
+            else{
+                deadline = LocalDate.of(endDateEdit.getValue().getYear(),
                 endDateEdit.getValue().getMonthValue(), endDateEdit.getValue().getDayOfMonth());}
-                else{
-        deadLine = tasksView.getSelectionModel().getSelectedItem().getDeadline();}
-
+        } else{
+        deadline = tasksView.getSelectionModel().getSelectedItem().getDeadline();
+        }
         tasksView.getSelectionModel().getSelectedItem().setTaskName(taskNameTextField.getText());
+        if(priorityChoiceBox.getValue()!=null){
         tasksView.getSelectionModel().getSelectedItem().setPriority(priorityChoiceBox.getValue());
-        tasksView.getSelectionModel().getSelectedItem().setStartDate(startDate);
-        tasksView.getSelectionModel().getSelectedItem().setDeadline(deadLine);
-        tasksView.getSelectionModel().getSelectedItem().setCategory(categoryList.getSelectionModel().getSelectedItem());
+        } else {
+            tasksView.getSelectionModel().getSelectedItem().setPriority(tasksView.getSelectionModel().getSelectedItem().getPriority());
+        }
+        if(categoryList.getSelectionModel().getSelectedItem()!=null){
+            tasksView.getSelectionModel().getSelectedItem().setCategory(categoryList.getSelectionModel().getSelectedItem());
+        }else{
+            tasksView.getSelectionModel().getSelectedItem().setCategory(tasksView.getSelectionModel().getSelectedItem().getCategory());
+        }
         tasksView.getSelectionModel().getSelectedItem().setDescription(notesTextArea.getText());
-
+        tasksView.getSelectionModel().getSelectedItem().setStartDate(startDate);
+        tasksView.getSelectionModel().getSelectedItem().setDeadline(deadline);
         setToEdit(false);
     }
 

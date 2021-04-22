@@ -221,7 +221,7 @@ public class Task implements Serializable {
      */
     @Override
     public String toString() {
-        return taskName + "   Deadline: " + deadline + "   Priority " + priority + completed;
+        return taskName + "   Deadline: " + deadline + "   Priority " + priority;
     }
 
     /**
