@@ -1,4 +1,4 @@
-package idatt1002_2021_k1_08;
+package idatt1002_2021_k1_08.core;
 
 import idatt1002_2021_k1_08.datamodel.Task;
 import org.junit.jupiter.api.Assertions;

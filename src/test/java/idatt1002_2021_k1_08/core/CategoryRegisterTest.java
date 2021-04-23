@@ -1,5 +1,6 @@
-package idatt1002_2021_k1_08;
+package idatt1002_2021_k1_08.core;
 
+import idatt1002_2021_k1_08.CategoryRegister;
 import idatt1002_2021_k1_08.datamodel.Category;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
