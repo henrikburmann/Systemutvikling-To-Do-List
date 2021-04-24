@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +20,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Tooltip?>
 <AnchorPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="idatt1002_2021_k1_08.TaskController">
    <children>
       <AnchorPane fx:id="pane_left" layoutY="1.0" prefHeight="500.0" prefWidth="225.0">
@@ -107,9 +107,9 @@
                <TextField fx:id="categoryTextField" editable="false" layoutX="97.0" layoutY="208.0" prefHeight="6.0" prefWidth="109.0" />
                <TextArea fx:id="notesTextArea" editable="false" layoutX="12.0" layoutY="269.0" prefHeight="84.0" prefWidth="206.0" wrapText="true" />
 
-               <Button fx:id="complete_task_button" layoutX="81.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleCompleteButton" prefHeight="34.0" prefWidth="125.0" text="Complete Task" >
+               <Button fx:id="complete_task_button" layoutX="81.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleCompleteButton" prefHeight="34.0" prefWidth="125.0" text="Complete Task">
                   <tooltip>
-                     <Tooltip text="Press to complete task"/>
+                     <Tooltip text="Press to complete task" />
                   </tooltip>
                </Button>
 
@@ -117,7 +117,7 @@
                <ChoiceBox fx:id="priorityChoiceBox" layoutX="98.0" layoutY="170.0" prefHeight="30.0" prefWidth="115.0" />
                <DatePicker fx:id="startDateEdit" layoutX="97.0" layoutY="87.0" prefHeight="30.0" prefWidth="115.0" />
                <DatePicker fx:id="endDateEdit" layoutX="91.0" layoutY="132.0" prefHeight="34.0" prefWidth="125.0" />
-               <Label fx:id="endDate" layoutX="19.0" layoutY="133.0" text="End Date">
+               <Label fx:id="endDate" layoutX="6.0" layoutY="135.0" text="Dead line">
                   <font>
                      <Font size="18.0" />
                   </font>
@@ -134,14 +134,14 @@
                <Font size="20.0" />
             </font>
          </Label>
-         <Button fx:id="edit_task_button" layoutX="6.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="33.0" prefWidth="78.0" text="Edit" >
+         <Button fx:id="edit_task_button" layoutX="6.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="33.0" prefWidth="78.0" text="Edit">
             <tooltip>
-               <Tooltip text="Press to edit a task"/>
+               <Tooltip text="Press to edit a task" />
             </tooltip>
          </Button>
-         <Button fx:id="delete_task_button" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete" >
+         <Button fx:id="delete_task_button" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="78.0" text="Delete">
             <tooltip>
-               <Tooltip text="Press to delete a Task"/>
+               <Tooltip text="Press to delete a Task" />
             </tooltip>
          </Button>
          <Button fx:id="add_task_button" layoutX="162.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeSceneToAddTask" onMouseClicked="#changeSceneToAddTask" prefHeight="30.0" prefWidth="57.0" text="NEW">
@@ -152,9 +152,9 @@
                <Tooltip text="Press to add a Task" />
             </tooltip>
          </Button>
-         <Button fx:id="saveEditedTask" layoutX="14.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveEditedTask" prefHeight="33.0" prefWidth="70.0" text="Save" >
+         <Button fx:id="saveEditedTask" layoutX="14.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveEditedTask" prefHeight="33.0" prefWidth="70.0" text="Save">
             <tooltip>
-               <Tooltip text="Press this to save edited Task"/>
+               <Tooltip text="Press this to save edited Task" />
             </tooltip>
          </Button>
       </AnchorPane>
