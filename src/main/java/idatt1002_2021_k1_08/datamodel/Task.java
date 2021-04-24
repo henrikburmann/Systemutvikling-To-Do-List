@@ -225,7 +225,11 @@ public class Task implements Serializable {
      */
     @Override
     public String toString() {
-        return taskName + "   Deadline: " + deadline + "   Priority " + priority;
+        if (!(completed)){
+        return taskName + "   Deadline: " + deadline + "   Priority " + priority;}
+        else{
+            return taskName + "   Date finished: " + finishDate;
+        }
     }
 
     /**
