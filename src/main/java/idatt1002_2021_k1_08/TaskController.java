@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -231,6 +232,7 @@ public class TaskController {
         tasksView.setItems(sortListofTaskUnFinished());
         tasksView.getSelectionModel().selectFirst();
         changeColourOnTask();
+        taskNameTextField.setAlignment(Pos.BASELINE_LEFT);
     }
 
     /**

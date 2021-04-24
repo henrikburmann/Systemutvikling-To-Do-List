@@ -21,6 +21,7 @@ public class CiterClient extends Application{
         stage.setMaxHeight(535);
         stage.setMaxWidth(770);
         stage.setScene(scene);
+        stage.setTitle("Citer app");
         stage.show();
     }
 

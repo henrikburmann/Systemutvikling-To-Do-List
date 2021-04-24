@@ -100,7 +100,7 @@
                   <font>
                      <Font size="18.0" />
                   </font></Text>
-               <TextField fx:id="taskNameTextField" editable="false" layoutX="97.0" layoutY="41.0" prefHeight="6.0" prefWidth="109.0" />
+               <TextField fx:id="taskNameTextField" alignment="BASELINE_LEFT" editable="false" layoutX="97.0" layoutY="41.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="startDateTextField" editable="false" layoutX="97.0" layoutY="87.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="endDateTextField" editable="false" layoutX="97.0" layoutY="132.0" prefHeight="6.0" prefWidth="109.0" />
                <TextField fx:id="priorityTextField" editable="false" layoutX="97.0" layoutY="172.0" prefHeight="6.0" prefWidth="109.0" />
