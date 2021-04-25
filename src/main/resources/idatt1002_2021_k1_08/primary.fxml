@@ -43,15 +43,15 @@
             </font></Text>
 
          <DatePicker fx:id="datePicker" editable="false" layoutX="26.0" layoutY="100.0" onAction="#tasksOnChosenDate" prefHeight="30.0" prefWidth="174.0" />
-         <Label fx:id="label_dow_left" layoutX="-3.0" layoutY="451.0" prefHeight="58.0" prefWidth="231.0" />
-         <Circle fx:id="circle_orange" fill="#f5870a" layoutX="17.0" layoutY="495.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-         <Circle fx:id="circle_green" fill="#3c866f" layoutX="17.0" layoutY="469.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-         <Label layoutX="26.0" layoutY="456.0" text="Completed Tasks" textFill="#e5dfdf">
+         <Label fx:id="label_dow_left" layoutX="-3.0" layoutY="437.0" prefHeight="65.0" prefWidth="231.0" />
+         <Circle fx:id="circle_orange" fill="#f5870a" layoutX="16.0" layoutY="484.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+         <Circle fx:id="circle_green" fill="#3c866f" layoutX="16.0" layoutY="460.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+         <Label layoutX="35.0" layoutY="447.0" text="Completed Tasks" textFill="#e5dfdf">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <Label layoutX="25.0" layoutY="482.0" text="Tasks Over Duedate" textFill="#e5dfdf">
+         <Label layoutX="34.0" layoutY="471.0" text="Tasks Over Duedate" textFill="#e5dfdf">
             <font>
                <Font size="16.0" />
             </font>
