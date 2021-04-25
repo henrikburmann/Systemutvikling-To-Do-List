@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +27,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 
+/**
+ * The type Task controller.
+ */
 public class TaskController {
 
     /**
@@ -227,32 +231,8 @@ public class TaskController {
 
         tasksView.setItems(sortListofTaskUnFinished());
         tasksView.getSelectionModel().selectFirst();
-
-        //Changes color of task if it is due today or begyond
-        tasksView.setCellFactory(new Callback<ListView<Task>, ListCell<Task>>() {
-            @Override
-            public ListCell<Task> call(ListView<Task> taskListView) {
-                ListCell<Task> taskCell = new ListCell<Task>(){
-
-                    @Override
-                    protected void updateItem(Task task, boolean empty) {
-                        super.updateItem(task, empty);
-                        if(empty){
-                            setText(null);
-                        }else{
-                            setText(task.toString());
-                            //If task is due for tomorrow of beyond
-                            if(task.getDeadline().isBefore(LocalDate.now())){
-                                setTextFill(Color.ORANGE);
-                            }else if(task.isCompleted()){
-                                setTextFill(Color.GREEN);
-                            }
-                        }
-                    }
-                };
-                return taskCell;
-            }
-        });
+        changeColourOnTask();
+        taskNameTextField.setAlignment(Pos.BASELINE_LEFT);
     }
 
     /**
@@ -456,6 +436,34 @@ public class TaskController {
         tasksView.setItems(tasksOnDate);
     }
 
+    // Method for changing colour cordination on tasks
+
+    private void changeColourOnTask(){
+
+        tasksView.setCellFactory(new Callback<>() {
+            @Override
+            public ListCell<Task> call(ListView<Task> taskListView) {
+                return new ListCell<Task>() {
+
+                    @Override
+                    protected void updateItem(Task task, boolean empty) {
+                        super.updateItem(task, empty);
+                        if (empty) {
+                            setText(null);
+                        } else {
+                            setText(task.toString());
+                            //If task is due for tomorrow of beyond
+                            if (task.getDeadline().isBefore(LocalDate.now())) {
+                                setTextFill(Color.ORANGE);
+                            } else if (task.isCompleted()) {
+                                setTextFill(Color.GREEN);
+                            }
+                        }
+                    }
+                };
+            }
+        });
+    }
     /**
      * Method to remove all sorting done. To view all tasks inside application in bulk
      */
@@ -470,6 +478,7 @@ public class TaskController {
     public void displayTasks(ObservableList<Task> tasks){
         datePicker.setValue(null);
         tasksView.setItems(tasks);
+        changeColourOnTask();
     }
     /**
      * @param task1 Fills information area of Task with its information

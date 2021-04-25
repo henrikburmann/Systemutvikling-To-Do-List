@@ -184,18 +184,22 @@ public class Task implements Serializable {
      *
      * @param string every possible string
      */
-    private void checkifNull(String string){
+
+    public void checkifNull(String string){
         if(string == (null)){
             throw new NullPointerException("String cant be null");
         }
     }
 
-    /**
+  /**
      * Checks if String is empty
      *
      * @param string every possible string
      */
-    private void checkIfEmpty(String string){
+
+
+    public void checkIfEmpty(String string){
+
         if(string.isEmpty()){
             throw new IllegalArgumentException("String cant be empty");
         }
@@ -221,7 +225,11 @@ public class Task implements Serializable {
      */
     @Override
     public String toString() {
-        return taskName + "   Deadline: " + deadline + "   Priority " + priority;
+        if (!(completed)){
+        return taskName + "   Deadline: " + deadline + "   Priority " + priority;}
+        else{
+            return taskName + "   Date finished: " + finishDate;
+        }
     }
 
     /**
