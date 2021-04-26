@@ -76,6 +76,10 @@ public class TaskController {
      */
     @FXML MenuItem helpItem;
     /**
+     * Darkmode to improve universal design
+     */
+    @FXML MenuItem darkmode;
+    /**
      * DatePicker item for sorting purposes
      */
     @FXML DatePicker datePicker;
@@ -190,7 +194,7 @@ public class TaskController {
         textfieldList.add(priorityTextField);
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
-        menuButton = new MenuButton("Options", null, helpItem);
+        menuButton = new MenuButton("Options", null, helpItem, darkmode);
 
         for(TextField textField : textfieldList){
             textField.setEditable(false);
@@ -200,6 +204,13 @@ public class TaskController {
             try {
                 changeSceneToHelp();
             } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+        darkmode.setOnAction(e->{
+            try{
+                scene.getStylesheet().add(getClass().getResource("darkmode.css").toExternalForm());
+            }catch (IOException ioException){
                 ioException.printStackTrace();
             }
         });
