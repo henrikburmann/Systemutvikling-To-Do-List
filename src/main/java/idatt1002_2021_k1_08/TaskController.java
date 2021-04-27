@@ -331,6 +331,7 @@ public class TaskController {
      */
     @FXML
     public void viewCompletedTasks(){
+        includeCompleted.setVisible(false);
         ObservableList<Task> boo = FXCollections.observableArrayList();
         for(Task t:getTasksFilehandler()){
             if(t.isCompleted()){
@@ -347,6 +348,7 @@ public class TaskController {
      * Then display method is called on the list to update, with filter method to do the sorting
      */
     private void viewUnCompletedTasks(){
+        includeCompleted.setVisible(false);
         displayTasks(filterOutUnCompleted());
     }
 
@@ -379,6 +381,7 @@ public class TaskController {
      * then displays with displayTasks method
      */
     public void viewByPriority(){
+        includeCompleted.setVisible(true);
         ObservableList<Task> tasksOfPriority;
         if(includeCompleted.isSelected()){
             tasksOfPriority = getTasksFilehandler();
@@ -401,6 +404,7 @@ public class TaskController {
      * will only display tasks that are uncompleted
      */
     public void viewByCategory(){
+        includeCompleted.setVisible(true);
         ObservableList<Task> tasksOfCategory = checkOfCompleted();
         SortedList<Task> sortedList = new SortedList<>(tasksOfCategory, new Comparator<Task>() {
             @Override
@@ -475,6 +479,7 @@ public class TaskController {
      * Method to remove all sorting done. To view all tasks inside application in bulk
      */
     public void viewAllTasks(){
+        includeCompleted.setVisible(false);
         displayTasks(getTasksFilehandler());
     }
 
