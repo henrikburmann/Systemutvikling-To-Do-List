@@ -186,6 +186,8 @@ public class TaskController {
                     break;
                 default:
             }
+            
+
         });
 
         textfieldList.add(taskNameTextField);

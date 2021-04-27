@@ -2,14 +2,10 @@ package idatt1002_2021_k1_08;
 
 import idatt1002_2021_k1_08.datamodel.FileHandler;
 import idatt1002_2021_k1_08.datamodel.Task;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -118,10 +114,14 @@ public class AddTaskController {
     public void deleteCategory() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Category? ");
-        alert.setHeaderText("Sure you want to delete category?" + categoryList.getSelectionModel().getSelectedItem());
+        alert.setHeaderText("Sure you want to delete category " + categoryList.getSelectionModel().getSelectedItem() + "?");
         alert.setContentText("Press OK to delete category");
         Optional<ButtonType> result = alert.showAndWait();
-
+        for(Task task: FileHandler.getInstance().getTasks()){
+            if(categoryList.getSelectionModel().getSelectedItem().equals(task.getCategory())){
+                task.setCategory("");
+            }
+        }
         if (result.isPresent() && result.get() == ButtonType.OK) {
             FileHandler.getCategories().remove(categoryList.getSelectionModel().getSelectedItem());
         }
