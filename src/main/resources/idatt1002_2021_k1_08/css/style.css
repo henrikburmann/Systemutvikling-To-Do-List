@@ -40,7 +40,7 @@
 -fx-background-color: white;
 }
 #menuButton{
-    -fx-background-color: #adadad;
+    -fx-background-color: white;
     -fx-text-fill: black;
 }
 
@@ -77,6 +77,7 @@
 }
 #priorityChoiceBox{
     selected-box-color: black;
+    -fx-background-color: white;
 }
 #taskDisplayAnchor{
     }

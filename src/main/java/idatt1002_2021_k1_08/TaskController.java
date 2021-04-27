@@ -76,6 +76,14 @@ public class TaskController {
      */
     @FXML MenuItem helpItem;
     /**
+     * Checkbox to include completed tasks
+     */
+    @FXML CheckBox includeCompleted;
+    /**
+     * Darkmode to improve universal design
+     */
+    @FXML MenuItem darkmode;
+    /**
      * DatePicker item for sorting purposes
      */
     @FXML DatePicker datePicker;
@@ -119,10 +127,6 @@ public class TaskController {
      * EndDate Label
      */
     @FXML Label endDate;
-    /**
-     * Button for sorting completed and uncompleted tasks
-     */
-    @FXML ToggleButton chooseCompletedToggleButton;
     /**
      * choiceBox for sorting
      */
@@ -190,7 +194,7 @@ public class TaskController {
         textfieldList.add(priorityTextField);
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
-        menuButton = new MenuButton("Options", null, helpItem);
+        menuButton = new MenuButton("Options", null, helpItem, darkmode);
 
         for(TextField textField : textfieldList){
             textField.setEditable(false);
@@ -203,6 +207,7 @@ public class TaskController {
                 ioException.printStackTrace();
             }
         });
+
 
         tasksView.getSelectionModel().selectFirst();
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
@@ -373,7 +378,7 @@ public class TaskController {
      */
     public void viewByPriority(){
         ObservableList<Task> tasksOfPriority;
-        if(chooseCompletedToggleButton.isSelected()){
+        if(includeCompleted.isSelected()){
             tasksOfPriority = getTasksFilehandler();
         }
         else{
@@ -411,7 +416,7 @@ public class TaskController {
      */
     public ObservableList<Task> checkOfCompleted(){
         ObservableList<Task> completedList;
-        if(chooseCompletedToggleButton.isSelected()){
+        if(includeCompleted.isSelected()){
             completedList = getTasksFilehandler();
         }
         else{
