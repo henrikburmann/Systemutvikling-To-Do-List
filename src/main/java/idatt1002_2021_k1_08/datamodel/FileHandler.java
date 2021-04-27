@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
@@ -60,11 +61,11 @@ public class FileHandler {
     /**
      * Writes a Category to file
      */
-    private void serializeTask(ArrayList<Task> tasks) throws IOException {
-        Path path = Paths.get(String.valueOf(FILE_PATH));
+    public void serializeTask(ObservableList<Task> obTasks1, File filePath) throws IOException {
+        Path path = Paths.get(String.valueOf(filePath));
         try (FileOutputStream fs = new FileOutputStream(String.valueOf(path)); //åpner opp en stream
              ObjectOutputStream os = new ObjectOutputStream(fs)) {
-            for (Task task : obTasks) {
+            for (Task task : obTasks1) {
                 os.writeObject(task);
             }
         }
@@ -75,10 +76,10 @@ public class FileHandler {
      * @return ArrayList of tasks that gets deserialized from TaskData.ser file
      * @throws IOException
      */
-    private ArrayList<Task> deserializeTask() throws IOException {
+    public ArrayList<Task> deserializeTask(File filePath) throws IOException {
         ArrayList<Task> tasks1 = new ArrayList<>();
 
-        Path path = Paths.get(String.valueOf(FILE_PATH));
+        Path path = Paths.get(String.valueOf(filePath));
 
         //try with resources, so that fs closes
         try (FileInputStream fs = new FileInputStream(String.valueOf(path));
@@ -114,8 +115,8 @@ public class FileHandler {
         ArrayList<Task> taskStore = new ArrayList<>();
 
         taskStore.addAll(obTasks);
-        serializeCategory(categoryStore);
-        serializeTask(taskStore);
+        serializeCategory(categoryStore, FILE_PATH_CATEGORY);
+        serializeTask(obTasks, FILE_PATH);
     }
 
     /**
@@ -127,11 +128,12 @@ public class FileHandler {
     public void loadData() throws IOException {
         categories = FXCollections.observableArrayList();
         obTasks = FXCollections.observableArrayList();
+        //createFiles(FILE_PATH, FILE_PATH_CATEGORY);
         if (FILE_PATH.createNewFile());
         if (FILE_PATH_CATEGORY.createNewFile());
         try {
             ArrayList<String> catlist = deserializeCategory(); // Denne burde returnere category string
-            ArrayList<Task> list = deserializeTask();  //Denne burde returnere task
+            ArrayList<Task> list = deserializeTask(FILE_PATH);  //Denne burde returnere task
 
             categories.addAll(catlist);
 
@@ -171,8 +173,8 @@ public class FileHandler {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private void serializeCategory(ArrayList<String> category) throws IOException, ClassNotFoundException{
-        Path path = Paths.get(String.valueOf(FILE_PATH_CATEGORY));
+    private void serializeCategory(ArrayList<String> category, File filePathCategory) throws IOException, ClassNotFoundException{
+        Path path = Paths.get(String.valueOf(filePathCategory));
         try(FileOutputStream fos = new FileOutputStream(String.valueOf(path));
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(category);
@@ -213,5 +215,4 @@ public class FileHandler {
         }
         return category1;
     }
-
 }
