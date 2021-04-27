@@ -19,6 +19,7 @@ class FileHandlerTest {
     static Task task2;
     static Task task3;
     static ObservableList<Task> tasks;
+    static ObservableList<String> categoriesTestList;
 
     static File FILE_PATH_CATEGORY;
     static File FILE_PATH_TASKS;
@@ -29,7 +30,8 @@ class FileHandlerTest {
         FILE_PATH_TASKS = new File("src/test/resources/DataStorageTest/TaskData.ser");
 
         fileHandler = new FileHandler();
-
+        tasks = FXCollections.observableArrayList();
+        categoriesTestList = FXCollections.observableArrayList();
         //FILE_PATH_TASKS.createNewFile();
         //FILE_PATH_CATEGORY.createNewFile();
 
@@ -42,8 +44,9 @@ class FileHandlerTest {
         task3 = new Task("Test3","Category3",
                 LocalDate.now().plusDays(1), "medium");
 
-        tasks = FXCollections.observableArrayList();
-
+        fileHandler.addTask(task1);
+        fileHandler.addTask(task2);
+        fileHandler.addTask(task3);
         tasks.add(task1);
         tasks.add(task2);
         tasks.add(task3);
@@ -58,9 +61,7 @@ class FileHandlerTest {
 
     @Test
     void check_if_observablelist_contains_task() {
-        Assertions.assertEquals(tasks.get(0), task1);
-        Assertions.assertEquals(tasks.get(1), task2);
-        Assertions.assertEquals(tasks.get(2), task3);
+        Assertions.assertTrue(fileHandler.getTasks().contains(tasks));
     }
 
     @Test
@@ -73,8 +74,8 @@ class FileHandlerTest {
     @Test
     void check_if_task_is_added() {
         Task task4 = new Task("Test4", "Category4", LocalDate.now().plusDays(1), "high");
-        tasks.add(task4);
-        Assertions.assertTrue(tasks.contains(task4));
+        fileHandler.addTask(task4);
+        Assertions.assertTrue(fileHandler.getTasks().contains(task4));
     }
 
     @Test
@@ -103,16 +104,20 @@ class FileHandlerTest {
     }
 
     @Test
-    void deleteTask() {
+    void check_if_list_tasks_contains_task_after_deleteTask() {
         Task task5 = new Task("Task5", "Category5",
                 LocalDate.now().plusDays(1), "high");
-        tasks.add(task5);
-        Assertions.assertTrue(tasks.contains(task5));
-
+        fileHandler.addTask(task5);
+        System.out.println(fileHandler.getTasks());
+        fileHandler.deleteTask(task5);
+        System.out.println(fileHandler.getTasks());
+        Assertions.assertFalse(fileHandler.getTasks().contains(task5));
     }
 
     @Test
-    void deleteCategory() {
-
+    void check_If_Task_Contains_Category_After_deleteCategory() {
+        fileHandler.deleteCategory("Category1");
+        //Add method by @Maiken where delete is checked inside categorylist AND on the taskView. ?????
+        Assertions.assertFalse(FileHandler.categories.contains("Category1"));
     }
 }

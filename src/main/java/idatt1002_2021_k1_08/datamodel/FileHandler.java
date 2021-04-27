@@ -15,8 +15,8 @@ public class FileHandler {
 
     private static final File FILE_PATH_CATEGORY = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/CategoryStrings.ser");
     private static final File FILE_PATH = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/TaskData.ser");
-    private ObservableList<Task> obTasks;
-    private static ObservableList<String> categories;
+    public ObservableList<Task> obTasks = FXCollections.observableArrayList(); // Must be public due to FileHandlerTest class
+    public static ObservableList<String> categories = FXCollections.observableArrayList();
     private static FileHandler fileHandlerInstance = new FileHandler();
 
     private final DateTimeFormatter formatter;
