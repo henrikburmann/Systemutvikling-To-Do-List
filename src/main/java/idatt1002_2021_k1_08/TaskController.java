@@ -207,13 +207,7 @@ public class TaskController {
                 ioException.printStackTrace();
             }
         });
-        darkmode.setOnAction(e->{
-            try{
-                scene.getStylesheet().add(getClass().getResource("darkmode.css").toExternalForm());
-            }catch (IOException ioException){
-                ioException.printStackTrace();
-            }
-        });
+
 
         tasksView.getSelectionModel().selectFirst();
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
