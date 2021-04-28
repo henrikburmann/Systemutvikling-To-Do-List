@@ -57,8 +57,9 @@ public class TaskController {
     /**
      * List of all tasks that exists inside application
      */
-
     @FXML private ListView<Task> tasksView;
+
+    @FXML Button help_button;
     /**
      * Our logo for the project
      */
@@ -200,14 +201,6 @@ public class TaskController {
             textField.setEditable(false);
         }
         notesTextArea.setEditable(false);
-        helpItem.setOnAction(e-> {
-            try {
-                changeSceneToHelp();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
 
         tasksView.getSelectionModel().selectFirst();
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
@@ -438,11 +431,12 @@ public class TaskController {
         LocalDate date = datePicker.getValue();
         ObservableList<Task> tasksOnDate = FXCollections.observableArrayList();
         for (int i = 0; i < getTasksFilehandler().size(); i++) {
-            if (getTasksFilehandler().get(i).getDeadline().equals(date)){
+            if (getTasksFilehandler().get(i).getDeadline().equals(date) && !getTasksFilehandler().get(i).isCompleted()){
                 tasksOnDate.add(getTasksFilehandler().get(i));
             }
         }
         tasksView.setItems(tasksOnDate);
+        
     }
 
     // Method for changing colour cordination on tasks
