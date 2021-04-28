@@ -127,11 +127,25 @@ public class TaskController {
      * choiceBox for sorting
      */
     @FXML ChoiceBox choiceBox;
-
+    /**
+     *  ComboBox for categories
+     */
     @FXML ComboBox<String> categoryList = new ComboBox<>();
+    /**
+     * ChoiceBox for priorities
+     */
     @FXML ChoiceBox <String> priorityChoiceBox = new ChoiceBox<>();
+    /**
+     * Button to save an edited task
+     */
     @FXML Button saveEditedTask;
+    /**
+     * Date picker enabled while edit
+     */
     @FXML DatePicker startDateEdit;
+    /**
+     * Date picker enabled while edit
+     */
     @FXML DatePicker endDateEdit;
 
     /**
@@ -143,14 +157,15 @@ public class TaskController {
 
     /**
      * Initialize method for all items inside primary fxml
-     * provides an initial load for all items and sets all items to designated values
+     * provides an initial load for all items and sets all items to required values
+     * <code>viewUnCompletedTasks();</code> called upon initialize to ensure all tasks
+     * that are uncompleted is shown upon launch.
      */
     public void initialize() {
         viewUnCompletedTasks();
         choiceBox.setValue("Show all uncompleted");
         priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
         priorityChoiceBox.setVisible(false);
-        categoryList.setItems(FileHandler.getCategories());
         categoryList.setVisible(false);
         saveEditedTask.setVisible(false);
         finished.setVisible(false);

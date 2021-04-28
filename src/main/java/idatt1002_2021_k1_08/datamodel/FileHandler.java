@@ -12,20 +12,23 @@ import java.util.ArrayList;
 
 
 public class FileHandler {
-
+    /**
+     * <code>FILE_PATH</code> & <code>FILE_PATH_CATEGORY</code>
+     * are .ser extension files directly created inside directory resources/../DataStorage upon launch
+     * To avoid a read from wrong files we do not allow user to search and choose files themself.
+     */
     private static final File FILE_PATH_CATEGORY = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/CategoryStrings.ser");
     private static final File FILE_PATH = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/TaskData.ser");
     public ObservableList<Task> obTasks = FXCollections.observableArrayList(); // Must be public due to FileHandlerTest class
     public static ObservableList<String> categories = FXCollections.observableArrayList();
     private static FileHandler fileHandlerInstance = new FileHandler();
 
-    private final DateTimeFormatter formatter;
 
     /**
-     * Constructor
+     * Constructor for FileHandler.
      */
     public FileHandler() {
-        formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
     /**
@@ -187,7 +190,7 @@ public class FileHandler {
     /**
      *
      * @return ArrayList containing each object of category previously stored inside CategoryStrings.ser
-     * category1 = (ArrayList<String>) ois.readObject(); This line warns us of an unchecked cast,
+     * <code>category1 = (ArrayList<String>) ois.readObject();</code> This line warns us of an unchecked cast,
      * But since we know that each item of category inside category1 is a object with only string content,
      * and the need for it to be sorted is not there we can ignore this warning.
      * @throws IOException
