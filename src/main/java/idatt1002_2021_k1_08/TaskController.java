@@ -58,7 +58,7 @@ public class TaskController {
      * List of all tasks that exists inside application
      */
 
-    @FXML private ListView<Task> tasksView;
+    @FXML private ListView<Task> tasksView = new ListView<>();
     /**
      * Our logo for the project
      */
@@ -79,10 +79,6 @@ public class TaskController {
      * Checkbox to include completed tasks
      */
     @FXML CheckBox includeCompleted;
-    /**
-     * Darkmode to improve universal design
-     */
-    @FXML MenuItem darkmode;
     /**
      * DatePicker item for sorting purposes
      */
@@ -151,66 +147,7 @@ public class TaskController {
      */
     public void initialize() {
         viewUnCompletedTasks();
-        choiceBox.setValue("Show all uncompleted");
-        priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
-        priorityChoiceBox.setVisible(false);
-        categoryList.setItems(FileHandler.getCategories());
-        categoryList.setVisible(false);
-        saveEditedTask.setVisible(false);
-        finished.setVisible(false);
-        startDateEdit.setVisible(false);
-        endDateEdit.setVisible(false);
-        choiceBox.getItems().add(0,"Sort by category");
-        choiceBox.getItems().add(1,"Sort by priority");
-        choiceBox.getItems().add(2,"Show all completed tasks");
-        choiceBox.getItems().add(3,"Show all uncompleted tasks");
-        choiceBox.getItems().add(4,"Show all tasks");
-
-        choiceBox.setOnAction((event) -> {
-            int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
-            switch(selectedIndex) {
-                case 0:
-                    viewByCategory();
-                    break;
-                case 1:
-                    viewByPriority();
-                    break;
-                case 2:
-                    viewCompletedTasks();
-                    break;
-                case 3:
-                    viewUnCompletedTasks();
-                    break;
-                case 4:
-                    viewAllTasks();
-                    break;
-                default:
-            }
-            
-
-        });
-
-        textfieldList.add(taskNameTextField);
-        textfieldList.add(endDateTextField);
-        textfieldList.add(startDateTextField);
-        textfieldList.add(priorityTextField);
-        textfieldList.add(categoryTextField);
-        logoImageView.setImage(logoImage);
-        menuButton = new MenuButton("Options", null, helpItem, darkmode);
-
-        for(TextField textField : textfieldList){
-            textField.setEditable(false);
-        }
-        notesTextArea.setEditable(false);
-        helpItem.setOnAction(e-> {
-            try {
-                changeSceneToHelp();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
-
+        setUp();
         tasksView.getSelectionModel().selectFirst();
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
             @Override
@@ -242,6 +179,66 @@ public class TaskController {
         taskNameTextField.setAlignment(Pos.BASELINE_LEFT);
     }
 
+    public void setUp(){
+        choiceBox.setValue("Show all uncompleted");
+        priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
+        priorityChoiceBox.setVisible(false);
+        categoryList.setItems(FileHandler.getCategories());
+        categoryList.setVisible(false);
+        saveEditedTask.setVisible(false);
+        finished.setVisible(false);
+        startDateEdit.setVisible(false);
+        endDateEdit.setVisible(false);
+        choiceBox.getItems().add(0,"Sort by category");
+        choiceBox.getItems().add(1,"Sort by priority");
+        choiceBox.getItems().add(2,"Show all completed tasks");
+        choiceBox.getItems().add(3,"Show all uncompleted tasks");
+        choiceBox.getItems().add(4,"Show all tasks");
+        choiceBox.setOnAction((event) -> {
+            int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
+            switch(selectedIndex) {
+                case 0:
+                    viewByCategory();
+                    break;
+                case 1:
+                    viewByPriority();
+                    break;
+                case 2:
+                    viewCompletedTasks();
+                    break;
+                case 3:
+                    viewUnCompletedTasks();
+                    break;
+                case 4:
+                    viewAllTasks();
+                    break;
+                default:
+            }
+
+
+        });
+
+        textfieldList.add(taskNameTextField);
+        textfieldList.add(endDateTextField);
+        textfieldList.add(startDateTextField);
+        textfieldList.add(priorityTextField);
+        textfieldList.add(categoryTextField);
+        logoImageView.setImage(logoImage);
+        menuButton = new MenuButton("Options", null, helpItem);
+        for(TextField textField : textfieldList){
+            textField.setEditable(false);
+        }
+        notesTextArea.setEditable(false);
+        helpItem.setOnAction(e-> {
+            try {
+                changeSceneToHelp();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+
+    }
     /**
      * This method updates list after a change has happened.
      * A change could be sorting, editing, deleting etc.
