@@ -18,21 +18,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="idatt1002_2021_k1_08.TaskController">
+<AnchorPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="idatt1002_2021_k1_08.TaskController">
    <children>
-      <AnchorPane fx:id="pane_left" layoutY="1.0" prefHeight="500.0" prefWidth="225.0">
+      <AnchorPane fx:id="pane_left" layoutY="-1.0" prefHeight="500.0" prefWidth="225.0">
          <Label fx:id="label_header_left" prefHeight="58.0" prefWidth="226.0" />
          <ImageView fx:id="logoImageView" fitHeight="95.0" fitWidth="95.0" layoutX="108.0" layoutY="-19.0">
             <image>
                <Image url="@../../../../images/CiterLogo.png" />
             </image>
          </ImageView>
-         <Text layoutX="10.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View tasks from a chosen date" wrappingWidth="206.39999999999986">
-            <font>
-               <Font size="15.0" />
-            </font></Text>
+         <Text layoutX="14.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View active tasks from a chosen date" wrappingWidth="226.0" />
 
-         <DatePicker fx:id="datePicker" editable="false" layoutX="26.0" layoutY="100.0" onAction="#tasksOnChosenDate" prefHeight="30.0" prefWidth="174.0" />
+         <DatePicker fx:id="datePicker" editable="false" layoutX="26.0" layoutY="140.0" onAction="#tasksOnChosenDate" prefHeight="30.0" prefWidth="174.0" />
          <Label fx:id="label_dow_left" layoutX="-3.0" layoutY="437.0" prefHeight="65.0" prefWidth="231.0" />
          <Circle fx:id="circle_orange" fill="#f5870a" layoutX="16.0" layoutY="484.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
          <Circle fx:id="circle_green" fill="#3c866f" layoutX="16.0" layoutY="460.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
@@ -52,6 +49,11 @@
             </font>
          </CheckBox>
          <Button fx:id="help_button" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeSceneToHelp" prefHeight="34.0" prefWidth="70.0" text="Help" />
+         <Button fx:id="viewAllTasksLeftButton" layoutX="65.0" layoutY="187.0" mnemonicParsing="false" onAction="#viewAllTasks" prefHeight="33.0" prefWidth="95.0" text="View All Tasks">
+            <tooltip>
+               <Tooltip text="Press this to save edited Task" />
+            </tooltip>
+         </Button>
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">

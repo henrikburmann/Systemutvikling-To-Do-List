@@ -258,7 +258,6 @@ public class TaskController {
      */
     public void filterOptionHandler() {
         int selectedIndex1 = choiceBox.getSelectionModel().getSelectedIndex();
-        System.out.println(selectedIndex1);
                 int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
                 switch (selectedIndex) {
                     case 0:
@@ -438,8 +437,8 @@ public class TaskController {
         else{
             completedList = filterOutUnCompleted();
         }
-        //displayTasks(tasksOfCategory);
-        tasksView.setItems(completedList);
+
+        displayTasks(completedList);
         return completedList;
     }
 
@@ -454,7 +453,7 @@ public class TaskController {
                 tasksOnDate.add(getTasksFilehandler().get(i));
             }
         }
-        tasksView.setItems(tasksOnDate);
+        displayTasks(tasksOnDate);
         
     }
 
