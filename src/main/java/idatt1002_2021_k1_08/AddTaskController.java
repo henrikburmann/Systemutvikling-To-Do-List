@@ -15,40 +15,43 @@ import java.util.Optional;
 
 public class AddTaskController {
     /**
-     * <code>@FXML ImageView</code> for the group logo
-     * <code>@FXML Image</code> for the fileread for the actual .png image
+     * @FXML ImageView for the group logo
+     * @FXML Image for the fileread for the actual .png image
      */
     @FXML
     ImageView logoImageView;
     Image logo = new Image(new FileInputStream("images/CiterLogo.png"));
     /**
-     * <code>@FXML Textfield</code> Task Name input field for the user
+     * @FXML Textfield Task Name input field for the user
      */
     @FXML TextField task_name_textfield;
     /**
-     * <code>@FXML DatePicker</code> Date time box for user input for a finish date to a task.
+     * @FXML DatePicker for user input for a finish date to a task.
      */
     @FXML DatePicker date_time_box;
     /**
-     * <code>@FXML ComboBox</code> category drop down box for a category.
+     * @FXML ComboBox for a category.
      */
     @FXML ComboBox<String> categoryList;
     /**
-     * <code>@FXML TextArea</code> Text area for detailed description of task, also a user input
+     * @FXML TextArea for detailed description of task, also a user input
      */
     @FXML TextArea notes_textarea;
     /**
-     * <code>@FXML Button</code> Adds a task determined to be completed to a list of completed tasks
+     * @FXML Button Adds a task determined to be completed to a list of completed tasks
      */
     @FXML Button add_task_complete_button;
     /**
-     * <code>@FXML ChoiceBox</code> Drop down box containing different priorities for sorting purposes.
+     * @FXML ChoiceBox  containing different priorities for sorting purposes.
      */
     @FXML ChoiceBox <String> priorityChoiceBox;
     /**
-     * <code>@FXML Button</code> Button to create a new category
+     * @FXML Button to add new category
      */
     @FXML Button newCategoryButton;
+    /**
+     * @FXML Button for deleting category
+     */
     @FXML Button deleteCategory;
 
     /**
