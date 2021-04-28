@@ -61,7 +61,9 @@ class FileHandlerTest {
 
     @Test
     void check_if_observablelist_contains_task() {
-        Assertions.assertTrue(fileHandler.getTasks().contains(tasks));
+        Assertions.assertTrue(fileHandler.getTasks().contains(task1));
+        Assertions.assertTrue(fileHandler.getTasks().contains(task2));
+        Assertions.assertTrue(fileHandler.getTasks().contains(task3));
     }
 
     @Test
