@@ -4,3 +4,4 @@
 target
 # exclude everything
 DataStorage/*
+target

@@ -58,7 +58,7 @@ public class TaskController {
      * List of all tasks that exists inside application
      */
 
-    @FXML private ListView<Task> tasksView;
+    @FXML private ListView<Task> tasksView = new ListView<>();
     /**
      * Our logo for the project
      */
@@ -75,6 +75,10 @@ public class TaskController {
      *  Help item inside menu
      */
     @FXML MenuItem helpItem;
+    /**
+     * Checkbox to include completed tasks
+     */
+    @FXML CheckBox includeCompleted;
     /**
      * DatePicker item for sorting purposes
      */
@@ -120,10 +124,6 @@ public class TaskController {
      */
     @FXML Label endDate;
     /**
-     * Button for sorting completed and uncompleted tasks
-     */
-    @FXML ToggleButton chooseCompletedToggleButton;
-    /**
      * choiceBox for sorting
      */
     @FXML ChoiceBox choiceBox;
@@ -163,62 +163,7 @@ public class TaskController {
      */
     public void initialize() {
         viewUnCompletedTasks();
-        choiceBox.setValue("Show all uncompleted");
-        priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
-        priorityChoiceBox.setVisible(false);
-        categoryList.setVisible(false);
-        saveEditedTask.setVisible(false);
-        finished.setVisible(false);
-        startDateEdit.setVisible(false);
-        endDateEdit.setVisible(false);
-        choiceBox.getItems().add(0,"Sort by category");
-        choiceBox.getItems().add(1,"Sort by priority");
-        choiceBox.getItems().add(2,"Show all completed tasks");
-        choiceBox.getItems().add(3,"Show all uncompleted tasks");
-        choiceBox.getItems().add(4,"Show all tasks");
-
-        choiceBox.setOnAction((event) -> {
-            int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
-            switch(selectedIndex) {
-                case 0:
-                    viewByCategory();
-                    break;
-                case 1:
-                    viewByPriority();
-                    break;
-                case 2:
-                    viewCompletedTasks();
-                    break;
-                case 3:
-                    viewUnCompletedTasks();
-                    break;
-                case 4:
-                    viewAllTasks();
-                    break;
-                default:
-            }
-        });
-
-        textfieldList.add(taskNameTextField);
-        textfieldList.add(endDateTextField);
-        textfieldList.add(startDateTextField);
-        textfieldList.add(priorityTextField);
-        textfieldList.add(categoryTextField);
-        logoImageView.setImage(logoImage);
-        menuButton = new MenuButton("Options", null, helpItem);
-
-        for(TextField textField : textfieldList){
-            textField.setEditable(false);
-        }
-        notesTextArea.setEditable(false);
-        helpItem.setOnAction(e-> {
-            try {
-                changeSceneToHelp();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
+        setUp();
         tasksView.getSelectionModel().selectFirst();
         tasksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
             @Override
@@ -250,6 +195,65 @@ public class TaskController {
         taskNameTextField.setAlignment(Pos.BASELINE_LEFT);
     }
 
+    public void setUp(){
+        choiceBox.setValue("Show all uncompleted");
+        priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
+        priorityChoiceBox.setVisible(false);
+        categoryList.setVisible(false);
+        saveEditedTask.setVisible(false);
+        finished.setVisible(false);
+        startDateEdit.setVisible(false);
+        endDateEdit.setVisible(false);
+        choiceBox.getItems().add(0,"Sort by category");
+        choiceBox.getItems().add(1,"Sort by priority");
+        choiceBox.getItems().add(2,"Show all completed tasks");
+        choiceBox.getItems().add(3,"Show all uncompleted tasks");
+        choiceBox.getItems().add(4,"Show all tasks");
+        choiceBox.setOnAction((event) -> {
+            int selectedIndex = choiceBox.getSelectionModel().getSelectedIndex();
+            switch(selectedIndex) {
+                case 0:
+                    viewByCategory();
+                    break;
+                case 1:
+                    viewByPriority();
+                    break;
+                case 2:
+                    viewCompletedTasks();
+                    break;
+                case 3:
+                    viewUnCompletedTasks();
+                    break;
+                case 4:
+                    viewAllTasks();
+                    break;
+                default:
+            }
+
+
+        });
+
+        textfieldList.add(taskNameTextField);
+        textfieldList.add(endDateTextField);
+        textfieldList.add(startDateTextField);
+        textfieldList.add(priorityTextField);
+        textfieldList.add(categoryTextField);
+        logoImageView.setImage(logoImage);
+        menuButton = new MenuButton("Options", null, helpItem);
+        for(TextField textField : textfieldList){
+            textField.setEditable(false);
+        }
+        notesTextArea.setEditable(false);
+        helpItem.setOnAction(e-> {
+            try {
+                changeSceneToHelp();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+
+    }
     /**
      * This method updates list after a change has happened.
      * A change could be sorting, editing, deleting etc.
@@ -339,6 +343,7 @@ public class TaskController {
      */
     @FXML
     public void viewCompletedTasks(){
+        includeCompleted.setVisible(false);
         ObservableList<Task> boo = FXCollections.observableArrayList();
         for(Task t:getTasksFilehandler()){
             if(t.isCompleted()){
@@ -355,6 +360,7 @@ public class TaskController {
      * Then display method is called on the list to update, with filter method to do the sorting
      */
     private void viewUnCompletedTasks(){
+        includeCompleted.setVisible(false);
         displayTasks(filterOutUnCompleted());
     }
 
@@ -387,8 +393,9 @@ public class TaskController {
      * then displays with displayTasks method
      */
     public void viewByPriority(){
+        includeCompleted.setVisible(true);
         ObservableList<Task> tasksOfPriority;
-        if(chooseCompletedToggleButton.isSelected()){
+        if(includeCompleted.isSelected()){
             tasksOfPriority = getTasksFilehandler();
         }
         else{
@@ -409,6 +416,7 @@ public class TaskController {
      * will only display tasks that are uncompleted
      */
     public void viewByCategory(){
+        includeCompleted.setVisible(true);
         ObservableList<Task> tasksOfCategory = checkOfCompleted();
         SortedList<Task> sortedList = new SortedList<>(tasksOfCategory, new Comparator<Task>() {
             @Override
@@ -426,7 +434,7 @@ public class TaskController {
      */
     public ObservableList<Task> checkOfCompleted(){
         ObservableList<Task> completedList;
-        if(chooseCompletedToggleButton.isSelected()){
+        if(includeCompleted.isSelected()){
             completedList = getTasksFilehandler();
         }
         else{
@@ -483,6 +491,7 @@ public class TaskController {
      * Method to remove all sorting done. To view all tasks inside application in bulk
      */
     public void viewAllTasks(){
+        includeCompleted.setVisible(false);
         displayTasks(getTasksFilehandler());
     }
 

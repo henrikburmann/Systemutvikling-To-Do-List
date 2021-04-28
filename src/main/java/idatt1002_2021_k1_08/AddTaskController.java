@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 
 public class AddTaskController {
@@ -49,6 +49,7 @@ public class AddTaskController {
      * <code>@FXML Button</code> Button to create a new category
      */
     @FXML Button newCategoryButton;
+    @FXML Button deleteCategory;
 
     /**
      * Initializes the window for creating a new task
@@ -132,6 +133,22 @@ public class AddTaskController {
                 FileHandler.getInstance().addTask(task);
                 changeSceneToPrimary();
 
+        }
+    }
+
+    public void deleteCategory() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Category? ");
+        alert.setHeaderText("Sure you want to delete category " + categoryList.getSelectionModel().getSelectedItem() + "?");
+        alert.setContentText("Press OK to delete category");
+        Optional<ButtonType> result = alert.showAndWait();
+        for(Task task: FileHandler.getInstance().getTasks()){
+            if(categoryList.getSelectionModel().getSelectedItem().equals(task.getCategory())){
+                task.setCategory("");
+            }
+        }
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            FileHandler.getCategories().remove(categoryList.getSelectionModel().getSelectedItem());
         }
     }
 }

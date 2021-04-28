@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -10,7 +11,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -56,6 +56,11 @@
                <Font size="16.0" />
             </font>
          </Label>
+         <CheckBox fx:id="includeCompleted" layoutX="27.0" layoutY="383.0" mnemonicParsing="false" onAction="#filterOptionHandler" prefHeight="25.0" prefWidth="174.0" text="Show completed tasks">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </CheckBox>
       </AnchorPane>
 
       <AnchorPane fx:id="pane_middle" layoutX="225.0" prefHeight="500.0" prefWidth="300.0">
@@ -71,8 +76,7 @@
          </Label>
 
 
-         <ChoiceBox fx:id="choiceBox" layoutX="136.0" layoutY="29.0" prefWidth="150.0" />
-         <ToggleButton fx:id="chooseCompletedToggleButton" layoutX="171.0" layoutY="2.0" mnemonicParsing="false" onAction="#filterOptionHandler" text="Include completed" />
+         <ChoiceBox fx:id="choiceBox" layoutX="136.0" layoutY="16.0" prefWidth="150.0" />
 
 
       </AnchorPane>
