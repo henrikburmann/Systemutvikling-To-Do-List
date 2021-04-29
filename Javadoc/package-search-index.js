@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"idatt1002_2021_k1_08","l":"idatt1002_2021_k1_08"},{"m":"idatt1002_2021_k1_08","l":"idatt1002_2021_k1_08.datamodel"}];updateSearchResults();

@@ -12,7 +12,9 @@ import java.io.IOException;
  * JavaFX App
  */
 public class CiterClient extends Application{
-
+    /**
+     * the Scene
+     */
     private static Scene scene;
 
     /**
@@ -20,7 +22,7 @@ public class CiterClient extends Application{
      * runs on every launch of program
      * <code>start(Stage stage)</code> method sets limits on stage (window) size.
      * @param stage the main page where the scene is connected.
-     * @throws IOException
+     * @throws IOException an ioException
      */
     @Override
     public void start(Stage stage) throws IOException {
@@ -35,7 +37,7 @@ public class CiterClient extends Application{
     /**
      * Sets the start window for the application
      * @param fxml the fxml file that is to be loaded
-     * @throws IOException
+     * @throws IOException an IOException
      */
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
@@ -46,7 +48,7 @@ public class CiterClient extends Application{
      *
      * @param fxml all fxml files inside resources file
      * @return the loaded fxml for the fxml indicated by method
-     * @throws IOException
+     * @throws IOException an IOException
      */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(CiterClient.class.getResource(fxml + ".fxml"));
@@ -76,7 +78,7 @@ public class CiterClient extends Application{
 
     /**
      *
-     * @throws Exception
+     * @throws Exception an Exception
      * When closing application
      * Store all data
      */

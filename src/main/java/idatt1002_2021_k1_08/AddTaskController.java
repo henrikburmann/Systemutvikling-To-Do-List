@@ -12,45 +12,52 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Optional;
 
-
+/**
+ * Class for connecting to fxml scene
+ * this is where Tasks are made
+ */
 public class AddTaskController {
     /**
-     * @FXML ImageView for the group logo
-     * @FXML Image for the fileread for the actual .png image
+     *  ImageView for the group logo
+     *  Image for the fileread for the actual .png image
      */
     @FXML
     ImageView logoImageView;
+    /**
+     * The logo for our project
+     */
     Image logo = new Image(new FileInputStream("images/CiterLogo.png"));
     /**
-     * @FXML Textfield Task Name input field for the user
+     *  Textfield Task Name input field for the user
      */
     @FXML TextField task_name_textfield;
     /**
-     * @FXML DatePicker for user input for a finish date to a task.
+     *  DatePicker for user input for a finish date to a task.
      */
     @FXML DatePicker date_time_box;
     /**
-     * @FXML ComboBox for a category.
+     *  ComboBox for a category.
      */
     @FXML ComboBox<String> categoryList;
     /**
-     * @FXML TextArea for detailed description of task, also a user input
+     *  TextArea for detailed description of task, also a user input
      */
     @FXML TextArea notes_textarea;
     /**
-     * @FXML Button Adds a task determined to be completed to a list of completed tasks
+     *  Button Adds a task determined to be completed to a list of completed tasks
      */
     @FXML Button add_task_complete_button;
     /**
-     * @FXML ChoiceBox  containing different priorities for sorting purposes.
+     *  ChoiceBox  containing different priorities for sorting purposes.
      */
     @FXML ChoiceBox <String> priorityChoiceBox;
     /**
-     * @FXML Button to add new category
+     *  Button to add new category
      */
     @FXML Button newCategoryButton;
     /**
-     * @FXML Button for deleting category
+     *
+     * Button for deleting category
      */
     @FXML Button deleteCategory;
 
@@ -67,7 +74,7 @@ public class AddTaskController {
     /**
      * Default constructor for controller class
      *
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if file is not found from file
      */
     public AddTaskController() throws FileNotFoundException {
     }
@@ -75,7 +82,7 @@ public class AddTaskController {
     /**
      * Changes scene to primary, "primary" being the name of the fxml
      *
-     * @throws IOException
+     * @throws IOException through java.io package utilities
      */
     @FXML
     public void changeSceneToPrimary() throws IOException {
@@ -96,7 +103,7 @@ public class AddTaskController {
      * Here we also validate according to clients wishes whatever input is permitted
      * <code>changeSceneToPrimary();</code> only happens if these requirements are met
      *
-     * @throws IOException
+     * @throws IOException an ioexception
      */
     @FXML
     public void addTaskMethod() throws IOException {
@@ -139,6 +146,11 @@ public class AddTaskController {
         }
     }
 
+    /**
+     * method to delete a category
+     * this alerts the user about whet they are about to do
+     * and only lets the operation proceed if they confirm
+     */
     public void deleteCategory() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Category? ");

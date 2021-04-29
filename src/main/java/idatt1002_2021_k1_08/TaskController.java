@@ -36,6 +36,9 @@ public class TaskController {
      * Circles indicates color coding for completed tasks
      */
     @FXML Circle circle_orange;
+    /**
+     * Circles indicates color coding for completed tasks
+     */
     @FXML Circle circle_green;
 
     /**
@@ -54,15 +57,16 @@ public class TaskController {
      * Button to mark existing task as completed for sorting purposes
      */
     @FXML Button complete_task_button;
+
     /**
      * List of all tasks that exists inside application
      */
-
-
     @FXML private ListView<Task> tasksView = new ListView<>();
 
 
-
+    /**
+     * Button to show help window
+     */
     @FXML Button help_button;
 
     /**
@@ -154,7 +158,7 @@ public class TaskController {
     /**
      * Default constructor for controller
      *
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException a FNFException
      */
     public TaskController() throws FileNotFoundException { }
 
@@ -198,6 +202,9 @@ public class TaskController {
         taskNameTextField.setAlignment(Pos.BASELINE_LEFT);
     }
 
+    /**
+     * Method that does the setup of the initial window you see at launch
+     */
     public void setUp(){
         choiceBox.setValue("Show all uncompleted");
         priorityChoiceBox.getItems().addAll("Low", "Medium", "High");
@@ -281,7 +288,7 @@ public class TaskController {
     /**
      * Changes scene to addTask if "NEW" button is pressed
      *
-     * @throws IOException
+     * @throws IOException an IOException
      */
     @FXML
     public void changeSceneToAddTask() throws IOException {
@@ -290,6 +297,7 @@ public class TaskController {
 
     /**
      * Shows finish date for completed task
+     * @param a the boolean value of a, true or false
      */
     public void showFinishDate(boolean a){
         finished.setVisible(a);
@@ -299,7 +307,7 @@ public class TaskController {
     /**
      * Changes scene to "help" if help is pressed inside menu
      *
-     * @throws IOException
+     * @throws IOException an IOException
      */
     public void changeSceneToHelp() throws IOException {
         CiterClient.setRoot("help");
@@ -455,6 +463,10 @@ public class TaskController {
 
     // Method for changing colour cordination on tasks
 
+    /**
+     * Method to change colour on the task when due date is close
+     * Also changes colour on task if status is changed to completed
+     */
     private void changeColourOnTask(){
 
         tasksView.setCellFactory(new Callback<>() {
@@ -550,7 +562,7 @@ public class TaskController {
 
     /**
      * help method to set primary in edit mode
-     * @param a
+     * @param a boolean value true or false. Makes the inputFields editable
      */
     public void setToEdit(boolean a){
         taskNameTextField.setEditable(a);
@@ -613,7 +625,7 @@ public class TaskController {
 
     /**
      *
-     * @param delete
+     * @param delete value from press on delete button
      * Handles deletebutton
      */
     @FXML
@@ -628,7 +640,7 @@ public class TaskController {
 
     /**
      *
-     * @param task
+     * @param task the task object
      * Deletes a task with method from FileHandler class
      */
     public void deleteTask(Task task) {

@@ -6,6 +6,9 @@ import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 import java.util.Optional;
 
+/**
+ * Class to connect with fxml for category
+ */
 public class CategoryController {
 
 

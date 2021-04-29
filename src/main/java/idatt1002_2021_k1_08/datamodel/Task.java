@@ -9,17 +9,41 @@ import java.time.LocalDate;
 public class Task implements Serializable {
 
     /**
-     * Parameters available for each task
+     * Task Name parameter
      */
     private String taskName;
+    /**
+     * Description parameter
+     */
     private String description;
+    /**
+     * Start date parameter
+     */
     private LocalDate startDate;
+    /**
+     * Deadline parameter
+     */
     private LocalDate deadline;
+    /**
+     * priority parameter
+     */
     private String priority;
-    //Should implement a serialVersionUID check on each Task Object??
+    /**
+     * Unused serialVersionUID
+     * would have been used to give an unique id to every object that is serialized
+     */
     private static final long SerialVersionUID = 1L;
+    /**
+     * category parameter
+     */
     private String category;
+    /**
+     * completed parameter
+     */
     private boolean completed;
+    /**
+     * Finish date parameter
+     */
     private LocalDate finishDate;
 
 
@@ -29,6 +53,7 @@ public class Task implements Serializable {
      * @param taskName    the task name
      * @param deadline     the end date
      * @param priority    the priority
+     * @param category the category
      */
 
     //Constructor if all parameters are good and written in their respective FXML textfields
@@ -160,7 +185,7 @@ public class Task implements Serializable {
     /**
      * Sets the category on input
      *
-     * @param category
+     * @param category the category
      */
     public void setCategory(String category) {
         this.category = category;
@@ -235,12 +260,16 @@ public class Task implements Serializable {
 
     /**
      * Get and set finishDate
-     * @return
+     * @return finishDate
      */
     public LocalDate getFinishDate() {
         return finishDate;
     }
 
+    /**
+     * set method for the finishDate when task is marked as completed
+     * @param finishDate the finishDate as LocalDate.now()
+     */
     public void setFinishDate(LocalDate finishDate) {
         this.finishDate = finishDate;
     }
