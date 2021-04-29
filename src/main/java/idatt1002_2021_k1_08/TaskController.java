@@ -77,10 +77,7 @@ public class TaskController {
      * Button for the menu
      */
     @FXML MenuButton menuButton;
-    /**
-     *  Help item inside menu
-     */
-    @FXML MenuItem helpItem;
+
     /**
      * Checkbox to include completed tasks
      */
@@ -245,17 +242,10 @@ public class TaskController {
         textfieldList.add(priorityTextField);
         textfieldList.add(categoryTextField);
         logoImageView.setImage(logoImage);
-        menuButton = new MenuButton("Options", null, helpItem);
+
         for(TextField textField : textfieldList){
             textField.setEditable(false);
         }
-        helpItem.setOnAction(e-> {
-            try {
-                changeSceneToHelp();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
         notesTextArea.setEditable(false);
     }
     /**
