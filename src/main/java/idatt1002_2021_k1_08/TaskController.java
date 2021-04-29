@@ -228,7 +228,6 @@ public class TaskController {
         for(TextField textField : textfieldList){
             textField.setEditable(false);
         }
-        notesTextArea.setEditable(false);
         helpItem.setOnAction(e-> {
             try {
                 changeSceneToHelp();
