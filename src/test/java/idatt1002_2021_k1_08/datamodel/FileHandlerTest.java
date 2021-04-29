@@ -2,6 +2,7 @@ package idatt1002_2021_k1_08.datamodel;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +13,10 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FileHandlerTest {
 
@@ -56,22 +61,22 @@ class FileHandlerTest {
 
     @Test
     @DisplayName("Check if Filehandler instance is returned")
-    public void check_return_of_filehandler_instance() {
+    public void filehandlerClass_standardClassSetup_ExpectedCorrectInstance() {
         FileHandler instance = new FileHandler();
-        Assertions.assertInstanceOf(FileHandler.getInstance().getClass(), instance);
+        MatcherAssert.assertThat(instance, instanceOf(FileHandler.class));
     }
 
     @Test
     @DisplayName("Check getTasks() method")
-    void check_if_observablelist_contains_task() {
-        Assertions.assertTrue(fileHandler.getTasks().contains(task1));
-        Assertions.assertTrue(fileHandler.getTasks().contains(task2));
-        Assertions.assertTrue(fileHandler.getTasks().contains(task3));
+    void getTasks_Task_ExpectedContainsTask() {
+        assertTrue(fileHandler.getTasks().contains(task1));
+        assertTrue(fileHandler.getTasks().contains(task2));
+        assertTrue(fileHandler.getTasks().contains(task3));
     }
 
     @Test
     @DisplayName("Check if getCategory() method works")
-    void check_if_right_category_is_returned() {
+    void getCategory_Category_ReturnedCorrect() {
         Assertions.assertEquals(task1.getCategory(), "Category1");
         Assertions.assertEquals(task2.getCategory(), "Category2");
         Assertions.assertEquals(task3.getCategory(), "Category3");
@@ -79,15 +84,15 @@ class FileHandlerTest {
 
     @Test
     @DisplayName("Check is addTask() methods works")
-    void check_if_task_is_added() {
+    void AddTask_Task_TaskAdded() {
         Task task4 = new Task("Test4", "Category4", LocalDate.now().plusDays(1), "high");
         fileHandler.addTask(task4);
-        Assertions.assertTrue(fileHandler.getTasks().contains(task4));
+        assertTrue(fileHandler.getTasks().contains(task4));
     }
 
     @Test
     @DisplayName("Check if serializeTask do not throw exception")
-    void check_store_task_by_not_throwing_exception() {
+    void serializeTask_tasksFilepath_NoException() {
 
         try{
             fileHandler.serializeTask(tasks, FILE_PATH_TASKS);
@@ -100,13 +105,13 @@ class FileHandlerTest {
 
     @Test
     @DisplayName("Check if serialzeTask() returns right elements from file")
-    void check_if_serialized_tasks_contains_deserialized_tasks() {
+    void SerializeTask_Tasks_CorrectElements() {
         try{
             fileHandler.serializeTask(tasks, FILE_PATH_TASKS);
             ArrayList<Task> arrayTasks = fileHandler.deserializeTask(FILE_PATH_TASKS);
-            Assertions.assertTrue(arrayTasks.get(0).getTaskName().equals(tasks.get(0).getTaskName()));
-            Assertions.assertTrue(arrayTasks.get(1).getTaskName().equals(tasks.get(1).getTaskName()));
-            Assertions.assertTrue(arrayTasks.get(2).getTaskName().equals(tasks.get(2).getTaskName()));
+            assertTrue(arrayTasks.get(0).getTaskName().equals(tasks.get(0).getTaskName()));
+            assertTrue(arrayTasks.get(1).getTaskName().equals(tasks.get(1).getTaskName()));
+            assertTrue(arrayTasks.get(2).getTaskName().equals(tasks.get(2).getTaskName()));
         }catch (IOException e){
             Assertions.fail("Should not enter this");
         }
@@ -114,7 +119,7 @@ class FileHandlerTest {
 
     @Test
     @DisplayName("Check if deleteTask methods deletes from list")
-    void check_if_list_tasks_contains_task_after_deleteTask() {
+    void deleteTask_Task_taskDeleted() {
         Task task5 = new Task("Task5", "Category5",
                 LocalDate.now().plusDays(1), "high");
         fileHandler.addTask(task5);
@@ -126,7 +131,7 @@ class FileHandlerTest {
 
     @Test
     @DisplayName("Check if task have it's category removed")
-    void check_If_Task_Contains_Category_After_deleteCategory() {
+    void deleteCategory_category_deletedCategory() {
         fileHandler.deleteCategory("Category1");
         //Add method by @Maiken where delete is checked inside categorylist AND on the taskView. ?????
         Assertions.assertFalse(FileHandler.categories.contains("Category1"));
