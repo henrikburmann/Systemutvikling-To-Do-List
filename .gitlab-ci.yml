@@ -1,5 +1,5 @@
 generatepdf:
-    image: ubuntu20.04
+    image: ubuntu:20.04
     stage: deploy
     script:
         - apt-get update
