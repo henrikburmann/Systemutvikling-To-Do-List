@@ -14,16 +14,44 @@ import java.util.Optional;
 
 
 public class AddTaskController {
+    /**
+     * @FXML ImageView for the group logo
+     * @FXML Image for the fileread for the actual .png image
+     */
     @FXML
     ImageView logoImageView;
     Image logo = new Image(new FileInputStream("images/CiterLogo.png"));
+    /**
+     * @FXML Textfield Task Name input field for the user
+     */
     @FXML TextField task_name_textfield;
+    /**
+     * @FXML DatePicker for user input for a finish date to a task.
+     */
     @FXML DatePicker date_time_box;
+    /**
+     * @FXML ComboBox for a category.
+     */
     @FXML ComboBox<String> categoryList;
+    /**
+     * @FXML TextArea for detailed description of task, also a user input
+     */
     @FXML TextArea notes_textarea;
+    /**
+     * @FXML Button Adds a task determined to be completed to a list of completed tasks
+     */
     @FXML Button add_task_complete_button;
+    /**
+     * @FXML ChoiceBox  containing different priorities for sorting purposes.
+     */
     @FXML ChoiceBox <String> priorityChoiceBox;
+    /**
+     * @FXML Button to add new category
+     */
     @FXML Button newCategoryButton;
+    /**
+     * @FXML Button for deleting category
+     */
     @FXML Button deleteCategory;
 
     /**
@@ -66,7 +94,7 @@ public class AddTaskController {
      * Method for adding a task
      * This method adds a task according to input inside application
      * Here we also validate according to clients wishes whatever input is permitted
-     * {@code} changeSceneToPrimary(); {@code} only happens if these requirements are met
+     * <code>changeSceneToPrimary();</code> only happens if these requirements are met
      *
      * @throws IOException
      */

@@ -19,9 +19,16 @@ public class HelpController {
     @FXML ImageView imageView;
     Image logo = new Image(new FileInputStream("images/CiterLogo.png"));
 
+    /**
+     * Default constructor for class
+     * @throws FileNotFoundException
+     */
     public HelpController() throws FileNotFoundException {
     }
 
+    /**
+     * Initialize method to set the Citer-team photo on scene set on Event.
+     */
     public void initialize(){
         imageView.setImage(logo);
 

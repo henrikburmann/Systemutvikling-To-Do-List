@@ -8,11 +8,15 @@ import java.time.LocalDate;
  */
 public class Task implements Serializable {
 
+    /**
+     * Parameters available for each task
+     */
     private String taskName;
     private String description;
     private LocalDate startDate;
     private LocalDate deadline;
     private String priority;
+    //Should implement a serialVersionUID check on each Task Object??
     private static final long SerialVersionUID = 1L;
     private String category;
     private boolean completed;
@@ -27,7 +31,7 @@ public class Task implements Serializable {
      * @param priority    the priority
      */
 
-//Constructor if all parameters are good and written in their respective FXML textfields
+    //Constructor if all parameters are good and written in their respective FXML textfields
     public Task (String taskName, String category, LocalDate deadline, String priority){
         this.startDate = LocalDate.now();
         setDeadline(deadline);
@@ -184,7 +188,6 @@ public class Task implements Serializable {
      *
      * @param string every possible string
      */
-
     public void checkifNull(String string){
         if(string == (null)){
             throw new NullPointerException("String cant be null");
@@ -196,8 +199,6 @@ public class Task implements Serializable {
      *
      * @param string every possible string
      */
-
-
     public void checkIfEmpty(String string){
 
         if(string.isEmpty()){

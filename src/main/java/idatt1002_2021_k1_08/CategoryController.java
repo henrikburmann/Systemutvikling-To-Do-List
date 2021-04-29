@@ -44,7 +44,7 @@ public class CategoryController {
     }
 
     /**
-     * Alerybox if category already exists
+     * Alertbox if category already exists
      */
     public static void alertbox(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

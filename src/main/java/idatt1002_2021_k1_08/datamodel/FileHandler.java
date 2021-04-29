@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
@@ -11,20 +12,23 @@ import java.util.ArrayList;
 
 
 public class FileHandler {
-
+    /**
+     * <code>FILE_PATH</code> & <code>FILE_PATH_CATEGORY</code>
+     * are .ser extension files directly created inside directory resources/../DataStorage upon launch
+     * To avoid a read from wrong files we do not allow user to search and choose files themself.
+     */
     private static final File FILE_PATH_CATEGORY = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/CategoryStrings.ser");
     private static final File FILE_PATH = new File("src/main/resources/idatt1002_2021_k1_08/DataStorage/TaskData.ser");
-    private ObservableList<Task> obTasks;
-    private static ObservableList<String> categories;
+    public ObservableList<Task> obTasks = FXCollections.observableArrayList(); // Must be public due to FileHandlerTest class
+    public static ObservableList<String> categories = FXCollections.observableArrayList();
     private static FileHandler fileHandlerInstance = new FileHandler();
 
-    private final DateTimeFormatter formatter;
 
     /**
-     * Constructor
+     * Constructor for FileHandler.
      */
     public FileHandler() {
-        formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
     /**
@@ -60,11 +64,11 @@ public class FileHandler {
     /**
      * Writes a Category to file
      */
-    private void serializeTask(ArrayList<Task> tasks) throws IOException {
-        Path path = Paths.get(String.valueOf(FILE_PATH));
+    public void serializeTask(ObservableList<Task> obTasks1, File filePath) throws IOException {
+        Path path = Paths.get(String.valueOf(filePath));
         try (FileOutputStream fs = new FileOutputStream(String.valueOf(path)); //åpner opp en stream
              ObjectOutputStream os = new ObjectOutputStream(fs)) {
-            for (Task task : obTasks) {
+            for (Task task : obTasks1) {
                 os.writeObject(task);
             }
         }
@@ -75,10 +79,10 @@ public class FileHandler {
      * @return ArrayList of tasks that gets deserialized from TaskData.ser file
      * @throws IOException
      */
-    private ArrayList<Task> deserializeTask() throws IOException {
+    public ArrayList<Task> deserializeTask(File filePath) throws IOException {
         ArrayList<Task> tasks1 = new ArrayList<>();
 
-        Path path = Paths.get(String.valueOf(FILE_PATH));
+        Path path = Paths.get(String.valueOf(filePath));
 
         //try with resources, so that fs closes
         try (FileInputStream fs = new FileInputStream(String.valueOf(path));
@@ -114,8 +118,8 @@ public class FileHandler {
         ArrayList<Task> taskStore = new ArrayList<>();
 
         taskStore.addAll(obTasks);
-        serializeCategory(categoryStore);
-        serializeTask(taskStore);
+        serializeCategory(categoryStore, FILE_PATH_CATEGORY);
+        serializeTask(obTasks, FILE_PATH);
     }
 
     /**
@@ -127,11 +131,12 @@ public class FileHandler {
     public void loadData() throws IOException {
         categories = FXCollections.observableArrayList();
         obTasks = FXCollections.observableArrayList();
+        //createFiles(FILE_PATH, FILE_PATH_CATEGORY);
         if (FILE_PATH.createNewFile());
         if (FILE_PATH_CATEGORY.createNewFile());
         try {
             ArrayList<String> catlist = deserializeCategory(); // Denne burde returnere category string
-            ArrayList<Task> list = deserializeTask();  //Denne burde returnere task
+            ArrayList<Task> list = deserializeTask(FILE_PATH);  //Denne burde returnere task
 
             categories.addAll(catlist);
 
@@ -171,8 +176,8 @@ public class FileHandler {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private void serializeCategory(ArrayList<String> category) throws IOException, ClassNotFoundException{
-        Path path = Paths.get(String.valueOf(FILE_PATH_CATEGORY));
+    private void serializeCategory(ArrayList<String> category, File filePathCategory) throws IOException, ClassNotFoundException{
+        Path path = Paths.get(String.valueOf(filePathCategory));
         try(FileOutputStream fos = new FileOutputStream(String.valueOf(path));
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(category);
@@ -185,7 +190,7 @@ public class FileHandler {
     /**
      *
      * @return ArrayList containing each object of category previously stored inside CategoryStrings.ser
-     * category1 = (ArrayList<String>) ois.readObject(); This line warns us of an unchecked cast,
+     * <code>category1 = (ArrayList<String>) ois.readObject();</code> This line warns us of an unchecked cast,
      * But since we know that each item of category inside category1 is a object with only string content,
      * and the need for it to be sorted is not there we can ignore this warning.
      * @throws IOException
@@ -213,5 +218,4 @@ public class FileHandler {
         }
         return category1;
     }
-
 }

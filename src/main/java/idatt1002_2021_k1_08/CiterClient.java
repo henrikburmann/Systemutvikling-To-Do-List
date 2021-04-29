@@ -15,6 +15,13 @@ public class CiterClient extends Application{
 
     private static Scene scene;
 
+    /**
+     * Method extended from Application
+     * runs on every launch of program
+     * <code>start(Stage stage)</code> method sets limits on stage (window) size.
+     * @param stage the main page where the scene is connected.
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"));
@@ -46,6 +53,10 @@ public class CiterClient extends Application{
         return fxmlLoader.load();
     }
 
+    /**
+     * Main method, initializes methods extended from Application through <code>launch(args)</code>
+     * @param args arguments passed through launch method. (Start, init, load...)
+     */
     public static void main(String[] args) {
         launch(args);
     }
